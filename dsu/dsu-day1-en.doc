@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><meta name="ProgId" content="Word.Document"><title>Faculty AI Competency Training — Day 1 — Structuring Goals for Narrative, Debate &amp; Writing Courses</title>
+<style>:root { --accent: #1E88E5; }
+
+  @page { size: A4; margin: 18mm 16mm 20mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    font-size: 10.5pt; line-height: 1.65; color: #1a1a1a;
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+  h1, h2, h3, h4 { margin: 0; font-weight: 700; }
+  mark { background: linear-gradient(transparent 55%, #ffe9a8 55%); padding: 0 1px; }
+  .page-break { break-after: page; }
+
+  /* ── 표지 ── */
+  .cover { height: 253mm; display: flex; flex-direction: column; text-align: center; }
+  .cover-top { border-top: 6px solid #0054A6; padding-top: 14mm; }
+  .cover-logo { height: 11mm; margin: 0 auto 11mm; display: block; }
+  .cover-org { font-size: 13pt; letter-spacing: .28em; color: #0054A6; font-weight: 700; }
+  .cover-title { font-size: 30pt; line-height: 1.3; margin: 8mm 0 4mm; letter-spacing: -.02em; }
+  .cover-sub { font-size: 12.5pt; color: #4a5568; }
+  .cover-rule { width: 28mm; height: 3px; background: #0054A6; margin: 9mm auto; border: 0; }
+  .cover-meta { font-size: 11pt; color: #2d3748; line-height: 2.1; }
+  .cover-meta b { display: inline-block; min-width: 22mm; color: #0054A6; }
+  .cover-foot { margin-top: auto; font-size: 9pt; color: #718096; line-height: 1.8;
+                border-top: 1px solid #e2e8f0; padding-top: 6mm; }
+  .cover-badge { display: inline-block; margin-top: 6mm; padding: 2.5mm 6mm; border-radius: 99px;
+                 background: #0054A6; color: #fff; font-size: 10pt; font-weight: 700; }
+
+  /* ── 속표지(Day) ── */
+  .daycover { border-top: 6px solid #1E88E5; padding-top: 16mm; height: 253mm;
+              display: flex; flex-direction: column; }
+  .daycover .kicker { font-size: 10pt; letter-spacing: .22em; color: #718096; }
+  .daycover h1 { font-size: 25pt; line-height: 1.32; margin: 5mm 0 4mm; color: #1E88E5; }
+  .daycover .tagline { font-size: 12pt; color: #2d3748; line-height: 1.7; }
+  .daycover .desc { margin-top: 8mm; font-size: 10.5pt; color: #4a5568; line-height: 1.85;
+                    background: #f7fafc; border-left: 3px solid #1E88E5; padding: 5mm 6mm; }
+
+  /* ── 표 ── */
+  table { width: 100%; border-collapse: collapse; margin: 5mm 0; font-size: 9.8pt; }
+  th, td { border: 1px solid #cbd5e0; padding: 2.6mm 3mm; text-align: left; vertical-align: top; }
+  th { background: #edf2f7; font-weight: 700; color: #2d3748; }
+
+  /* ── 섹션 ── */
+  .sec-title { font-size: 13pt; color: #1E88E5; border-bottom: 2px solid #1E88E5;
+               padding-bottom: 2mm; margin: 0 0 5mm; }
+  .chips { display: flex; flex-wrap: wrap; gap: 2mm; margin: 4mm 0 0; }
+  .chip { font-size: 9pt; padding: 1.2mm 3.5mm; border-radius: 99px;
+          background: #edf2f7; color: #2d3748; border: 1px solid #dde3ea; }
+
+  /* ── 교시 블록 ── */
+  /* 교시 블록은 길어서 페이지를 넘길 수 있게 둔다(막으면 빈 지면이 크게 생김).
+     대신 머리말 직후·목표 블록은 쪼개지지 않도록 고정. */
+  .block { margin-bottom: 7mm; }
+  .block-head { background: #1E88E5; color: #fff; padding: 3mm 4mm; border-radius: 2mm 2mm 0 0;
+                break-after: avoid; break-inside: avoid; }
+  .goal, ul.topics li { break-inside: avoid; }
+  .block-head .theme { font-size: 9pt; opacity: .85; }
+  .block-head h2 { font-size: 12.5pt; margin-top: 1mm; }
+  .block-body { border: 1px solid #dde3ea; border-top: 0; border-radius: 0 0 2mm 2mm; padding: 5mm; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 2mm; margin-bottom: 4mm; }
+  .tag { font-size: 8.6pt; padding: 1mm 3mm; border-radius: 99px; border: 1px solid #cbd5e0; color: #4a5568; }
+  .tag.accent { background: #1E88E5; border-color: #1E88E5; color: #fff; }
+  .goal { background: #f0f7ff; border-left: 3px solid #1E88E5; padding: 3mm 4mm; margin-bottom: 4mm;
+          font-size: 10pt; }
+  .goal b { color: #1E88E5; }
+  .label { font-size: 9.4pt; font-weight: 700; color: #1E88E5; margin: 4mm 0 2mm;
+           letter-spacing: .04em; }
+  ul.topics { margin: 0; padding-left: 5mm; }
+  ul.topics li { margin-bottom: 1.6mm; }
+
+  /* ── 실습 프롬프트 ── */
+  .practice { break-inside: avoid; border: 1px solid #dde3ea; border-radius: 2mm; margin-bottom: 3.5mm;
+              overflow: hidden; }
+  .practice-head { background: #f7fafc; padding: 2.2mm 3.5mm; font-size: 9.6pt; font-weight: 700;
+                   color: #2d3748; border-bottom: 1px solid #e2e8f0; }
+  .practice-head .n { color: #1E88E5; margin-right: 2mm; }
+  .practice pre { margin: 0; padding: 3.5mm; font-family: 'SF Mono', 'D2Coding', Menlo, monospace;
+                  font-size: 8.6pt; line-height: 1.72; white-space: pre-wrap;
+                  word-break: keep-all; overflow-wrap: break-word; color: #2d3748; background: #fff; }
+
+  /* ── 메모 ── */
+  .memo { break-inside: avoid; border: 1px dashed #cbd5e0; border-radius: 2mm; padding: 4mm 5mm; margin-top: 6mm; }
+  .memo h3 { font-size: 10pt; color: #4a5568; margin-bottom: 3mm; }
+  .memo .lines { height: 42mm; background: repeating-linear-gradient(
+      transparent, transparent 8.4mm, #e2e8f0 8.4mm, #e2e8f0 8.6mm); }
+</style></head><body>
+    <section class="daycover">
+      <div class="kicker">Dongshin University Faculty AI Competency Training · Humanities &amp; Arts track</div>
+      <h1>Day 1<br>Structuring Goals for Narrative, Debate &amp; Writing Courses</h1>
+      <div class="tagline">Day one — understand what makes your course distinctive, then build learning objectives, lesson plans, and debate guides with Claude.</div>
+      <div class="chips"><span class="chip">Reading your subject</span><span class="chip">Finding where AI helps</span><span class="chip">Structuring objectives</span><span class="chip">Lesson plan draft</span><span class="chip">Debate guides &amp; questions</span><span class="chip">Rewriting texts by level</span></div>
+      <div class="desc">Day 1 maps AI onto the core activities of humanities &amp; arts courses — debate, case analysis, and writing — and produces real learning objectives and lesson-plan drafts for your own course.</div>
+      <table style="margin-top:8mm">
+        <tr><th style="width:26mm">Date</th><td>Mon 20 July 2026</td></tr>
+        <tr><th>Structure</th><td>4 periods · 4 hours (in person)</td></tr>
+        <tr><th>Level</th><td>Foundational → Applied</td></tr>
+        <tr><th>Participants</th><td>Humanities &amp; arts faculty (Mon 20 July 2026)</td></tr>
+        <tr><th>Instructor</th><td>Prof. Jeong Dong-yeop</td></tr>
+        <tr><th>Practice board</th><td>https://padlet.com/dreamitbiz/dsu26</td></tr>
+      </table>
+      <div style="margin-top:auto;border-top:1px solid #e2e8f0;padding-top:5mm;font-size:9pt;color:#718096">
+        드림아이티비즈(DreamIT Biz) · dsu.dreamitbiz.com
+      </div>
+    </section>
+    <div class="page-break"></div>
+    <section>
+      <h2 class="sec-title">Today's Flow</h2>
+      <table>
+        <thead><tr><th style="width:20mm">Period</th><th style="width:56mm">Theme</th><th>Learning goal</th></tr></thead>
+        <tbody><tr>
+      <td style="white-space:nowrap"><b>Period 1</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>Debate, Case Analysis, and Writing Courses — Where Can AI Step In?</td>
+      <td style="font-size:9.2pt">Break your course down into its teaching activities, and tell apart the places where AI can help from the places where it must not. (Analysis)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>Period 2</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>Finishing Your Learning Objectives and a Lesson-Plan Draft Today</td>
+      <td style="font-size:9.2pt">Structure the learning objectives for your own course and generate a draft lesson plan for one week. (Application &amp; Creation)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>Period 3</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>Debate Guides, Discussion Questions, and Case Analysis Sheets — Done in Minutes with Templates</td>
+      <td style="font-size:9.2pt">Generate debate guides, discussion questions, and case analysis sheets from templates, then refine them to fit your own course. (Application)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>Period 4</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>A Demonstration of Leveled Text Conversion + Organizing Today's Outputs</td>
+      <td style="font-size:9.2pt">Learn the template for converting lecture text into different reading levels, then organize and share your Day 1 outputs. (Application &amp; Synthesis)</td>
+    </tr></tbody>
+      </table>
+      <p style="font-size:9.6pt;color:#4a5568;margin-top:4mm">Replace the <strong>[bracketed]</strong> parts with your own course and topic. Every prompt follows the <strong>[Role]·[Context]·[Request]·[Format]·[Example]·[Condition]</strong> structure.</p>
+    </section>
+    <div class="page-break"></div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 1–2 · Mapping AI onto My Course &amp; Drafting Objectives</div>
+              <h2>Period 1 · Debate, Case Analysis, and Writing Courses — Where Can AI Step In?</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 1</span><span class="tag">60 min</span><span class="tag">Level Foundational</span><span class="tag">Priority ★★★</span></div>
+              <div class="goal"><b>Learning goal</b> Break your course down into its teaching activities, and tell apart the places where AI can help from the places where it must not. (Analysis)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>The three pillars of humanities &amp; arts classes: debate (speaking and listening), case analysis (reading and interpretation), and writing (composing and expressing)</li><li>Where AI fits into each pillar: debate → preparing motions and discussion questions / case analysis → analysis sheets and background material / writing → assignment design and first-draft feedback</li><li>What AI must never do in your place: <mark>the student's own thinking, and the professor's final evaluation and judgment</mark></li><li><mark>"AI helps with the preparation; the thinking stays with people."</mark> — the <strong>guiding principle</strong> of this entire course</li><li>Hands-on breakdown of your own course: split one semester of activities apart and build a map of where AI applies</li><li>📦 Output: a one-page AI application map for your course</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Breaking my course into activities</div>
+                <pre>[Role] You are a specialist with 10 years of experience designing instruction for humanities and arts courses.
+[Context] I am a professor at Dongshin University teaching [course name], and my main class activities are [e.g., small-group debate, response papers on artworks, case presentations]. I want to bring generative AI into my class preparation, but I have no clear standard for how much I can hand over to it.
+[Request] Please break these activities apart and separate them into (1) the preparation work AI can help with for each activity, (2) the parts students must do entirely themselves, (3) the parts the professor must judge, and (4) cautions when using AI (hallucinations, checking sources, and so on).
+[Format] A four-column table with the activities running down the left.
+[Example] One row might read: "Small-group debate | Draft the motion and organize background material | Choose your own position and find supporting evidence | Make the final choice of motion and evaluate the debate | Confirm that the background sources actually exist".
+[Steps] First complete the table → then add a one-line summary of the guiding principle beneath it → finally recommend the one activity I should start with this semester, and why.
+[Condition] Fill each cell with the name of a real task rather than an abstract phrase. If I listed fewer than three activities, suggest additional activities that are common in this field so the table has at least five rows.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Setting priorities for adoption</div>
+                <pre>[Role] You are an education consultant who is good at pinpointing what to do first.
+[Context] I want to decide where to begin with the AI application map I just made. I am a beginner with AI, so I want to start small.
+[Request] Pick three uses of AI that are "high impact and easy to prepare" and rank them in order.
+[Format] A four-column table: "Rank / Task / Why I chose it / First step this semester (one line)".
+[Example] A first step might read: "Use Claude to draft five discussion questions for next week's Week 3 debate (30 minutes)".
+[Condition] Each first step should be something I can finish within this week in about 30 minutes.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Getting ideas from colleagues' courses</div>
+                <pre>[Role] You are a researcher at a center for teaching and learning who has been collecting examples of AI use in university classrooms nationwide.
+[Context] I am a professor in the humanities and arts. I would like to see how other professors use AI so I can adapt it to my own course, [course name].
+[Request] Show me five types of cases in which generative AI has been used well for class preparation in this field.
+[Format] A four-column table: "Which activity / What the AI did / The line the professor refused to cross / How I could adapt it to my course".
+[Example] One case type might read: "Literature course — AI drafts a briefing on the historical background, while interpretation of the work stays with the students".
+[Condition] Do not invent the names of real universities or professors; describe the cases only as types.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 1–2 · Mapping AI onto My Course &amp; Drafting Objectives</div>
+              <h2>Period 2 · Finishing Your Learning Objectives and a Lesson-Plan Draft Today</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 2</span><span class="tag">60 min</span><span class="tag">Level Intermediate</span><span class="tag">Priority ★★★</span></div>
+              <div class="goal"><b>Learning goal</b> Structure the learning objectives for your own course and generate a draft lesson plan for one week. (Application &amp; Creation)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>A 30-second review of VOD Module 2: a good objective uses an observable action verb ("appreciates the work" → "can write a response supported by two pieces of evidence")</li><li>What makes objectives distinctive in the humanities and arts: the target is not a correct answer but "the quality of thinking and expression"</li><li>Writing in the language of competencies: critical thinking, empathetic interpretation, creative expression, building an argument</li><li>From objectives to lesson plan: once the objectives are settled, generate the lesson plan in the same conversation so the two stay aligned automatically</li><li>The five essential parts of a lesson plan: objectives / opening / development (activity-centered) / closing / materials and cautions</li><li>📦 Output: 3 learning objectives + a draft lesson plan for one week</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Structuring learning objectives</div>
+                <pre>[Role] You are a specialist with 10 years of experience designing humanities and arts curricula.
+[Context] The topic for [week] of my course [course name] is "[topic]". Right now my objective is only "students will understand ~", which is too vague to guide either the class or the assessment.
+[Request] Please write the learning objectives for this week as (1) one at the comprehension level, (2) one at the analysis level, and (3) one at the expression and creation level.
+[Format] Write each objective as an observable sentence in the form "Students can ~", with the Bloom's taxonomy level noted beside it.
+[Example] An expression-and-creation objective might read: "Students can reinterpret the conflict structure of the work in one paragraph by relating it to their own experience".
+[Condition] Use verbs that bring out critical thinking, interpretation, and expressive competence, as befits a humanities course.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Continuing into the lesson plan in the same conversation</div>
+                <pre>[Request] Good — I will finalize the three learning objectives you just wrote. Please build a 75-minute lesson plan around them.
+[Format] Opening (10 min, spark interest) / Development 1 (25 min, core content) / Development 2 (25 min, student activity) / Closing (15 min, sharing and summary) — for each stage, list what the professor does and what the students do separately.
+[Example] A stage might read: "Development 2 | Professor: circulate among the groups asking questions | Students: fill in the analysis sheet, then a representative presents".
+[Condition] Finish with a list of materials and cautions. The activities should carry the same verbs used in the objectives we just wrote. (Asking for this in the same conversation keeps your objectives and lesson plan aligned automatically!)</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Expanding into a full-semester syllabus</div>
+                <pre>[Role] You are a specialist who designs curricula at the semester level.
+[Context] I like the single-week design we just finished, and I would like to plan out the whole semester of [course name] the same way.
+[Request] Please draft a 15-week syllabus.
+[Format] A five-column table: Week / Topic / Key content / Class activity / Assignment.
+[Example] A class-activity cell might read: "Week 5 — groups complete a case analysis sheet (30 min) + whole-class sharing (15 min)".
+[Condition] Leave the midterm and final weeks blank, and spread debate, writing, and presentation activities evenly across the semester. Carry the week we designed today into the table exactly as it is.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 3–4 · Debate Guides, Questions &amp; Case Sheets + Leveled Texts</div>
+              <h2>Period 3 · Debate Guides, Discussion Questions, and Case Analysis Sheets — Done in Minutes with Templates</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 3</span><span class="tag">60 min</span><span class="tag">Level Intermediate</span><span class="tag">Priority ★★★</span></div>
+              <div class="goal"><b>Learning goal</b> Generate debate guides, discussion questions, and case analysis sheets from templates, then refine them to fit your own course. (Application)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>What goes into a debate guide: the motion / background explanation / key arguments for and against / order of proceedings / time allocation / what to look for when evaluating</li><li>The three layers of questioning: fact-checking questions → interpretive questions → application and evaluation questions (from the shallow end toward the deep end)</li><li>What goes into a case analysis sheet: case summary / analysis questions (the three layers) / a space to link concepts / a space for "my own thoughts"</li><li>What makes a good motion: the two sides are evenly matched, it connects to the concepts of the course, and it touches students' own lives</li><li>Adapting this for the arts: the same framework works for discussions of artworks, comparisons of performance and studio interpretations, and analyses of creative intent</li><li>📦 Output: 1 debate guide + 1 case analysis sheet</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Generating a debate guide</div>
+                <pre>[Role] You are a specialist with 10 years of experience designing university debate classes.
+[Context] In my [course name] class (undergraduate [year level], 30 students), I want to run a 40-minute small-group debate on "[topic]". The students do not have much debate experience.
+[Request] Please build me a debate guide.
+[Format] (1) A one-sentence motion with clear pro and con sides (2) a two-minute background explanation (3) three key arguments each for the pro and con sides (4) a table of the order of proceedings and time allocation (5) closing remarks for the professor to wrap up with.
+[Example] A motion might take the form: "Universities should fully permit the use of generative AI in coursework".
+[Condition] The motion should be evenly balanced between the two sides and connected to students' own lives, and the background explanation should stay neutral.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Three-layer questions + a case analysis sheet</div>
+                <pre>[Role] You are a teaching consultant who is expert at designing questions.
+[Context] I am covering [case or work title] in my next class, and I want the students to go deeper rather than stopping at a surface-level impression.
+[Request] Please build me a one-page case analysis sheet.
+[Format] (1) A five-line summary of the case (2) two fact-checking questions (3) two interpretive questions (4) one question that applies it to the student's own life (5) instructions for the "my own thoughts" section.
+[Example] The flow of the three layers might run: "Why did the protagonist leave? (fact) → What does that choice symbolize? (interpretation) → What would I have done? (application)".
+[Condition] Make the questions deepen in the order fact → interpretation → application, and make the sheet complete enough to hand straight to students.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>A set of backup questions for breaking the silence</div>
+                <pre>[Role] You are a veteran discussion facilitator who knows how to bring a quiet classroom back to life.
+[Context] The moments when students fall silent are what I dread most in a debate class. I want to prepare question cards in advance that I can pull out right then.
+[Request] Please write me ten "rescue questions".
+[Format] (1) Three low-pressure warm-up questions (2) three either-or questions that split the room in half (3) two questions that draw out minority opinions (4) two reflective closing questions.
+[Example] An either-or question might read: "If you had to pick just one — principle, or outcome? Show of hands?".
+[Condition] Write them in the natural spoken style you would actually use in class, and fit them to the situation in a [course name] session.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 3–4 · Debate Guides, Questions &amp; Case Sheets + Leveled Texts</div>
+              <h2>Period 4 · A Demonstration of Leveled Text Conversion + Organizing Today's Outputs</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 4</span><span class="tag">60 min</span><span class="tag">Level Foundational</span><span class="tag">Priority ★★</span></div>
+              <div class="goal"><b>Learning goal</b> Learn the template for converting lecture text into different reading levels, then organize and share your Day 1 outputs. (Application &amp; Synthesis)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>Why leveled conversion matters: every classroom holds students who read at different levels</li><li>The conversion template (demonstrated): original text → easy version (analogies, short sentences) / standard version / advanced version (quotations from primary sources, deeper questions)</li><li>The same works for exercises: generate an easy set and a difficult set of problems that ask about the same concept</li><li>Gathering up what you made today: the AI application map, learning objectives, lesson plan, debate guide, and analysis sheet — save them all in one folder</li><li>Sharing with colleagues: swap outputs with the professor sitting next to you and learn each other's best prompts</li><li>📦 Output: 1 set of leveled texts + a Day 1 output folder</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Three-level conversion (following along with the demonstration)</div>
+                <pre>[Role] You are an educational content editor who rewrites the same material to suit different readers.
+[Context] Below is text from my lecture. My class mixes students who are shaky on the basics with students who want to go deeper.
+[Request] Please rewrite it at three levels. (1) An easy version: short sentences and analogies, for students meeting this for the first time. (2) A standard version: keep the current length, just make the sentences clearer. (3) An advanced version: add one related concept and two questions to think about.
+[Format] Put a one-line note in front of each version saying which students it is for.
+[Example] A sentence in the easy version might read: "The Enlightenment was a movement that said, 'Let's think for ourselves.' Instead of simply doing as your elders said, people began to ask why."
+[Condition] Keep the facts identical across all three versions.
+
+[Paste your text here]</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Experimenting with style — same content, different tone</div>
+                <pre>[Role] You are a professional editor who can shift the tone of a piece of writing at will.
+[Context] I want to dress the lecture text below in different clothes for different situations (an announcement, a handout, an opening for class).
+[Request] Keep the content and change only the style, giving me three versions. (1) A warm, conversational style, as if telling a story. (2) An academic written style. (3) A newspaper-article style.
+[Format] Add one line to each version describing the class situation it suits.
+[Example] The article style might have the rhythm of: "The debate over ○○ has flared up again. Three issues are at stake."
+[Condition] Keep the facts and the key terms exactly as they are.
+
+[Paste your text here]</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Wrapping up Day 1 — building my own prompt notebook</div>
+                <pre>[Role] You are a knowledge-management specialist who turns conversation records into reusable assets.
+[Context] I used a number of prompts today, and I want to reuse the ones that worked well.
+[Request] Please gather the prompts from today's conversation that produced good results into a "prompt notebook of my own".
+[Format] A three-column table: "Purpose / The prompt itself (with [square brackets] as blanks) / One line of advice on using it".
+[Example] A line of advice might read: "Always state the year level when generating discussion questions — leave it out and the difficulty jumps around".
+[Condition] Keep the [Role]·[Context]·[Request]·[Format]·[Example]·[Condition] label structure intact in the prompts themselves.</pre>
+              </div>
+            </div>
+          </div>
+    <div class="memo">
+      <h3>Notes — what I made today / what I will use in my course</h3>
+      <div class="lines"></div>
+    </div></body></html>

@@ -27,17 +27,24 @@ https://raw.githubusercontent.com/aebonlee/materials/main/<사이트>/<파일명
 
 | 사이트 | 개수 | 자료 |
 |---|---|---|
+| [dsu](dsu/) | 16 | 동신대 교수자 AI 연수 — `cover`·`day1`~`day3` × 국문·영문 × PDF·Word |
 | [koreatech](koreatech/) | 15 | 한국기술교육대 컴퓨팅사고 — 주차별 강의안 `week01`~`week12`, 과제 2종, 중간 이후 계획 |
-| [dsu](dsu/) | 8 | 동신대 교수자 AI 연수 — `cover`·`day1`~`day3`, 각 국문·영문 쌍 |
+| [kdt-ai](kdt-ai/) | 11 | Attention 논문, 실습 노트북 6종, 실습 데이터·requirements |
 | [contents](contents/) | 3 | 휴넷 AI 홍보 실무 — 이미지 가이드, 강의노트, 마케팅 덱 |
+| [nonghyupsaryo](nonghyupsaryo/) | 3 | 농협사료 실습 샘플 CSV 3종 |
 | [chosun](chosun/) | 2 | 조선대 교원 교육 — Day1·Day2 |
-| [kdt-ai](kdt-ai/) | 1 | Attention 논문 |
 | [seoultech](seoultech/) | 1 | 서울과기대 강의안 (2026-06-16) |
 | [pytorch26](pytorch26/) | 1 | 프레임워크 비교 |
 | [hufs](hufs/) | 1 | 한국외대 설치 가이드 (zip) |
 | [data](data/) | 1 | 데이터 분석·시각화 강의안 — **unist도 이 파일을 함께 씁니다** |
 
-총 **33개 파일 / 약 54MB**.
+총 **54개 파일 / 54.6MB** · 10개 사이트.
+
+### 여기 두지 않는 것 — 런타임 데이터
+
+`koreatech/public/py/weather.csv`는 옮기지 않았습니다.
+Pyodide 실습 코드가 `open('weather.csv')`로 **상대경로로 여는 런타임 데이터**라, 이 리포로 옮기면 실습이 깨집니다.
+배포용 자료가 아니라 실습 환경의 일부로 봅니다. 같은 성격의 파일은 사이트에 남겨 둡니다.
 
 ### 중복 통합
 

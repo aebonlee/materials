@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><meta name="ProgId" content="Word.Document"><title>교수자 AI 역량 강화 연수 — Day 1 — 서사·토론·글쓰기 수업 목표 구조화</title>
+<style>:root { --accent: #1E88E5; }
+
+  @page { size: A4; margin: 18mm 16mm 20mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    font-size: 10.5pt; line-height: 1.65; color: #1a1a1a;
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+  h1, h2, h3, h4 { margin: 0; font-weight: 700; }
+  mark { background: linear-gradient(transparent 55%, #ffe9a8 55%); padding: 0 1px; }
+  .page-break { break-after: page; }
+
+  /* ── 표지 ── */
+  .cover { height: 253mm; display: flex; flex-direction: column; text-align: center; }
+  .cover-top { border-top: 6px solid #0054A6; padding-top: 14mm; }
+  .cover-logo { height: 11mm; margin: 0 auto 11mm; display: block; }
+  .cover-org { font-size: 13pt; letter-spacing: .28em; color: #0054A6; font-weight: 700; }
+  .cover-title { font-size: 30pt; line-height: 1.3; margin: 8mm 0 4mm; letter-spacing: -.02em; }
+  .cover-sub { font-size: 12.5pt; color: #4a5568; }
+  .cover-rule { width: 28mm; height: 3px; background: #0054A6; margin: 9mm auto; border: 0; }
+  .cover-meta { font-size: 11pt; color: #2d3748; line-height: 2.1; }
+  .cover-meta b { display: inline-block; min-width: 22mm; color: #0054A6; }
+  .cover-foot { margin-top: auto; font-size: 9pt; color: #718096; line-height: 1.8;
+                border-top: 1px solid #e2e8f0; padding-top: 6mm; }
+  .cover-badge { display: inline-block; margin-top: 6mm; padding: 2.5mm 6mm; border-radius: 99px;
+                 background: #0054A6; color: #fff; font-size: 10pt; font-weight: 700; }
+
+  /* ── 속표지(Day) ── */
+  .daycover { border-top: 6px solid #1E88E5; padding-top: 16mm; height: 253mm;
+              display: flex; flex-direction: column; }
+  .daycover .kicker { font-size: 10pt; letter-spacing: .22em; color: #718096; }
+  .daycover h1 { font-size: 25pt; line-height: 1.32; margin: 5mm 0 4mm; color: #1E88E5; }
+  .daycover .tagline { font-size: 12pt; color: #2d3748; line-height: 1.7; }
+  .daycover .desc { margin-top: 8mm; font-size: 10.5pt; color: #4a5568; line-height: 1.85;
+                    background: #f7fafc; border-left: 3px solid #1E88E5; padding: 5mm 6mm; }
+
+  /* ── 표 ── */
+  table { width: 100%; border-collapse: collapse; margin: 5mm 0; font-size: 9.8pt; }
+  th, td { border: 1px solid #cbd5e0; padding: 2.6mm 3mm; text-align: left; vertical-align: top; }
+  th { background: #edf2f7; font-weight: 700; color: #2d3748; }
+
+  /* ── 섹션 ── */
+  .sec-title { font-size: 13pt; color: #1E88E5; border-bottom: 2px solid #1E88E5;
+               padding-bottom: 2mm; margin: 0 0 5mm; }
+  .chips { display: flex; flex-wrap: wrap; gap: 2mm; margin: 4mm 0 0; }
+  .chip { font-size: 9pt; padding: 1.2mm 3.5mm; border-radius: 99px;
+          background: #edf2f7; color: #2d3748; border: 1px solid #dde3ea; }
+
+  /* ── 교시 블록 ── */
+  /* 교시 블록은 길어서 페이지를 넘길 수 있게 둔다(막으면 빈 지면이 크게 생김).
+     대신 머리말 직후·목표 블록은 쪼개지지 않도록 고정. */
+  .block { margin-bottom: 7mm; }
+  .block-head { background: #1E88E5; color: #fff; padding: 3mm 4mm; border-radius: 2mm 2mm 0 0;
+                break-after: avoid; break-inside: avoid; }
+  .goal, ul.topics li { break-inside: avoid; }
+  .block-head .theme { font-size: 9pt; opacity: .85; }
+  .block-head h2 { font-size: 12.5pt; margin-top: 1mm; }
+  .block-body { border: 1px solid #dde3ea; border-top: 0; border-radius: 0 0 2mm 2mm; padding: 5mm; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 2mm; margin-bottom: 4mm; }
+  .tag { font-size: 8.6pt; padding: 1mm 3mm; border-radius: 99px; border: 1px solid #cbd5e0; color: #4a5568; }
+  .tag.accent { background: #1E88E5; border-color: #1E88E5; color: #fff; }
+  .goal { background: #f0f7ff; border-left: 3px solid #1E88E5; padding: 3mm 4mm; margin-bottom: 4mm;
+          font-size: 10pt; }
+  .goal b { color: #1E88E5; }
+  .label { font-size: 9.4pt; font-weight: 700; color: #1E88E5; margin: 4mm 0 2mm;
+           letter-spacing: .04em; }
+  ul.topics { margin: 0; padding-left: 5mm; }
+  ul.topics li { margin-bottom: 1.6mm; }
+
+  /* ── 실습 프롬프트 ── */
+  .practice { break-inside: avoid; border: 1px solid #dde3ea; border-radius: 2mm; margin-bottom: 3.5mm;
+              overflow: hidden; }
+  .practice-head { background: #f7fafc; padding: 2.2mm 3.5mm; font-size: 9.6pt; font-weight: 700;
+                   color: #2d3748; border-bottom: 1px solid #e2e8f0; }
+  .practice-head .n { color: #1E88E5; margin-right: 2mm; }
+  .practice pre { margin: 0; padding: 3.5mm; font-family: 'SF Mono', 'D2Coding', Menlo, monospace;
+                  font-size: 8.6pt; line-height: 1.72; white-space: pre-wrap;
+                  word-break: keep-all; overflow-wrap: break-word; color: #2d3748; background: #fff; }
+
+  /* ── 메모 ── */
+  .memo { break-inside: avoid; border: 1px dashed #cbd5e0; border-radius: 2mm; padding: 4mm 5mm; margin-top: 6mm; }
+  .memo h3 { font-size: 10pt; color: #4a5568; margin-bottom: 3mm; }
+  .memo .lines { height: 42mm; background: repeating-linear-gradient(
+      transparent, transparent 8.4mm, #e2e8f0 8.4mm, #e2e8f0 8.6mm); }
+</style></head><body>
+    <section class="daycover">
+      <div class="kicker">동신대학교 교수자 AI 역량 강화 연수 · 인문사회 · 예체능 트랙</div>
+      <h1>Day 1<br>서사·토론·글쓰기 수업 목표 구조화</h1>
+      <div class="tagline">내 과목의 특성을 파악하고, 학습목표·강의안·토론 가이드를 Claude와 함께 완성하는 첫날</div>
+      <div class="chips"><span class="chip">교과 특성 진단</span><span class="chip">AI 적용 지점 찾기</span><span class="chip">학습목표 구조화</span><span class="chip">강의안 초안</span><span class="chip">토론 가이드·발문</span><span class="chip">수준별 텍스트 변환</span></div>
+      <div class="desc">인문사회·예체능 교과의 핵심인 토론·사례분석·글쓰기 수업에 AI를 어디에, 어떻게 붙일지 찾는 날입니다. 공통 VOD에서 배운 내용을 실제 내 과목에 적용해, 학습목표와 강의안 초안을 직접 만들어 갑니다. 컴퓨터가 서툴러도 괜찮습니다 — 모든 실습은 "복사해서 붙여넣기"부터 시작합니다.</div>
+      <table style="margin-top:8mm">
+        <tr><th style="width:26mm">일자</th><td>2026. 07. 20. (월)</td></tr>
+        <tr><th>구성</th><td>4교시 · 4시간 (대면 실습)</td></tr>
+        <tr><th>수준</th><td>기초 → 적용</td></tr>
+        <tr><th>대상</th><td>인문사회·예체능 계열 교원 (2026.07.20 월)</td></tr>
+        <tr><th>강사</th><td>정동엽 교수</td></tr>
+        <tr><th>실습 보드</th><td>https://padlet.com/dreamitbiz/dsu26</td></tr>
+      </table>
+      <div style="margin-top:auto;border-top:1px solid #e2e8f0;padding-top:5mm;font-size:9pt;color:#718096">
+        드림아이티비즈(DreamIT Biz) · dsu.dreamitbiz.com
+      </div>
+    </section>
+    <div class="page-break"></div>
+    <section>
+      <h2 class="sec-title">오늘의 흐름</h2>
+      <table>
+        <thead><tr><th style="width:20mm">교시</th><th style="width:56mm">주제</th><th>학습 목표</th></tr></thead>
+        <tbody><tr>
+      <td style="white-space:nowrap"><b>1교시</b><br>
+        <span style="font-size:9pt;color:#718096">60분</span></td>
+      <td>토론·사례분석·글쓰기 교과, AI는 어디에 끼어들 수 있나</td>
+      <td style="font-size:9.2pt">내 과목의 수업 활동을 분해하고, AI가 도울 수 있는 지점과 도와서는 안 되는 지점을 구분한다. (분석)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>2교시</b><br>
+        <span style="font-size:9pt;color:#718096">60분</span></td>
+      <td>내 과목 학습목표와 강의안 초안, 오늘 완성하기</td>
+      <td style="font-size:9.2pt">본인 과목의 학습목표를 구조화하고 한 주차 강의안 초안을 생성한다. (적용·창안)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>3교시</b><br>
+        <span style="font-size:9pt;color:#718096">60분</span></td>
+      <td>토론 가이드와 발문, 사례 분석지 — 템플릿으로 뚝딱</td>
+      <td style="font-size:9.2pt">토론 가이드·발문·사례 분석지를 템플릿으로 생성하고 내 과목에 맞게 다듬는다. (적용)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>4교시</b><br>
+        <span style="font-size:9pt;color:#718096">60분</span></td>
+      <td>수준별 텍스트 변환 시연 + 오늘 산출물 정리</td>
+      <td style="font-size:9.2pt">강의 텍스트를 수준별로 변환하는 템플릿을 익히고, Day 1 산출물을 정리·공유한다. (적용·종합)</td>
+    </tr></tbody>
+      </table>
+      <p style="font-size:9.6pt;color:#4a5568;margin-top:4mm">실습 프롬프트의 <strong>[대괄호]</strong>는 본인 과목·주제로 바꿔 주세요. 모든 프롬프트는 <strong>[역할]·[맥락]·[요청]·[형식]·[예시]·[조건]</strong> 구조를 따릅니다.</p>
+    </section>
+    <div class="page-break"></div><div class="block">
+            <div class="block-head">
+              <div class="theme">1~2교시 · 내 교과의 특성과 AI 적용 지점 찾기 + 학습목표·강의안 만들기</div>
+              <h2>1교시 · 토론·사례분석·글쓰기 교과, AI는 어디에 끼어들 수 있나</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">1교시</span><span class="tag">60분</span><span class="tag">난이도 기초</span><span class="tag">중요도 ★★★</span></div>
+              <div class="goal"><b>학습 목표</b> 내 과목의 수업 활동을 분해하고, AI가 도울 수 있는 지점과 도와서는 안 되는 지점을 구분한다. (분석)</div>
+              <div class="label">주요 내용</div>
+              <ul class="topics"><li>인문사회·예체능 수업의 세 기둥: 토론(말하기·듣기), 사례분석(읽기·해석), 글쓰기(쓰기·표현)</li><li>기둥별 AI 적용 지점: 토론 → 논제·발문 준비 / 사례분석 → 분석지·배경자료 / 글쓰기 → 과제 설계·피드백 초안</li><li>AI가 대신하면 안 되는 것: <mark>학생의 생각 그 자체, 교수자의 최종 평가와 판단</mark></li><li><mark>"AI는 준비를 돕고, 생각은 사람이 한다"</mark> — 이 과정 전체의 <strong>대원칙</strong></li><li>내 과목 활동 분해 실습: 한 학기 활동을 쪼개 AI 적용 지도 만들기</li><li>📦 산출물: 내 과목 AI 적용 지도 1장</li></ul>
+              <div class="label">실습 — Claude에 그대로 붙여넣기</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">실습 1</span>내 과목 활동 분해하기</div>
+                <pre>[역할] 너는 인문사회·예체능 교육 설계 10년차 전문가야.
+[맥락] 나는 동신대학교에서 [과목명]을 가르치는 교수이고, 주요 수업 활동은 [예: 조별 토론, 작품 감상문, 사례 발표]야. 생성형 AI를 수업 준비에 도입하려는데 어디까지 맡겨도 되는지 기준이 없어.
+[요청] 이 활동들을 분해해서 (1) 활동별로 AI가 도울 수 있는 준비 작업 (2) 반드시 학생이 직접 해야 하는 부분 (3) 교수자가 판단해야 하는 부분 (4) AI 활용 시 주의점(환각·출처 검증 등)을 구분해줘.
+[형식] 활동을 세로축으로 한 4열 표.
+[예시] 표의 한 줄 예: "조별 토론 | 논제 초안·배경자료 정리 | 자기 입장 정하기·근거 찾기 | 논제 최종 선택·토론 평가 | 배경자료의 출처 실존 확인".
+[단계] 먼저 표를 완성하고 → 표 아래에 대원칙 한 줄 요약 → 마지막으로 이번 학기에 가장 먼저 시작할 활동 1개와 이유를 추천해줘.
+[조건] 각 칸은 추상적 표현 대신 실제 작업 이름으로. 활동이 3개 미만이면 이 계열에서 흔한 활동을 추가 제안해 최소 5행을 채워줘.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 2</span>적용 우선순위 정하기</div>
+                <pre>[역할] 너는 실행 우선순위를 잘 짚어주는 교육 컨설턴트야.
+[맥락] 방금 만든 AI 적용 지도에서 무엇부터 시작할지 정하고 싶어. 나는 AI 초보라서 작게 시작하고 싶어.
+[요청] "효과는 크고 준비는 쉬운" AI 활용 3가지를 골라 우선순위를 매겨줘.
+[형식] "순위 / 활용 작업 / 고른 이유 / 이번 학기 첫 단계(한 줄)" 4열 표.
+[예시] 첫 단계 예: "다음 주 3주차 토론 발문 5개를 Claude로 초안 잡기 (30분)".
+[조건] 첫 단계는 이번 주 안에 30분으로 할 수 있는 것으로.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 3</span>동료 교과 사례에서 아이디어 얻기</div>
+                <pre>[역할] 너는 전국 대학의 AI 활용 수업 사례를 수집해 온 교수학습센터 연구원이야.
+[맥락] 나는 인문사회·예체능 계열 교수이고, 다른 교수들이 어떻게 쓰는지 참고해 내 과목 [과목명]에 응용하고 싶어.
+[요청] 이 계열에서 생성형 AI를 수업 준비에 잘 활용한 사례 유형 5가지를 알려줘.
+[형식] "어떤 활동에 / AI가 무엇을 했나 / 교수자가 지킨 금지선 / 내 과목 응용 아이디어" 4열 표.
+[예시] 사례 유형 예: "문학 수업 — 시대 배경 브리핑 자료를 AI로 초안, 작품 해석은 학생 몫으로 유지".
+[조건] 실존 대학·교수 이름은 지어내지 말고 사례 유형으로만 설명해줘.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">1~2교시 · 내 교과의 특성과 AI 적용 지점 찾기 + 학습목표·강의안 만들기</div>
+              <h2>2교시 · 내 과목 학습목표와 강의안 초안, 오늘 완성하기</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">2교시</span><span class="tag">60분</span><span class="tag">난이도 보통</span><span class="tag">중요도 ★★★</span></div>
+              <div class="goal"><b>학습 목표</b> 본인 과목의 학습목표를 구조화하고 한 주차 강의안 초안을 생성한다. (적용·창안)</div>
+              <div class="label">주요 내용</div>
+              <ul class="topics"><li>VOD 모듈 2 복습 30초: 좋은 목표 = 관찰 가능한 행동 동사("감상한다" → "감상평을 두 근거로 쓸 수 있다")</li><li>인문사회·예체능 목표의 특징: 정답이 아니라 "사고와 표현의 질"을 목표로 삼습니다</li><li>역량 언어로 쓰기: 비판적 사고, 공감적 해석, 창의적 표현, 논증 구성</li><li>목표 → 강의안 흐름: 목표를 확정한 뒤 같은 대화에서 강의안을 이어 생성(자동 정렬)</li><li>강의안 필수 5요소: 목표 / 도입 / 전개(활동 중심) / 정리 / 준비물·유의점</li><li>📦 산출물: 학습목표 3개 + 한 주차 강의안 초안</li></ul>
+              <div class="label">실습 — Claude에 그대로 붙여넣기</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">실습 1</span>학습목표 구조화</div>
+                <pre>[역할] 너는 인문사회·예체능 교육과정 설계 10년차 전문가야.
+[맥락] 내 과목 [과목명]의 [주차] 주제는 "[주제]"야. 지금 목표는 "~을 이해한다"뿐이라 수업과 평가의 기준이 되지 못해.
+[요청] 이 주차의 학습목표를 (1) 이해 수준 1개 (2) 분석 수준 1개 (3) 표현·창작 수준 1개로 만들어줘.
+[형식] 각 목표는 "학생은 ~할 수 있다" 형태의 관찰 가능한 문장, 옆에 Bloom 수준 표기.
+[예시] 표현·창작 수준 예: "학생은 작품의 갈등 구조를 자신의 경험에 빗대어 한 단락으로 재해석할 수 있다".
+[조건] 인문사회 교과답게 비판적 사고·해석·표현 역량이 드러나는 동사로.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 2</span>같은 대화에서 강의안 잇기</div>
+                <pre>[요청] 좋아, 방금 만든 학습목표 3개를 확정할게. 이 목표로 75분 강의안을 만들어줘.
+[형식] 도입(10분, 흥미 유발) / 전개1(25분, 핵심 내용) / 전개2(25분, 학생 활동) / 정리(15분, 공유·요약) — 각 단계에 교수자 행동과 학생 행동을 나눠 표기.
+[예시] 표기 예: "전개2 | 교수자: 조별 순회하며 질문 | 학생: 분석표 작성 후 대표 발표".
+[조건] 마지막에 준비물과 유의점 정리. 활동은 방금 목표의 동사와 같은 동사로 이어지게. (같은 대화에서 이어 요청하면 목표와 강의안이 자동으로 정렬됩니다!)</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 3</span>강의계획서 한 학기 버전으로 확장</div>
+                <pre>[역할] 너는 학기 단위 교육과정을 설계하는 전문가야.
+[맥락] 방금 완성한 주차 설계가 마음에 들어서, 같은 방식으로 [과목명] 한 학기 전체를 조망하고 싶어.
+[요청] 15주 강의계획서 초안을 만들어줘.
+[형식] 주차/주제/핵심내용/수업활동/과제 5열 표.
+[예시] 수업활동 칸 예: "5주차 — 사례 분석지 조별 작성(30분) + 전체 공유(15분)".
+[조건] 중간·기말 주는 비워두고, 토론·글쓰기·발표 활동이 학기 전체에 고르게 배치되도록. 오늘 만든 주차는 표 안에 그대로 반영해줘.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">3~4교시 · 토론 가이드·발문·사례 분석지 만들기 + 수준별 변환</div>
+              <h2>3교시 · 토론 가이드와 발문, 사례 분석지 — 템플릿으로 뚝딱</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">3교시</span><span class="tag">60분</span><span class="tag">난이도 보통</span><span class="tag">중요도 ★★★</span></div>
+              <div class="goal"><b>학습 목표</b> 토론 가이드·발문·사례 분석지를 템플릿으로 생성하고 내 과목에 맞게 다듬는다. (적용)</div>
+              <div class="label">주요 내용</div>
+              <ul class="topics"><li>토론 가이드 구성: 논제 / 배경 설명 / 찬반 핵심 논점 / 진행 순서 / 시간 배분 / 평가 관점</li><li>발문(질문)의 3층: 사실 확인 질문 → 해석 질문 → 적용·평가 질문 (얕은 데서 깊은 데로)</li><li>사례 분석지 구성: 사례 요약 / 분석 질문(3층 발문) / 개념 연결 칸 / 내 생각 정리 칸</li><li>좋은 논제의 조건: 찬반이 팽팽하고, 교과 개념과 연결되고, 학생 삶과 닿아 있는 것</li><li>예체능 응용: 작품 감상 토론, 연주·실기 해석 비교, 창작 의도 분석에도 같은 틀 사용</li><li>📦 산출물: 토론 가이드 1건 + 사례 분석지 1건</li></ul>
+              <div class="label">실습 — Claude에 그대로 붙여넣기</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">실습 1</span>토론 가이드 생성</div>
+                <pre>[역할] 너는 대학 토론 수업 설계 10년차 전문가야.
+[맥락] [과목명] 수업(학부 [학년], 30명)에서 "[주제]"로 40분 조별 토론을 진행하려고 해. 학생들은 토론 경험이 많지 않아.
+[요청] 토론 가이드를 만들어줘.
+[형식] (1) 찬반형 논제 한 문장 (2) 2분 배경 설명문 (3) 찬성·반대 핵심 논점 각 3개 (4) 진행 순서·시간 배분 표 (5) 교수자용 마무리 정리 멘트.
+[예시] 논제 형식 예: "대학 과제에서 생성형 AI 사용은 전면 허용되어야 한다".
+[조건] 논제는 찬반이 팽팽하고 학생 삶과 닿아 있는 것으로, 배경 설명은 중립적으로.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 2</span>3층 발문 + 사례 분석지</div>
+                <pre>[역할] 너는 질문 설계(발문)에 정통한 수업 컨설턴트야.
+[맥락] [사례 or 작품명]을 다음 수업에서 다루는데, 학생들이 얕은 감상에서 멈추지 않고 깊이 들어가게 하고 싶어.
+[요청] A4 1장짜리 사례 분석지를 만들어줘.
+[형식] (1) 5줄 사례 요약 (2) 사실 확인 질문 2개 (3) 해석 질문 2개 (4) 자기 삶에 적용하는 질문 1개 (5) "내 생각 정리" 칸 안내문.
+[예시] 3층 질문의 흐름 예: "주인공은 왜 떠났나(사실) → 그 선택은 무엇을 상징하나(해석) → 나라면 어떻게 했을까(적용)".
+[조건] 질문이 사실→해석→적용 순서로 깊어지게, 학생에게 바로 나눠줄 수 있는 완성형으로.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 3</span>침묵을 깨는 보조 발문 세트</div>
+                <pre>[역할] 너는 조용한 교실을 살려내는 베테랑 토론 진행자야.
+[맥락] 토론 수업에서 학생들이 침묵하는 순간이 가장 두려워. 그때 바로 꺼내 쓸 질문 카드를 미리 준비하고 싶어.
+[요청] "구원 발문" 10개를 만들어줘.
+[형식] (1) 부담 없는 워밍업 질문 3개 (2) 의견을 반으로 가르는 양자택일 질문 3개 (3) 소수 의견을 끌어내는 질문 2개 (4) 마무리 성찰 질문 2개.
+[예시] 양자택일 예: "둘 중 하나만 골라야 한다면 — 원칙인가, 결과인가? 손을 들어볼까요?".
+[조건] 실제 교실에서 말하는 자연스러운 구어체로, [과목명] 수업 상황에 맞게.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">3~4교시 · 토론 가이드·발문·사례 분석지 만들기 + 수준별 변환</div>
+              <h2>4교시 · 수준별 텍스트 변환 시연 + 오늘 산출물 정리</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">4교시</span><span class="tag">60분</span><span class="tag">난이도 기초</span><span class="tag">중요도 ★★</span></div>
+              <div class="goal"><b>학습 목표</b> 강의 텍스트를 수준별로 변환하는 템플릿을 익히고, Day 1 산출물을 정리·공유한다. (적용·종합)</div>
+              <div class="label">주요 내용</div>
+              <ul class="topics"><li>수준별 변환이 필요한 이유: 같은 교실에 읽기 수준이 다른 학생들이 함께 있습니다</li><li>변환 템플릿(시연): 원문 → 쉬운 버전(비유·짧은 문장) / 기본 버전 / 심화 버전(원전 인용·심화 질문)</li><li>문제 변환도 동일: 같은 개념을 묻는 쉬운 문제 ↔ 어려운 문제 세트 생성</li><li>오늘 만든 것 정리: AI 적용 지도, 학습목표, 강의안, 토론 가이드, 분석지 — 한 폴더에 저장</li><li>동료와 공유: 옆자리 교수님과 산출물 바꿔 보며 좋은 프롬프트 서로 배우기</li><li>📦 산출물: 수준별 텍스트 1세트 + Day 1 산출물 폴더</li></ul>
+              <div class="label">실습 — Claude에 그대로 붙여넣기</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">실습 1</span>수준별 3종 변환(시연 따라 하기)</div>
+                <pre>[역할] 너는 같은 내용을 독자 수준에 맞게 다시 쓰는 교육 콘텐츠 편집 전문가야.
+[맥락] 아래는 내 강의 텍스트야. 우리 반에는 기초가 약한 학생과 더 깊이 가고 싶은 학생이 섞여 있어.
+[요청] 세 가지 수준으로 바꿔줘. (1) 쉬운 버전: 짧은 문장과 비유로, 처음 배우는 학생용 (2) 기본 버전: 지금 분량 유지하며 문장만 명확하게 (3) 심화 버전: 관련 개념 1개와 생각해볼 질문 2개 추가.
+[형식] 각 버전 앞에 대상 학생을 한 줄로 표시.
+[예시] 쉬운 버전 문장 예: "계몽주의는 '스스로 생각하자'는 운동입니다. 어른 말이니까 무조건 따르는 게 아니라, 이유를 묻기 시작한 거예요."
+[조건] 세 버전 모두 사실관계는 동일하게 유지.
+
+[텍스트 붙여넣기]</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 2</span>문체 변환 실험 — 같은 내용, 다른 어조</div>
+                <pre>[역할] 너는 글의 어조를 자유자재로 바꾸는 전문 편집자야.
+[맥락] 아래 강의 텍스트를 상황별로 다른 옷을 입혀 쓰고 싶어(공지용·배포용·수업 도입용).
+[요청] 내용은 유지하고 문체만 바꿔 세 버전으로 써줘. (1) 이야기하듯 친근한 구어체 (2) 학술적 문어체 (3) 신문 기사체.
+[형식] 각 버전에 어울리는 수업 상황을 한 줄씩 덧붙여서.
+[예시] 기사체 예: "○○ 논쟁이 다시 불붙었다. 쟁점은 세 가지다." 같은 문장 호흡으로.
+[조건] 사실관계·핵심 용어는 그대로.
+
+[텍스트 붙여넣기]</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 3</span>Day 1 마무리 — 내 프롬프트 노트 만들기</div>
+                <pre>[역할] 너는 대화 기록을 재사용 자산으로 정리해 주는 지식 관리 전문가야.
+[맥락] 오늘 하루 여러 프롬프트를 썼는데, 결과가 좋았던 것들을 다음에도 쓰고 싶어.
+[요청] 오늘 대화에서 결과가 좋았던 프롬프트들을 "나만의 프롬프트 노트"로 정리해줘.
+[형식] "용도 / 프롬프트 원문([대괄호] 빈칸 처리) / 사용 팁 한 줄" 3열 표.
+[예시] 사용 팁 예: "발문 생성 시 학년을 꼭 명시할 것 — 안 하면 난이도가 들쭉날쭉".
+[조건] 프롬프트 원문은 [역할]·[맥락]·[요청]·[형식]·[예시]·[조건] 라벨 구조를 유지해서.</pre>
+              </div>
+            </div>
+          </div>
+    <div class="memo">
+      <h3>메모 — 오늘 만든 것 / 내 과목에 적용할 것</h3>
+      <div class="lines"></div>
+    </div></body></html>

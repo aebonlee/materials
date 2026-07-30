@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><meta name="ProgId" content="Word.Document"><title>Faculty AI Competency Training — Day 2 — Designing Essay &amp; Critical-Thinking Assessments</title>
+<style>:root { --accent: #009B77; }
+
+  @page { size: A4; margin: 18mm 16mm 20mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    font-size: 10.5pt; line-height: 1.65; color: #1a1a1a;
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+  h1, h2, h3, h4 { margin: 0; font-weight: 700; }
+  mark { background: linear-gradient(transparent 55%, #ffe9a8 55%); padding: 0 1px; }
+  .page-break { break-after: page; }
+
+  /* ── 표지 ── */
+  .cover { height: 253mm; display: flex; flex-direction: column; text-align: center; }
+  .cover-top { border-top: 6px solid #0054A6; padding-top: 14mm; }
+  .cover-logo { height: 11mm; margin: 0 auto 11mm; display: block; }
+  .cover-org { font-size: 13pt; letter-spacing: .28em; color: #0054A6; font-weight: 700; }
+  .cover-title { font-size: 30pt; line-height: 1.3; margin: 8mm 0 4mm; letter-spacing: -.02em; }
+  .cover-sub { font-size: 12.5pt; color: #4a5568; }
+  .cover-rule { width: 28mm; height: 3px; background: #0054A6; margin: 9mm auto; border: 0; }
+  .cover-meta { font-size: 11pt; color: #2d3748; line-height: 2.1; }
+  .cover-meta b { display: inline-block; min-width: 22mm; color: #0054A6; }
+  .cover-foot { margin-top: auto; font-size: 9pt; color: #718096; line-height: 1.8;
+                border-top: 1px solid #e2e8f0; padding-top: 6mm; }
+  .cover-badge { display: inline-block; margin-top: 6mm; padding: 2.5mm 6mm; border-radius: 99px;
+                 background: #0054A6; color: #fff; font-size: 10pt; font-weight: 700; }
+
+  /* ── 속표지(Day) ── */
+  .daycover { border-top: 6px solid #009B77; padding-top: 16mm; height: 253mm;
+              display: flex; flex-direction: column; }
+  .daycover .kicker { font-size: 10pt; letter-spacing: .22em; color: #718096; }
+  .daycover h1 { font-size: 25pt; line-height: 1.32; margin: 5mm 0 4mm; color: #009B77; }
+  .daycover .tagline { font-size: 12pt; color: #2d3748; line-height: 1.7; }
+  .daycover .desc { margin-top: 8mm; font-size: 10.5pt; color: #4a5568; line-height: 1.85;
+                    background: #f7fafc; border-left: 3px solid #009B77; padding: 5mm 6mm; }
+
+  /* ── 표 ── */
+  table { width: 100%; border-collapse: collapse; margin: 5mm 0; font-size: 9.8pt; }
+  th, td { border: 1px solid #cbd5e0; padding: 2.6mm 3mm; text-align: left; vertical-align: top; }
+  th { background: #edf2f7; font-weight: 700; color: #2d3748; }
+
+  /* ── 섹션 ── */
+  .sec-title { font-size: 13pt; color: #009B77; border-bottom: 2px solid #009B77;
+               padding-bottom: 2mm; margin: 0 0 5mm; }
+  .chips { display: flex; flex-wrap: wrap; gap: 2mm; margin: 4mm 0 0; }
+  .chip { font-size: 9pt; padding: 1.2mm 3.5mm; border-radius: 99px;
+          background: #edf2f7; color: #2d3748; border: 1px solid #dde3ea; }
+
+  /* ── 교시 블록 ── */
+  /* 교시 블록은 길어서 페이지를 넘길 수 있게 둔다(막으면 빈 지면이 크게 생김).
+     대신 머리말 직후·목표 블록은 쪼개지지 않도록 고정. */
+  .block { margin-bottom: 7mm; }
+  .block-head { background: #009B77; color: #fff; padding: 3mm 4mm; border-radius: 2mm 2mm 0 0;
+                break-after: avoid; break-inside: avoid; }
+  .goal, ul.topics li { break-inside: avoid; }
+  .block-head .theme { font-size: 9pt; opacity: .85; }
+  .block-head h2 { font-size: 12.5pt; margin-top: 1mm; }
+  .block-body { border: 1px solid #dde3ea; border-top: 0; border-radius: 0 0 2mm 2mm; padding: 5mm; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 2mm; margin-bottom: 4mm; }
+  .tag { font-size: 8.6pt; padding: 1mm 3mm; border-radius: 99px; border: 1px solid #cbd5e0; color: #4a5568; }
+  .tag.accent { background: #009B77; border-color: #009B77; color: #fff; }
+  .goal { background: #f0f7ff; border-left: 3px solid #009B77; padding: 3mm 4mm; margin-bottom: 4mm;
+          font-size: 10pt; }
+  .goal b { color: #009B77; }
+  .label { font-size: 9.4pt; font-weight: 700; color: #009B77; margin: 4mm 0 2mm;
+           letter-spacing: .04em; }
+  ul.topics { margin: 0; padding-left: 5mm; }
+  ul.topics li { margin-bottom: 1.6mm; }
+
+  /* ── 실습 프롬프트 ── */
+  .practice { break-inside: avoid; border: 1px solid #dde3ea; border-radius: 2mm; margin-bottom: 3.5mm;
+              overflow: hidden; }
+  .practice-head { background: #f7fafc; padding: 2.2mm 3.5mm; font-size: 9.6pt; font-weight: 700;
+                   color: #2d3748; border-bottom: 1px solid #e2e8f0; }
+  .practice-head .n { color: #009B77; margin-right: 2mm; }
+  .practice pre { margin: 0; padding: 3.5mm; font-family: 'SF Mono', 'D2Coding', Menlo, monospace;
+                  font-size: 8.6pt; line-height: 1.72; white-space: pre-wrap;
+                  word-break: keep-all; overflow-wrap: break-word; color: #2d3748; background: #fff; }
+
+  /* ── 메모 ── */
+  .memo { break-inside: avoid; border: 1px dashed #cbd5e0; border-radius: 2mm; padding: 4mm 5mm; margin-top: 6mm; }
+  .memo h3 { font-size: 10pt; color: #4a5568; margin-bottom: 3mm; }
+  .memo .lines { height: 42mm; background: repeating-linear-gradient(
+      transparent, transparent 8.4mm, #e2e8f0 8.4mm, #e2e8f0 8.6mm); }
+</style></head><body>
+    <section class="daycover">
+      <div class="kicker">Dongshin University Faculty AI Competency Training · Humanities &amp; Arts track</div>
+      <h1>Day 2<br>Designing Essay &amp; Critical-Thinking Assessments</h1>
+      <div class="tagline">Essay and critical-thinking items, model answers, scoring rubrics, and personalised feedback — the whole assessment cycle in one day.</div>
+      <div class="chips"><span class="chip">Types of assessment</span><span class="chip">Essay &amp; critical-thinking items</span><span class="chip">Step-by-step model answers</span><span class="chip">Competency rubrics</span><span class="chip">Scaling personalised feedback</span><span class="chip">Gathering web evidence</span><span class="chip">Checking sources &amp; fake citations</span></div>
+      <div class="desc">Day 2 covers the full assessment cycle for humanities &amp; arts: essay/critical prompts, model answers, rubrics for analysis-critique-creativity, scalable personalized feedback, and source verification.</div>
+      <table style="margin-top:8mm">
+        <tr><th style="width:26mm">Date</th><td>Tue 21 July 2026</td></tr>
+        <tr><th>Structure</th><td>4 periods · 4 hours (in person)</td></tr>
+        <tr><th>Level</th><td>Applied → Assessment</td></tr>
+        <tr><th>Participants</th><td>Humanities &amp; arts faculty (Tue 21 July 2026)</td></tr>
+        <tr><th>Instructor</th><td>Prof. Jeong Dong-yeop</td></tr>
+        <tr><th>Practice board</th><td>https://padlet.com/dreamitbiz/dsu26</td></tr>
+      </table>
+      <div style="margin-top:auto;border-top:1px solid #e2e8f0;padding-top:5mm;font-size:9pt;color:#718096">
+        드림아이티비즈(DreamIT Biz) · dsu.dreamitbiz.com
+      </div>
+    </section>
+    <div class="page-break"></div>
+    <section>
+      <h2 class="sec-title">Today's Flow</h2>
+      <table>
+        <thead><tr><th style="width:20mm">Period</th><th style="width:56mm">Theme</th><th>Learning goal</th></tr></thead>
+        <tbody><tr>
+      <td style="white-space:nowrap"><b>Period 1</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>The Five Faces of Assessment in the Humanities &amp; Arts</td>
+      <td style="font-size:9.2pt">Distinguish the characteristics and best uses of essay, critical-thinking, performance, portfolio, and presentation assessments. (Understanding)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>Period 2</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>Hands-On: Essay Items + Model Answers by Level</td>
+      <td style="font-size:9.2pt">Generate essay items for your own course along with model answers at each level. (Applying &amp; Creating)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>Period 3</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>Building a Rubric That Measures Analysis, Critique, and Creativity</td>
+      <td style="font-size:9.2pt">Write a competency-based grading rubric and validate it against your model answers. (Creating &amp; Evaluating)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>Period 4</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>From One Feedback to All of Them + Verifying Evidence, Sources, and Fake Citations</td>
+      <td style="font-size:9.2pt">Turn a sample feedback into a template you can scale, and verify evidence and sources through web search. (Applying &amp; Evaluating)</td>
+    </tr></tbody>
+      </table>
+      <p style="font-size:9.6pt;color:#4a5568;margin-top:4mm">Replace the <strong>[bracketed]</strong> parts with your own course and topic. Every prompt follows the <strong>[Role]·[Context]·[Request]·[Format]·[Example]·[Condition]</strong> structure.</p>
+    </section>
+    <div class="page-break"></div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 1–2 · Assessment Types + Essay Items &amp; Model Answers</div>
+              <h2>Period 1 · The Five Faces of Assessment in the Humanities &amp; Arts</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 1</span><span class="tag">60 min</span><span class="tag">Level Foundational</span><span class="tag">Priority ★★</span></div>
+              <div class="goal"><b>Learning goal</b> Distinguish the characteristics and best uses of essay, critical-thinking, performance, portfolio, and presentation assessments. (Understanding)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>① Essay: explaining what you know in writing — "Explain the meaning of ○○ using two supporting reasons."</li><li>② Critical: evaluating a claim or a work against evidence — "Identify the weaknesses in this argument and refute them."</li><li>③ Performance: showing what you can do with your body and hands — recitals, demonstrations, studio production (the heart of the arts)</li><li>④ Portfolio: a collection that traces a semester of growth — process-centered assessment</li><li>⑤ Presentation: conveying your thinking out loud — content + delivery + Q&amp;A</li><li>Assessment types and the role of AI: design items and criteria together with AI, but observing performance and making the final judgment stays with the professor</li><li>📦 Output: A combination chart of assessment types for my own course</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Drawing the assessment blueprint for my course</div>
+                <pre>[Role] You are an expert with 10 years of experience in university assessment design.
+[Context] My course is [course name] (undergraduate [year level], [number of students] students), and the current assessment is [current method], which I feel does not really capture what the course is about.
+[Request] Among the five types — essay, critical, performance, portfolio, and presentation — recommend the combination that best fits this course.
+[Format] Present as a table: (1) the recommended combination and its weighting (2) the competency each assessment measures (3) the preparation work AI can help with for each type.
+[Example] A sample combination: "Critical essay 40% + Portfolio 40% + Presentation 20%".
+[Condition] Also show the grading burden (time required) so that the combination stays realistic.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Experimenting with a change of type</div>
+                <pre>[Role] You are an education consultant who has worked with many assessment-innovation cases.
+[Context] Right now the final assessment in my course is [current method]. In the age of AI, I feel that simply checking memorization is not enough.
+[Request] Design what this assessment would look like if I changed it to a combination of critical essay and portfolio.
+[Format] A "current → proposed" comparison table + 3 advantages + 3 points to watch out for.
+[Example] A sample caution: "A portfolio increases grading time — spread it out with two interim check-ins."
+[Condition] Include practical problems such as student pushback or grading burden, along with ways to address them.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Building performance and presentation criteria (arts &amp; physical education)</div>
+                <pre>[Role] You are an expert in designing performance assessments for the arts and physical education.
+[Context] I need to assess [name of the performance/presentation task], and I want the criteria to be transparent so that no one misunderstands it as a subjective judgment.
+[Request] Create the assessment criteria. For a performance, use three axes — technical accuracy / interpretation and expression / attitude; for a presentation, use three axes — content / delivery / Q&amp;A.
+[Format] A table dividing each axis into three levels + an observation checklist the professor can use on the day of the assessment.
+[Example] Sample observation items: "☐ Maintains tempo in the opening ☐ Recovers gracefully after a mistake".
+[Condition] Assume that observing and judging performance is the professor's responsibility — AI stops at designing the criteria.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 1–2 · Assessment Types + Essay Items &amp; Model Answers</div>
+              <h2>Period 2 · Hands-On: Essay Items + Model Answers by Level</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 2</span><span class="tag">60 min</span><span class="tag">Level Intermediate</span><span class="tag">Priority ★★★</span></div>
+              <div class="goal"><b>Learning goal</b> Generate essay items for your own course along with model answers at each level. (Applying &amp; Creating)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>What makes a good essay item: <mark>what (the subject) + how (the thinking verb) + conditions (length, number of sources)</mark> must all be clear</li><li>Choosing the thinking verb: summarize (understanding) &lt; compare (analysis) &lt; evaluate (evaluation) &lt; propose (creation)</li><li>"Model answers by level" means: writing weak, adequate, and strong answers in advance so you can see your grading criteria with your own eyes</li><li>Why three model answers are useful: they secure grading consistency and give students concrete examples of each level</li><li>Security principle, revisited: replace real exam items with similar practice items while working in class</li><li>📦 Output: 2 essay items + a set of model answers at 3 levels</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Designing essay items</div>
+                <pre>[Role] You are an expert with 10 years of experience writing assessment items in [field of study].
+[Context] I am preparing an essay assessment that checks the thinking skills of undergraduate [year level] students within the scope of [topic]. (These are practice items, not the real exam items.)
+[Request] Create 2 essay items — one analytical ("compare and analyze") and one critical ("evaluate and refute").
+[Format] For each item, state the required answer length and number of supporting reasons + a one-line note for the professor on the intent behind the item.
+[Example] A sample item format: "Compare and analyze the difference in perspective between the two historical sources (600 characters, at least 2 supporting reasons)."
+[Condition] Make sure "what + how (thinking verb) + conditions" all appear within the sentence itself.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Generating model answers at 3 levels</div>
+                <pre>[Role] You are an assessment expert who makes grading criteria visible through sample answers.
+[Context] I want to stay consistent when grading item 1 that we just created, and I would also like to show students examples of each level.
+[Request] Write the model answer for item 1 at three levels: (1) strong (full marks) (2) adequate (partial credit) (3) weak.
+[Format] Under each answer, add 2 lines from a grader's point of view explaining "why this answer sits at this level".
+[Example] A sample explanation: "Adequate: grasps the claim, but offers only one supporting reason and shows no awareness of counterarguments."
+[Condition] Keep the three answers similar in length — the level should be separated by the quality of thinking, not by word count.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Experimenting with difficulty adjustment</div>
+                <pre>[Role] You are an assessment designer who fine-tunes item difficulty with precision.
+[Context] I like item 1, and I would like to adapt it for classes at other year levels as well.
+[Request] Adapt item 1 into (1) a version one step easier (for first-year students) and (2) a version one step harder (advanced, for third- and fourth-year students).
+[Format] A three-column table: "Version / Item / What was changed (thinking verb, conditions, source material)".
+[Example] A sample principle of adjustment: "Easier version — change 'compare' to 'identify two differences' and provide the source material."
+[Condition] Explain the principle behind why the difficulty changed, so that I can apply it to other items on my own.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 3–4 · Competency Rubrics + Scalable Feedback + Source Verification</div>
+              <h2>Period 3 · Building a Rubric That Measures Analysis, Critique, and Creativity</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 3</span><span class="tag">60 min</span><span class="tag">Level Advanced</span><span class="tag">Priority ★★★</span></div>
+              <div class="goal"><b>Learning goal</b> Write a competency-based grading rubric and validate it against your model answers. (Creating &amp; Evaluating)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>A <strong>competency rubric</strong> = a criteria table that measures <mark>not knowledge, but "the quality of thinking"</mark></li><li>Breaking down the three core competencies: analysis (grasping structure, finding relationships) / critique (evaluating evidence, counterarguments) / creativity (making new connections, proposing alternatives)</li><li>How to describe levels: instead of vague words like "does well," <mark>describe behavior, as in "constructs a counterargument using at least two supporting reasons"</mark></li><li>How to validate a rubric: grade the three model answers from period 2 with the rubric and check whether the scores come out as expected</li><li>Applying it in the arts: a performance rubric (technical accuracy / interpretation and expression / creativity) is built the same way</li><li>📦 Output: 1 competency rubric (validated)</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Generating a competency rubric</div>
+                <pre>[Role] You are an expert with 10 years of experience designing educational assessment rubrics.
+[Context] I need to grade [name of the assignment/item]. I want to measure the quality of thinking (analysis, critique, creativity) fairly, rather than memorized knowledge.
+[Request] Create a grading rubric.
+[Format] A table of 4 criteria (analytical skill / critical thinking / creativity / expression) × 4 levels (weak, 1 point, through outstanding, 4 points).
+[Example] Sample wording for the outstanding cell: "Constructs a counterargument using at least two supporting reasons, and even acknowledges the limits of their own counterargument."
+[Condition] No vague wording such as "does well" in any cell — describe it so that the student's concrete behavior is visible. Below the table, add 3 common mistakes made during grading.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Validating the rubric with model answers</div>
+                <pre>[Role] You are a quality reviewer who tests whether a rubric actually works.
+[Context] I want to check whether the rubric we just created really separates the levels.
+[Request] Using this rubric, grade each of the three model answers we made earlier (strong / adequate / weak).
+[Format] A table with "Criterion / Strong answer: score and reasoning / Adequate answer: score and reasoning / Weak answer: score and reasoning" + a comparison of total scores.
+[Example] A sample verdict: "Total scores — strong 14 / adequate 9 / weak 5 — the levels separate successfully."
+[Condition] If there is a criterion where the total scores do not spread apart well, revise the level descriptions for that criterion and show me the result again.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Creating a student-facing version of the rubric</div>
+                <pre>[Role] You are a communication expert who translates assessment criteria into students' own language.
+[Context] I plan to share the validated rubric with students along with the assignment instructions. I want publishing the criteria to double as guidance for learning.
+[Request] Turn this rubric into a version meant for students.
+[Format] Rewrite the top level of each criterion around examples, in the spirit of "an answer that does this is a good answer" + a 5-question self-check list to use before submitting.
+[Example] A sample check item: "☐ Did I write even one sentence about what someone who disagrees with my claim might say?"
+[Condition] Use the words students actually use rather than assessment jargon, and keep it within one A4 page.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 3–4 · Competency Rubrics + Scalable Feedback + Source Verification</div>
+              <h2>Period 4 · From One Feedback to All of Them + Verifying Evidence, Sources, and Fake Citations</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 4</span><span class="tag">60 min</span><span class="tag">Level Intermediate</span><span class="tag">Priority ★★★</span></div>
+              <div class="goal"><b>Learning goal</b> Turn a sample feedback into a template you can scale, and verify evidence and sources through web search. (Applying &amp; Evaluating)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>A strategy for personalized feedback: write one carefully crafted sample → extract its structure as a template → apply it to each student by changing only the individual notes</li><li>The three-part structure of feedback: what went well (with a specific quotation) → where to grow (including the method) → encouragement toward the next step</li><li>Privacy principle, revisited: remove student names and ID numbers, and enter only the minimum necessary from the assignment content</li><li><strong>Catching fake citations (hallucinated references)</strong>: <mark>always confirm whether a reference produced by AI actually exists</mark> — search the title, author, and year</li><li><strong>Gathering evidence through web search</strong>: collect recent cases and statistics for your items and feedback via web search, and <mark>record the source along with them</mark></li><li>A 5-step verification routine: ① tag every citation as "unverified" → ② search the title exactly as written (Google Scholar, RISS, DBpia) → ③ check against the original text → ④ delete anything you cannot find → ⑤ cite only what you have confirmed</li><li>Teach it to students too: add "when using AI, indicate whether the original text of every citation was checked" to your assignment requirements</li><li>📦 Output: A feedback template + a source verification checklist</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>From a sample feedback to a scalable template</div>
+                <pre>[Role] You are an education coach who analyzes the structure of good feedback.
+[Context] Below is feedback I wrote carefully for the essay of student A (anonymized). I would like to extend this same quality to all 30 students.
+[Request] Analyze the structure of this feedback and turn it into a template I can use for other students as well.
+[Format] The template (leave the parts that change per student as [blanks], and keep the fixed frame as is) + 3 lines on how to use it.
+[Example] A sample template sentence: "Your [strength] stands out in [specific quotation]. Next time, try [method]."
+[Condition] Preserve my tone of voice, and leave the closing encouragement slot empty, marked "write this yourself".
+
+[Paste the sample feedback here]</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Training to hunt down fake citations</div>
+                <pre>[Role] You are an academic librarian who verifies whether references really exist.
+[Context] Some material generated by AI came with a reference list attached. Because fake citations are fatal in humanities and social science writing, I want to check them one by one.
+[Request] Search the web and confirm whether the following references actually exist: [reference list]
+[Format] A table with "Reference / Exists? / Link to the source consulted / Accuracy of author, year, and title".
+[Example] Sample verdicts: "○○ (2021) — no search results, deletion recommended / △△ (2019) — exists, but the correct year is 2018."
+[Condition] Mark any reference you cannot confirm as "deletion recommended", and remind me that the final judgment requires me to open the original text myself.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Collecting and verifying evidence through web search</div>
+                <pre>[Role] You are a meticulous academic researcher who always leaves the source behind.
+[Context] I need recent supporting material (cases, statistics, research) for the essay assessments and feedback in [course name]. I cannot use anything whose source is unclear.
+[Request] Search the web and find 3 pieces of supporting material on [topic] published within the last 2 years.
+[Format] For each item, present in a table: (1) a one-line summary (2) the source (institution, publication date, link) (3) how to use it in assessment or feedback (4) the items I should verify myself in the original text.
+[Example] A sample use: "As the source material for an essay item — have students interpret this statistic and build an argument from it."
+[Condition] Exclude entirely any material whose source cannot be confirmed, and if you find fewer than 3, tell me how you changed the search terms and tried again.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 4</span>Varying feedback by student type</div>
+                <pre>[Role] You are a professor with a counselor's instincts, attentive even to a student's state of mind.
+[Context] The same feedback template has to land differently depending on where a student is.
+[Request] Adapt my feedback template for three student types: (1) a student who does well but has grown complacent — offer a challenge (2) a student who works hard but does not know how — give concrete methods (3) a student who has lost confidence — help them rediscover their strengths.
+[Format] One sample feedback for each type (within 5 lines).
+[Example] A sample sentence for the rediscovering-strengths type: "The metaphor in this paragraph was the freshest in the class — try bringing that instinct into your main argument as well."
+[Condition] Assume the same assignment situation for all three so that the differences stand out clearly.</pre>
+              </div>
+            </div>
+          </div>
+    <div class="memo">
+      <h3>Notes — what I made today / what I will use in my course</h3>
+      <div class="lines"></div>
+    </div></body></html>

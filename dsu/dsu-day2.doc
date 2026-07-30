@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><meta name="ProgId" content="Word.Document"><title>교수자 AI 역량 강화 연수 — Day 2 — 서술형·비판형 평가 문항 설계</title>
+<style>:root { --accent: #009B77; }
+
+  @page { size: A4; margin: 18mm 16mm 20mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    font-size: 10.5pt; line-height: 1.65; color: #1a1a1a;
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+  h1, h2, h3, h4 { margin: 0; font-weight: 700; }
+  mark { background: linear-gradient(transparent 55%, #ffe9a8 55%); padding: 0 1px; }
+  .page-break { break-after: page; }
+
+  /* ── 표지 ── */
+  .cover { height: 253mm; display: flex; flex-direction: column; text-align: center; }
+  .cover-top { border-top: 6px solid #0054A6; padding-top: 14mm; }
+  .cover-logo { height: 11mm; margin: 0 auto 11mm; display: block; }
+  .cover-org { font-size: 13pt; letter-spacing: .28em; color: #0054A6; font-weight: 700; }
+  .cover-title { font-size: 30pt; line-height: 1.3; margin: 8mm 0 4mm; letter-spacing: -.02em; }
+  .cover-sub { font-size: 12.5pt; color: #4a5568; }
+  .cover-rule { width: 28mm; height: 3px; background: #0054A6; margin: 9mm auto; border: 0; }
+  .cover-meta { font-size: 11pt; color: #2d3748; line-height: 2.1; }
+  .cover-meta b { display: inline-block; min-width: 22mm; color: #0054A6; }
+  .cover-foot { margin-top: auto; font-size: 9pt; color: #718096; line-height: 1.8;
+                border-top: 1px solid #e2e8f0; padding-top: 6mm; }
+  .cover-badge { display: inline-block; margin-top: 6mm; padding: 2.5mm 6mm; border-radius: 99px;
+                 background: #0054A6; color: #fff; font-size: 10pt; font-weight: 700; }
+
+  /* ── 속표지(Day) ── */
+  .daycover { border-top: 6px solid #009B77; padding-top: 16mm; height: 253mm;
+              display: flex; flex-direction: column; }
+  .daycover .kicker { font-size: 10pt; letter-spacing: .22em; color: #718096; }
+  .daycover h1 { font-size: 25pt; line-height: 1.32; margin: 5mm 0 4mm; color: #009B77; }
+  .daycover .tagline { font-size: 12pt; color: #2d3748; line-height: 1.7; }
+  .daycover .desc { margin-top: 8mm; font-size: 10.5pt; color: #4a5568; line-height: 1.85;
+                    background: #f7fafc; border-left: 3px solid #009B77; padding: 5mm 6mm; }
+
+  /* ── 표 ── */
+  table { width: 100%; border-collapse: collapse; margin: 5mm 0; font-size: 9.8pt; }
+  th, td { border: 1px solid #cbd5e0; padding: 2.6mm 3mm; text-align: left; vertical-align: top; }
+  th { background: #edf2f7; font-weight: 700; color: #2d3748; }
+
+  /* ── 섹션 ── */
+  .sec-title { font-size: 13pt; color: #009B77; border-bottom: 2px solid #009B77;
+               padding-bottom: 2mm; margin: 0 0 5mm; }
+  .chips { display: flex; flex-wrap: wrap; gap: 2mm; margin: 4mm 0 0; }
+  .chip { font-size: 9pt; padding: 1.2mm 3.5mm; border-radius: 99px;
+          background: #edf2f7; color: #2d3748; border: 1px solid #dde3ea; }
+
+  /* ── 교시 블록 ── */
+  /* 교시 블록은 길어서 페이지를 넘길 수 있게 둔다(막으면 빈 지면이 크게 생김).
+     대신 머리말 직후·목표 블록은 쪼개지지 않도록 고정. */
+  .block { margin-bottom: 7mm; }
+  .block-head { background: #009B77; color: #fff; padding: 3mm 4mm; border-radius: 2mm 2mm 0 0;
+                break-after: avoid; break-inside: avoid; }
+  .goal, ul.topics li { break-inside: avoid; }
+  .block-head .theme { font-size: 9pt; opacity: .85; }
+  .block-head h2 { font-size: 12.5pt; margin-top: 1mm; }
+  .block-body { border: 1px solid #dde3ea; border-top: 0; border-radius: 0 0 2mm 2mm; padding: 5mm; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 2mm; margin-bottom: 4mm; }
+  .tag { font-size: 8.6pt; padding: 1mm 3mm; border-radius: 99px; border: 1px solid #cbd5e0; color: #4a5568; }
+  .tag.accent { background: #009B77; border-color: #009B77; color: #fff; }
+  .goal { background: #f0f7ff; border-left: 3px solid #009B77; padding: 3mm 4mm; margin-bottom: 4mm;
+          font-size: 10pt; }
+  .goal b { color: #009B77; }
+  .label { font-size: 9.4pt; font-weight: 700; color: #009B77; margin: 4mm 0 2mm;
+           letter-spacing: .04em; }
+  ul.topics { margin: 0; padding-left: 5mm; }
+  ul.topics li { margin-bottom: 1.6mm; }
+
+  /* ── 실습 프롬프트 ── */
+  .practice { break-inside: avoid; border: 1px solid #dde3ea; border-radius: 2mm; margin-bottom: 3.5mm;
+              overflow: hidden; }
+  .practice-head { background: #f7fafc; padding: 2.2mm 3.5mm; font-size: 9.6pt; font-weight: 700;
+                   color: #2d3748; border-bottom: 1px solid #e2e8f0; }
+  .practice-head .n { color: #009B77; margin-right: 2mm; }
+  .practice pre { margin: 0; padding: 3.5mm; font-family: 'SF Mono', 'D2Coding', Menlo, monospace;
+                  font-size: 8.6pt; line-height: 1.72; white-space: pre-wrap;
+                  word-break: keep-all; overflow-wrap: break-word; color: #2d3748; background: #fff; }
+
+  /* ── 메모 ── */
+  .memo { break-inside: avoid; border: 1px dashed #cbd5e0; border-radius: 2mm; padding: 4mm 5mm; margin-top: 6mm; }
+  .memo h3 { font-size: 10pt; color: #4a5568; margin-bottom: 3mm; }
+  .memo .lines { height: 42mm; background: repeating-linear-gradient(
+      transparent, transparent 8.4mm, #e2e8f0 8.4mm, #e2e8f0 8.6mm); }
+</style></head><body>
+    <section class="daycover">
+      <div class="kicker">동신대학교 교수자 AI 역량 강화 연수 · 인문사회 · 예체능 트랙</div>
+      <h1>Day 2<br>서술형·비판형 평가 문항 설계</h1>
+      <div class="tagline">서술·논술 문항과 모범답안, 채점 루브릭, 개인화 피드백까지 — 평가의 전 과정을 하루에</div>
+      <div class="chips"><span class="chip">평가 유형 이해</span><span class="chip">서술·논술 문항</span><span class="chip">단계별 모범답안</span><span class="chip">역량 루브릭</span><span class="chip">개인화 피드백 확장</span><span class="chip">웹 검색 근거 수집</span><span class="chip">출처 검증·가짜 인용 점검</span></div>
+      <div class="desc">인문사회·예체능 평가의 핵심인 서술형·비판형 평가를 설계하는 날입니다. 문항을 만들고, 단계별 모범답안을 뽑고, 분석·비판·창의 역량을 재는 루브릭을 작성한 뒤, 피드백을 템플릿으로 확장합니다. 마지막에는 웹 검색으로 근거와 출처를 검증하고 가짜 인용을 걸러내는 법을 익힙니다.</div>
+      <table style="margin-top:8mm">
+        <tr><th style="width:26mm">일자</th><td>2026. 07. 21. (화)</td></tr>
+        <tr><th>구성</th><td>4교시 · 4시간 (대면 실습)</td></tr>
+        <tr><th>수준</th><td>적용 → 평가</td></tr>
+        <tr><th>대상</th><td>인문사회·예체능 계열 교원 (2026.07.21 화)</td></tr>
+        <tr><th>강사</th><td>정동엽 교수</td></tr>
+        <tr><th>실습 보드</th><td>https://padlet.com/dreamitbiz/dsu26</td></tr>
+      </table>
+      <div style="margin-top:auto;border-top:1px solid #e2e8f0;padding-top:5mm;font-size:9pt;color:#718096">
+        드림아이티비즈(DreamIT Biz) · dsu.dreamitbiz.com
+      </div>
+    </section>
+    <div class="page-break"></div>
+    <section>
+      <h2 class="sec-title">오늘의 흐름</h2>
+      <table>
+        <thead><tr><th style="width:20mm">교시</th><th style="width:56mm">주제</th><th>학습 목표</th></tr></thead>
+        <tbody><tr>
+      <td style="white-space:nowrap"><b>1교시</b><br>
+        <span style="font-size:9pt;color:#718096">60분</span></td>
+      <td>인문사회·예체능 평가의 다섯 가지 얼굴</td>
+      <td style="font-size:9.2pt">서술·비판형·실기·포트폴리오·발표 평가의 특징과 쓰임새를 구분한다. (이해)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>2교시</b><br>
+        <span style="font-size:9pt;color:#718096">60분</span></td>
+      <td>서술·논술 문항 + 단계별 모범답안 생성 실습</td>
+      <td style="font-size:9.2pt">본인 과목의 서술·논술 문항과 수준별 모범답안을 생성한다. (적용·창안)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>3교시</b><br>
+        <span style="font-size:9pt;color:#718096">60분</span></td>
+      <td>분석·비판·창의 역량을 재는 루브릭 만들기</td>
+      <td style="font-size:9.2pt">역량 기반 채점 루브릭을 작성하고 모범답안으로 검증한다. (창안·평가)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>4교시</b><br>
+        <span style="font-size:9pt;color:#718096">60분</span></td>
+      <td>피드백 1개 → 전체 확장 + 근거·출처 검증과 가짜 인용 점검</td>
+      <td style="font-size:9.2pt">표본 피드백을 템플릿화해 확장하고, 웹 검색으로 근거·출처를 검증한다. (적용·평가)</td>
+    </tr></tbody>
+      </table>
+      <p style="font-size:9.6pt;color:#4a5568;margin-top:4mm">실습 프롬프트의 <strong>[대괄호]</strong>는 본인 과목·주제로 바꿔 주세요. 모든 프롬프트는 <strong>[역할]·[맥락]·[요청]·[형식]·[예시]·[조건]</strong> 구조를 따릅니다.</p>
+    </section>
+    <div class="page-break"></div><div class="block">
+            <div class="block-head">
+              <div class="theme">1~2교시 · 평가 유형 이해 + 서술·논술 문항과 모범답안 만들기</div>
+              <h2>1교시 · 인문사회·예체능 평가의 다섯 가지 얼굴</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">1교시</span><span class="tag">60분</span><span class="tag">난이도 기초</span><span class="tag">중요도 ★★</span></div>
+              <div class="goal"><b>학습 목표</b> 서술·비판형·실기·포트폴리오·발표 평가의 특징과 쓰임새를 구분한다. (이해)</div>
+              <div class="label">주요 내용</div>
+              <ul class="topics"><li>① 서술형: 아는 것을 글로 설명 — "○○의 의미를 두 가지 근거로 설명하시오"</li><li>② 비판형: 주장·작품을 근거로 평가 — "이 주장의 약점을 찾아 반박하시오"</li><li>③ 실기: 몸과 손으로 보여주기 — 연주·시연·제작 (예체능의 중심)</li><li>④ 포트폴리오: 한 학기 성장 과정을 모음집으로 — 과정 중심 평가</li><li>⑤ 발표: 생각을 말로 전달 — 내용 + 전달력 + 질의응답</li><li>평가 유형과 AI의 역할: 문항·기준 설계는 AI와 함께, 수행 관찰과 판정은 교수자가</li><li>📦 산출물: 내 과목 평가 유형 조합표</li></ul>
+              <div class="label">실습 — Claude에 그대로 붙여넣기</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">실습 1</span>내 과목 평가 설계도 그리기</div>
+                <pre>[역할] 너는 대학 평가 설계 10년차 전문가야.
+[맥락] 내 과목은 [과목명](학부 [학년], [수강 인원]명)이고, 현재 평가는 [현재 방식]인데 과목 특성을 잘 담지 못하는 것 같아.
+[요청] 서술형·비판형·실기·포트폴리오·발표 5가지 유형 중 이 과목에 맞는 조합을 추천해줘.
+[형식] (1) 추천 조합과 반영 비율 (2) 각 평가가 재는 역량 (3) 유형별로 AI가 도울 수 있는 준비 작업을 표로.
+[예시] 조합 예: "비판형 서술 40% + 포트폴리오 40% + 발표 20%".
+[조건] 채점 부담(시간)도 함께 표시해서 현실적인 조합으로.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 2</span>유형 바꿔보기 실험</div>
+                <pre>[역할] 너는 평가 혁신 사례를 많이 다뤄 본 교육 컨설턴트야.
+[맥락] 지금 내 과목의 기말 평가는 [현재 방식]이야. AI 시대에 암기 확인만으로는 부족하다고 느껴.
+[요청] 이 평가를 비판형 서술 + 포트폴리오 조합으로 바꾼다면 어떤 모습이 될지 설계해줘.
+[형식] "현재 → 변경안" 대비표 + 장점 3가지 + 주의할 점 3가지.
+[예시] 주의점 예: "포트폴리오는 채점 시간이 늘어남 — 중간 점검 2회로 분산".
+[조건] 학생 반발이나 채점 부담 같은 현실적 문제와 대응책도 포함.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 3</span>실기·발표 평가 기준 만들기(예체능)</div>
+                <pre>[역할] 너는 예체능 실기 평가 설계 전문가야.
+[맥락] [실기/발표 과제명]을 평가해야 하는데, 주관이 개입된다는 오해를 받지 않도록 기준을 투명하게 만들고 싶어.
+[요청] 평가 기준을 만들어줘. 실기라면 기술 정확성/해석·표현/태도 3축, 발표라면 내용/전달력/질의응답 3축으로.
+[형식] 각 축을 3수준으로 나눈 표 + 평가 당일 교수자용 관찰 체크리스트.
+[예시] 관찰 체크 항목 예: "☐ 도입부 템포 유지 ☐ 실수 후 회복 태도".
+[조건] 수행 관찰과 판정은 교수자의 몫임을 전제로, AI는 기준 설계까지만.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">1~2교시 · 평가 유형 이해 + 서술·논술 문항과 모범답안 만들기</div>
+              <h2>2교시 · 서술·논술 문항 + 단계별 모범답안 생성 실습</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">2교시</span><span class="tag">60분</span><span class="tag">난이도 보통</span><span class="tag">중요도 ★★★</span></div>
+              <div class="goal"><b>학습 목표</b> 본인 과목의 서술·논술 문항과 수준별 모범답안을 생성한다. (적용·창안)</div>
+              <div class="label">주요 내용</div>
+              <ul class="topics"><li>좋은 서술 문항의 조건: <mark>무엇을(대상) + 어떻게(사고 동사) + 조건(분량·근거 수)</mark>이 명확할 것</li><li>사고 동사 고르기: 요약하라(이해) &lt; 비교하라(분석) &lt; 평가하라(평가) &lt; 제안하라(창안)</li><li>"단계별 모범답안"이란: 미흡–보통–우수 답안을 미리 만들어 채점 기준을 눈으로 확인하는 것</li><li>모범답안 3종의 쓸모: 채점 일관성 확보 + 학생에게 수준별 예시 제공</li><li>보안 원칙 복습: 실제 시험 문항은 유사 연습 문항으로 바꿔 실습합니다</li><li>📦 산출물: 서술 문항 2개 + 3수준 모범답안 세트</li></ul>
+              <div class="label">실습 — Claude에 그대로 붙여넣기</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">실습 1</span>서술 문항 설계</div>
+                <pre>[역할] 너는 [전공 분야] 평가 문항 출제 10년차 전문가야.
+[맥락] [주제] 범위에서 학부 [학년] 학생들의 사고력을 확인하는 서술형 평가를 준비 중이야. (실제 출제 문항이 아니라 연습용이야.)
+[요청] 서술형 문항 2개를 만들어줘. 하나는 분석형("비교·분석하시오"), 하나는 비판형("평가·반박하시오")으로.
+[형식] 문항마다 답안 분량·근거 개수 조건 명시 + 교수자용 출제 의도 메모 한 줄.
+[예시] 문항 형식 예: "두 사료의 관점 차이를 비교·분석하시오 (600자, 근거 2개 이상)".
+[조건] "무엇을 + 어떻게(사고 동사) + 조건"이 문장 안에 모두 드러나게.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 2</span>3수준 모범답안 생성</div>
+                <pre>[역할] 너는 채점 기준을 답안으로 보여주는 평가 전문가야.
+[맥락] 방금 만든 1번 문항을 채점할 때 일관성을 지키고 싶고, 학생들에게도 수준별 예시를 보여주고 싶어.
+[요청] 1번 문항의 모범답안을 세 수준으로 써줘. (1) 우수(만점) (2) 보통(부분 점수) (3) 미흡.
+[형식] 각 답안 아래 "이 답안이 이 수준인 이유"를 채점자 관점에서 2줄씩.
+[예시] 이유 서술 예: "보통: 주장은 파악했으나 근거가 1개뿐이고 반론 인식이 없음".
+[조건] 세 답안의 분량은 비슷하게 — 길이가 아니라 사고의 질로 수준이 갈리게.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 3</span>문항 난이도 조절 실험</div>
+                <pre>[역할] 너는 문항 난이도를 정밀하게 조절하는 평가 설계자야.
+[맥락] 1번 문항이 마음에 드는데, 다른 학년 수업에도 변형해 쓰고 싶어.
+[요청] 1번 문항을 (1) 한 단계 쉬운 버전(1학년용) (2) 한 단계 어려운 버전(3~4학년 심화용)으로 변형해줘.
+[형식] "버전 / 문항 / 무엇을 바꿨나(사고 동사·조건·자료)" 3열 표.
+[예시] 조절 원리 예: "쉬운 버전 — '비교하시오'를 '차이점 2가지를 찾으시오'로, 자료 제시".
+[조건] 난이도가 달라진 이유를 원리로 설명해서, 내가 다른 문항에도 응용할 수 있게.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">3~4교시 · 역량 루브릭 작성 + 피드백 확장 + 출처 검증</div>
+              <h2>3교시 · 분석·비판·창의 역량을 재는 루브릭 만들기</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">3교시</span><span class="tag">60분</span><span class="tag">난이도 도전</span><span class="tag">중요도 ★★★</span></div>
+              <div class="goal"><b>학습 목표</b> 역량 기반 채점 루브릭을 작성하고 모범답안으로 검증한다. (창안·평가)</div>
+              <div class="label">주요 내용</div>
+              <ul class="topics"><li><strong>역량 루브릭</strong> = 지식이 아니라 <mark>"사고의 질"을 재는 기준표</mark></li><li>3대 역량 쪼개기: 분석(구조 파악·관계 발견) / 비판(근거 평가·반론) / 창의(새 연결·대안 제시)</li><li>수준 서술 요령: "잘함" 같은 막연한 말 대신 <mark>"근거 2개 이상으로 반론을 구성함"처럼 행동으로</mark></li><li>루브릭 검증법: 2교시에 만든 3수준 모범답안을 루브릭으로 채점해보고 점수가 맞는지 확인</li><li>예체능 응용: 실기 루브릭(기술 정확성 / 해석·표현 / 창의성)도 같은 방법으로</li><li>📦 산출물: 역량 루브릭 1개(검증 완료)</li></ul>
+              <div class="label">실습 — Claude에 그대로 붙여넣기</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">실습 1</span>역량 루브릭 생성</div>
+                <pre>[역할] 너는 교육평가 루브릭 설계 10년차 전문가야.
+[맥락] [과제/문항명]을 채점해야 해. 지식 암기가 아니라 사고의 질(분석·비판·창의)을 공정하게 재고 싶어.
+[요청] 채점 루브릭을 만들어줘.
+[형식] 평가 기준 4가지(분석력/비판적 사고/창의성/표현력) × 4수준(미흡 1점~탁월 4점) 표.
+[예시] 탁월 칸 서술 예: "근거 2개 이상으로 반론을 구성하고, 자기 반론의 한계까지 언급함".
+[조건] 각 칸은 "잘함" 같은 막연한 말 금지 — 학생의 구체적 행동이 보이게 서술. 표 아래에 채점 시 흔한 실수 3가지도.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 2</span>모범답안으로 루브릭 검증</div>
+                <pre>[역할] 너는 루브릭의 작동 여부를 시험하는 품질 검증자야.
+[맥락] 방금 만든 루브릭이 실제로 수준을 갈라내는지 확인하고 싶어.
+[요청] 이 루브릭으로 아까 만든 3수준 모범답안(우수/보통/미흡)을 각각 채점해줘.
+[형식] "기준 / 우수 답안 점수·근거 / 보통 답안 점수·근거 / 미흡 답안 점수·근거" 표 + 총점 비교.
+[예시] 판정 예: "총점 우수 14 / 보통 9 / 미흡 5 — 수준 분리 성공".
+[조건] 총점 차이가 잘 안 벌어지는 기준이 있으면 그 기준의 수준 서술을 수정해서 다시 보여줘.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 3</span>루브릭 학생 공개 버전 만들기</div>
+                <pre>[역할] 너는 평가 기준을 학생의 언어로 번역하는 커뮤니케이션 전문가야.
+[맥락] 검증까지 마친 루브릭을 과제 안내와 함께 학생에게 공개하려고 해. 기준 공개가 곧 학습 안내가 되길 바라.
+[요청] 이 루브릭을 학생 공개용 버전으로 바꿔줘.
+[형식] 각 기준의 우수 수준을 "이렇게 하면 좋은 답안입니다" 예시 중심으로 풀어 쓰기 + 제출 전 셀프 체크리스트 5문항.
+[예시] 체크 문항 예: "☐ 내 주장에 반대하는 사람이 뭐라고 할지 한 문장이라도 썼는가?".
+[조건] 평가 용어 대신 학생이 쓰는 말로, A4 1장 이내.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">3~4교시 · 역량 루브릭 작성 + 피드백 확장 + 출처 검증</div>
+              <h2>4교시 · 피드백 1개 → 전체 확장 + 근거·출처 검증과 가짜 인용 점검</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">4교시</span><span class="tag">60분</span><span class="tag">난이도 보통</span><span class="tag">중요도 ★★★</span></div>
+              <div class="goal"><b>학습 목표</b> 표본 피드백을 템플릿화해 확장하고, 웹 검색으로 근거·출처를 검증한다. (적용·평가)</div>
+              <div class="label">주요 내용</div>
+              <ul class="topics"><li>개인화 피드백 전략: 정성 들인 표본 1개 작성 → 구조를 템플릿으로 추출 → 학생별 메모만 바꿔 적용</li><li>피드백 3단 구조: 잘한 점(구체적 인용) → 성장 포인트(방법 포함) → 다음 단계 격려</li><li>개인정보 원칙 복습: 학생 이름·학번 제거, 과제 내용도 최소한만 입력</li><li><strong>가짜 인용(환각 인용) 잡기</strong>: <mark>AI가 만든 참고문헌은 실존 여부를 반드시 확인</mark> — 제목·저자·연도 검색</li><li><strong>웹 검색 활용 근거 수집</strong>: 평가 문항·피드백에 쓸 최신 사례·통계를 웹 검색으로 모으고 <mark>출처를 함께 기록</mark></li><li>검증 루틴 5단계: ①모든 인용에 "미확인" 딱지 → ②제목 그대로 검색(구글 스칼라·RISS·DBpia) → ③원문 대조 → ④못 찾으면 삭제 → ⑤확인된 것만 출처 표기</li><li>학생에게도 가르치기: 과제 조건에 "AI 활용 시 모든 인용의 원문 확인 여부 표기" 추가</li><li>📦 산출물: 피드백 템플릿 + 출처 검증 체크리스트</li></ul>
+              <div class="label">실습 — Claude에 그대로 붙여넣기</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">실습 1</span>표본 피드백 → 템플릿 확장</div>
+                <pre>[역할] 너는 좋은 피드백의 구조를 분석하는 교육 코치야.
+[맥락] 아래는 내가 학생 A(익명 처리)의 에세이에 정성 들여 쓴 피드백이야. 이 품질을 유지하면서 30명 전체에게 확장하고 싶어.
+[요청] 이 피드백의 구조를 분석해서 다른 학생에게도 쓸 수 있는 템플릿으로 만들어줘.
+[형식] 템플릿(학생마다 바뀌는 부분은 [빈칸], 유지되는 틀은 그대로) + 사용법 3줄.
+[예시] 템플릿 문장 예: "[구체적 인용]에서 [강점]이 돋보입니다. 다음에는 [방법]을 시도해 보세요."
+[조건] 내 말투를 유지하고, 마지막 격려 문장 자리는 "직접 작성" 표시로 비워둬.
+
+[표본 피드백 붙여넣기]</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 2</span>가짜 인용 사냥 훈련</div>
+                <pre>[역할] 너는 참고문헌의 실존 여부를 검증하는 학술 사서야.
+[맥락] AI가 만들어 준 자료에 참고문헌이 딸려 왔는데, 인문사회 글쓰기에서 가짜 인용은 치명적이라 하나씩 확인하려고 해.
+[요청] 웹에서 검색해서 다음 참고문헌들이 실제로 존재하는지 확인해줘: [참고문헌 목록]
+[형식] "문헌 / 실존 여부 / 확인 출처 링크 / 저자·연도·제목 정확성" 표.
+[예시] 판정 예: "○○(2021) — 검색 결과 없음, 삭제 권장 / △△(2019) — 실존, 단 연도는 2018이 맞음".
+[조건] 확인이 안 되는 문헌은 "삭제 권장"으로 표시하고, 최종 판단은 내가 원문을 열어 확인할 것까지 안내해줘.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 3</span>웹 검색으로 근거 자료 수집·검증</div>
+                <pre>[역할] 너는 출처를 반드시 남기는 꼼꼼한 학술 리서처야.
+[맥락] [과목명]의 서술형 평가와 피드백에 쓸 최신 근거 자료(사례·통계·연구)가 필요해. 출처가 불분명한 자료는 쓸 수 없어.
+[요청] 웹에서 검색해서 [주제]에 대한 최근 2년 이내 근거 자료를 3개 찾아줘.
+[형식] 자료마다 (1) 한 줄 요약 (2) 출처(기관·발행일·링크) (3) 평가·피드백에서 활용하는 방법 (4) 내가 원문에서 직접 확인할 항목을 표로.
+[예시] 활용 방법 예: "서술 문항의 제시 자료로 — 학생이 이 통계를 해석해 논증하게 함".
+[조건] 출처가 확인되지 않는 자료는 아예 제외하고, 자료가 3개 미만이면 검색어를 바꿔 다시 시도한 과정도 알려줘.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">실습 4</span>학생 유형별 피드백 변주</div>
+                <pre>[역할] 너는 학생의 마음 상태까지 고려하는 상담 감각의 교수야.
+[맥락] 같은 피드백 템플릿도 학생 상태에 따라 다르게 전달돼야 해.
+[요청] 내 피드백 템플릿을 세 학생 유형에 맞게 변주해줘. (1) 잘하지만 안주하는 학생 — 도전 과제 제시형 (2) 노력하지만 방법을 모르는 학생 — 구체적 방법 안내형 (3) 자신감을 잃은 학생 — 강점 재발견형.
+[형식] 유형별 예시 피드백 각 1편(5줄 이내).
+[예시] 강점 재발견형 문장 예: "이 문단의 비유는 반에서 가장 신선했습니다 — 이 감각을 본론에도 써 보세요."
+[조건] 세 편 모두 같은 과제 상황을 가정해서 차이가 잘 보이게.</pre>
+              </div>
+            </div>
+          </div>
+    <div class="memo">
+      <h3>메모 — 오늘 만든 것 / 내 과목에 적용할 것</h3>
+      <div class="lines"></div>
+    </div></body></html>

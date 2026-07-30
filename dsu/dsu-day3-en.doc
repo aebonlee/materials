@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><meta name="ProgId" content="Word.Document"><title>Faculty AI Competency Training — Day 3 — AI Teaching Protocols &amp; Vibe Coding</title>
+<style>:root { --accent: #8E2F6F; }
+
+  @page { size: A4; margin: 18mm 16mm 20mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    font-size: 10.5pt; line-height: 1.65; color: #1a1a1a;
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+  h1, h2, h3, h4 { margin: 0; font-weight: 700; }
+  mark { background: linear-gradient(transparent 55%, #ffe9a8 55%); padding: 0 1px; }
+  .page-break { break-after: page; }
+
+  /* ── 표지 ── */
+  .cover { height: 253mm; display: flex; flex-direction: column; text-align: center; }
+  .cover-top { border-top: 6px solid #0054A6; padding-top: 14mm; }
+  .cover-logo { height: 11mm; margin: 0 auto 11mm; display: block; }
+  .cover-org { font-size: 13pt; letter-spacing: .28em; color: #0054A6; font-weight: 700; }
+  .cover-title { font-size: 30pt; line-height: 1.3; margin: 8mm 0 4mm; letter-spacing: -.02em; }
+  .cover-sub { font-size: 12.5pt; color: #4a5568; }
+  .cover-rule { width: 28mm; height: 3px; background: #0054A6; margin: 9mm auto; border: 0; }
+  .cover-meta { font-size: 11pt; color: #2d3748; line-height: 2.1; }
+  .cover-meta b { display: inline-block; min-width: 22mm; color: #0054A6; }
+  .cover-foot { margin-top: auto; font-size: 9pt; color: #718096; line-height: 1.8;
+                border-top: 1px solid #e2e8f0; padding-top: 6mm; }
+  .cover-badge { display: inline-block; margin-top: 6mm; padding: 2.5mm 6mm; border-radius: 99px;
+                 background: #0054A6; color: #fff; font-size: 10pt; font-weight: 700; }
+
+  /* ── 속표지(Day) ── */
+  .daycover { border-top: 6px solid #8E2F6F; padding-top: 16mm; height: 253mm;
+              display: flex; flex-direction: column; }
+  .daycover .kicker { font-size: 10pt; letter-spacing: .22em; color: #718096; }
+  .daycover h1 { font-size: 25pt; line-height: 1.32; margin: 5mm 0 4mm; color: #8E2F6F; }
+  .daycover .tagline { font-size: 12pt; color: #2d3748; line-height: 1.7; }
+  .daycover .desc { margin-top: 8mm; font-size: 10.5pt; color: #4a5568; line-height: 1.85;
+                    background: #f7fafc; border-left: 3px solid #8E2F6F; padding: 5mm 6mm; }
+
+  /* ── 표 ── */
+  table { width: 100%; border-collapse: collapse; margin: 5mm 0; font-size: 9.8pt; }
+  th, td { border: 1px solid #cbd5e0; padding: 2.6mm 3mm; text-align: left; vertical-align: top; }
+  th { background: #edf2f7; font-weight: 700; color: #2d3748; }
+
+  /* ── 섹션 ── */
+  .sec-title { font-size: 13pt; color: #8E2F6F; border-bottom: 2px solid #8E2F6F;
+               padding-bottom: 2mm; margin: 0 0 5mm; }
+  .chips { display: flex; flex-wrap: wrap; gap: 2mm; margin: 4mm 0 0; }
+  .chip { font-size: 9pt; padding: 1.2mm 3.5mm; border-radius: 99px;
+          background: #edf2f7; color: #2d3748; border: 1px solid #dde3ea; }
+
+  /* ── 교시 블록 ── */
+  /* 교시 블록은 길어서 페이지를 넘길 수 있게 둔다(막으면 빈 지면이 크게 생김).
+     대신 머리말 직후·목표 블록은 쪼개지지 않도록 고정. */
+  .block { margin-bottom: 7mm; }
+  .block-head { background: #8E2F6F; color: #fff; padding: 3mm 4mm; border-radius: 2mm 2mm 0 0;
+                break-after: avoid; break-inside: avoid; }
+  .goal, ul.topics li { break-inside: avoid; }
+  .block-head .theme { font-size: 9pt; opacity: .85; }
+  .block-head h2 { font-size: 12.5pt; margin-top: 1mm; }
+  .block-body { border: 1px solid #dde3ea; border-top: 0; border-radius: 0 0 2mm 2mm; padding: 5mm; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 2mm; margin-bottom: 4mm; }
+  .tag { font-size: 8.6pt; padding: 1mm 3mm; border-radius: 99px; border: 1px solid #cbd5e0; color: #4a5568; }
+  .tag.accent { background: #8E2F6F; border-color: #8E2F6F; color: #fff; }
+  .goal { background: #f0f7ff; border-left: 3px solid #8E2F6F; padding: 3mm 4mm; margin-bottom: 4mm;
+          font-size: 10pt; }
+  .goal b { color: #8E2F6F; }
+  .label { font-size: 9.4pt; font-weight: 700; color: #8E2F6F; margin: 4mm 0 2mm;
+           letter-spacing: .04em; }
+  ul.topics { margin: 0; padding-left: 5mm; }
+  ul.topics li { margin-bottom: 1.6mm; }
+
+  /* ── 실습 프롬프트 ── */
+  .practice { break-inside: avoid; border: 1px solid #dde3ea; border-radius: 2mm; margin-bottom: 3.5mm;
+              overflow: hidden; }
+  .practice-head { background: #f7fafc; padding: 2.2mm 3.5mm; font-size: 9.6pt; font-weight: 700;
+                   color: #2d3748; border-bottom: 1px solid #e2e8f0; }
+  .practice-head .n { color: #8E2F6F; margin-right: 2mm; }
+  .practice pre { margin: 0; padding: 3.5mm; font-family: 'SF Mono', 'D2Coding', Menlo, monospace;
+                  font-size: 8.6pt; line-height: 1.72; white-space: pre-wrap;
+                  word-break: keep-all; overflow-wrap: break-word; color: #2d3748; background: #fff; }
+
+  /* ── 메모 ── */
+  .memo { break-inside: avoid; border: 1px dashed #cbd5e0; border-radius: 2mm; padding: 4mm 5mm; margin-top: 6mm; }
+  .memo h3 { font-size: 10pt; color: #4a5568; margin-bottom: 3mm; }
+  .memo .lines { height: 42mm; background: repeating-linear-gradient(
+      transparent, transparent 8.4mm, #e2e8f0 8.4mm, #e2e8f0 8.6mm); }
+</style></head><body>
+    <section class="daycover">
+      <div class="kicker">Dongshin University Faculty AI Competency Training · Humanities &amp; Arts track</div>
+      <h1>Day 3<br>AI Teaching Protocols &amp; Vibe Coding</h1>
+      <div class="tagline">The final day — set your teaching strategy and build your own classroom tool through vibe coding.</div>
+      <div class="chips"><span class="chip">AI strategy by class stage</span><span class="chip">PBL &amp; project work</span><span class="chip">Core-competency scenarios</span><span class="chip">Building tools by vibe coding</span><span class="chip">AI ethics &amp; attribution</span><span class="chip">Your own teaching protocol</span></div>
+      <div class="desc">Day 3 synthesizes everything: AI strategies for discussion/PBL courses, practice scenarios for core competencies, building interactive class tools via vibe coding (no coding skills needed), and a personal AI teaching protocol.</div>
+      <table style="margin-top:8mm">
+        <tr><th style="width:26mm">Date</th><td>Wed 22 July 2026</td></tr>
+        <tr><th>Structure</th><td>4 periods · 4 hours (in person)</td></tr>
+        <tr><th>Level</th><td>Synthesis → Creation</td></tr>
+        <tr><th>Participants</th><td>Humanities &amp; arts faculty (Wed 22 July 2026)</td></tr>
+        <tr><th>Instructor</th><td>Prof. Jeong Dong-yeop</td></tr>
+        <tr><th>Practice board</th><td>https://padlet.com/dreamitbiz/dsu26</td></tr>
+      </table>
+      <div style="margin-top:auto;border-top:1px solid #e2e8f0;padding-top:5mm;font-size:9pt;color:#718096">
+        드림아이티비즈(DreamIT Biz) · dsu.dreamitbiz.com
+      </div>
+    </section>
+    <div class="page-break"></div>
+    <section>
+      <h2 class="sec-title">Today's Flow</h2>
+      <table>
+        <thead><tr><th style="width:20mm">Period</th><th style="width:56mm">Theme</th><th>Learning goal</th></tr></thead>
+        <tbody><tr>
+      <td style="white-space:nowrap"><b>Period 1</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>Strategies for Placing AI in Discussion, Writing, Presentation, and PBL Classes</td>
+      <td style="font-size:9.2pt">Build AI-use strategies by class type and by stage. (Analyze · Create)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>Period 2</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>Turning My Course's Core Competencies into Repeated-Practice Scenarios</td>
+      <td style="font-size:9.2pt">Identify the core knowledge and competencies that require repeated practice, and write AI practice scenarios for them. (Analyze · Create)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>Period 3</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>Vibe Coding — Building Your Own Class Tools Just by Describing Them</td>
+      <td style="font-size:9.2pt">Plan and build an interactive classroom activity tool yourself through vibe coding. (Create)</td>
+    </tr><tr>
+      <td style="white-space:nowrap"><b>Period 4</b><br>
+        <span style="font-size:9pt;color:#718096">60 min</span></td>
+      <td>Academic Ethics and Source Attribution + Completing and Sharing Your Own Teaching Protocol</td>
+      <td style="font-size:9.2pt">Set out ethical standards for AI in the humanities, social sciences, and arts, then build and share a personal teaching protocol. (Evaluate · Create)</td>
+    </tr></tbody>
+      </table>
+      <p style="font-size:9.6pt;color:#4a5568;margin-top:4mm">Replace the <strong>[bracketed]</strong> parts with your own course and topic. Every prompt follows the <strong>[Role]·[Context]·[Request]·[Format]·[Example]·[Condition]</strong> structure.</p>
+    </section>
+    <div class="page-break"></div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 1–2 · AI Strategy for My Course + Competency Practice Scenarios</div>
+              <h2>Period 1 · Strategies for Placing AI in Discussion, Writing, Presentation, and PBL Classes</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 1</span><span class="tag">60 min</span><span class="tag">Level Intermediate</span><span class="tag">Priority ★★★</span></div>
+              <div class="goal"><b>Learning goal</b> Build AI-use strategies by class type and by stage. (Analyze · Create)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>The class-stage × AI matrix: before class (design and materials) / during class (activity support) / after class (feedback and reflection)</li><li>Discussion classes: before — generate debate topics and guides / during — use AI as a sparring partner for counterarguments / after — summarize the content and pose reflection questions</li><li>Writing classes: before — design the assignment / during — help students get past the blank page (with a clear line against ghostwriting) / after — draft feedback</li><li>PBL and project classes: generate problem scenarios, prepare check-in questions for each team, set review criteria for interim deliverables</li><li>Designing how students may use AI: spell out how far they may go at each stage (knowing how to use the tool is itself a competency worth teaching)</li><li>📦 Output: an AI placement strategy table for my course (before · during · after)</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Building a before–during–after strategy table</div>
+                <pre>[Role] You are a consultant with ten years of experience in university teaching innovation.
+[Context] The main format of my course [course name] is [choose one: discussion / writing / presentation / PBL]. Both my students and I will end up using AI, and starting without any ground rules feels like a recipe for confusion.
+[Request] Divide the class into three stages — before, during, and after — and design (1) the points where the instructor uses AI, (2) the points where students may use it and under what conditions, and (3) the points where AI must not be used.
+[Format] A 3×3 matrix table (stage × who is using it).
+[Example] How to phrase a condition: "Five minutes of brainstorming allowed during class — the result must be labeled 'AI-assisted'."
+[Condition] Please do not leave the prohibited cells empty — a strategy with no clear limits is a risky one.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Generating PBL problem scenarios</div>
+                <pre>[Role] You are an expert in designing PBL (problem-based learning).
+[Context] I want to run a three-week team project in my [course name] class. I need a scenario that students will feel is a "real problem" and genuinely dive into.
+[Request] Propose two authentic problem scenarios.
+[Format] For each scenario, give (1) the problem situation as a short narrative (5 lines), (2) the final deliverable the team will produce, (3) the week-by-week progression, and (4) three check-in questions for the instructor.
+[Example] How to open the problem situation: give the students a role, as in "The Culture Policy Division of Naju City Hall has asked your team for advice…"
+[Condition] Make it a problem with no single right answer — and one that genuinely requires this course's knowledge to solve.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Designing a presentation class stage by stage</div>
+                <pre>[Role] You are an instructional designer who runs student presentation classes in a well-structured way.
+[Context] In [course name] I hold a student presentation session (8 teams × 10 minutes). I would like it to be a class where students learn from one another, not just take turns presenting.
+[Request] Design the presentation class in three stages. (1) Before the presentations: a preparation checklist for each team and the permitted scope of AI use. (2) During: devices for audience participation (peer evaluation sheets, question cards). (3) After: organizing the feedback and a reflection assignment.
+[Format] A subheading for each stage, plus materials in a form I can hand out directly.
+[Example] An audience participation device: "After each team presents, submit a card with 'the one argument that convinced you most + one question'."
+[Condition] Keep the peer evaluation sheet short enough to complete in three minutes.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 1–2 · AI Strategy for My Course + Competency Practice Scenarios</div>
+              <h2>Period 2 · Turning My Course's Core Competencies into Repeated-Practice Scenarios</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 2</span><span class="tag">60 min</span><span class="tag">Level Intermediate</span><span class="tag">Priority ★★</span></div>
+              <div class="goal"><b>Learning goal</b> Identify the core knowledge and competencies that require repeated practice, and write AI practice scenarios for them. (Analyze · Create)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>The question that surfaces core competencies: "What are the three abilities a student will carry for life after finishing this course?"</li><li>Humanities and social sciences examples: constructing an argument, interpreting sources and texts, responding to counterarguments, shifting perspective</li><li>Arts and physical education examples: the language of interpretation and criticism, explaining creative intent, self-check routines for studio practice</li><li>What a practice scenario is: a designed conversation in which a student practices one-on-one with AI, repeatedly (for example, AI playing a debate opponent, an audience member, or an interviewer)</li><li>The scenario template: competency / the role AI plays / the opening prompt / practice rules / a closing reflection question</li><li>📦 Output: two core-competency practice scenarios</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Surfacing core competencies</div>
+                <pre>[Role] You are a curriculum analyst who can pinpoint what a course is really about.
+[Context] The learning objective of my course [course name] is "[one-line objective]". I always feel that class hours alone do not give students enough practice.
+[Request] Identify three core competencies in this course that students can only develop through repeated practice.
+[Format] For each competency, give (1) why repetition is necessary, (2) why the current class offers too few chances to practice it, and (3) an idea for expanding practice opportunities with AI — all in a table.
+[Example] How to phrase a competency: "Responding to counterarguments — this is quickness of thought rather than knowledge, so real repetition is essential."
+[Condition] Use the language of "competency" (things students can do), not "knowledge".</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Designing a practice scenario for students</div>
+                <pre>[Role] You are an expert in designing self-directed learning for students.
+[Context] Of the competencies above, I want students to practice [chosen competency] one-on-one with AI outside of class. Some students may not be comfortable using AI yet.
+[Request] Create an AI conversation practice scenario for students.
+[Format] (1) The opening prompt students will paste into Claude (including the [Role] · [Context] · [Request] · [Rules] labels), (2) a short guide explaining how the practice works, and (3) three reflection questions students answer for themselves afterward.
+[Example] A rule inside the opening prompt: "[Rules] Do not give me the answer — only raise counterarguments to my claims."
+[Condition] Make it so a student can read the guide and start immediately.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>A difficulty ladder for repeated practice</div>
+                <pre>[Role] You are a coach who builds step-by-step training programs.
+[Context] I want practice on [chosen competency] to be a steady four-week course rather than a one-off exercise.
+[Request] Design a practice course that grows harder from week 1 (introductory) to week 4 (advanced).
+[Format] A four-column table: "week / practice mission / the prompt the student writes to AI / self-check criteria".
+[Example] How the difficulty rises: "Week 1: answer one counterargument → Week 4: answer three consecutive counterarguments and evaluate yourself."
+[Condition] Keep each week's practice short enough to finish within 20 minutes.</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 3–4 · Vibe-Coding Class Tools + Ethics &amp; Personal Protocol</div>
+              <h2>Period 3 · Vibe Coding — Building Your Own Class Tools Just by Describing Them</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 3</span><span class="tag">60 min</span><span class="tag">Level Advanced</span><span class="tag">Priority ★★★</span></div>
+              <div class="goal"><b>Learning goal</b> Plan and build an interactive classroom activity tool yourself through vibe coding. (Create)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>What <strong>vibe coding</strong> is: <mark>even if you know nothing about code, you simply say "please make me something like this" and AI writes the code and finishes it for you</mark></li><li>How to do it in Claude: describe the tool you want, and Claude builds it right away as a working result (Artifacts) you can use</li><li>Class tool ideas: a debate moderation board, a role-play script generator for historical figures, a vocabulary flashcard quiz, a critique-writing practice helper</li><li><strong>Planning is half the work</strong>: <mark>write down in three lines who / when / what</mark> the tool is for before you begin</li><li>After it is finished: place the tool inside the actual sequence of your class activity (the tool is the means, the activity is the purpose)</li><li>📦 Output: one interactive tool ready for real classroom use (tested and working)</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Building a debate helper (follow along with the demo)</div>
+                <pre>[Role] You are a developer who builds educational web tools.
+[Context] I need a practice tool students will use during a 15-minute small-group debate activity in a university class. Students will access it from laptops or tablets.
+[Request] Please build a web tool called "Debate Practice Board". Features: (1) the student enters a debate topic and chooses the affirmative or negative side, (2) the tool shows three key arguments for the chosen side and two anticipated counterarguments, and (3) it provides a practice box for "answering the counterargument".
+[Format] Keep the screen clean, the text large, and in the language your students use (Korean or English).
+[Example] Preload a sample topic: "Fully allowing AI use in university assignments."
+[Condition] Put usage instructions at the top of the screen, and make it polished enough to use in class right away.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Building a role-play interview tool</div>
+                <pre>[Role] You are a developer who builds educational web tools.
+[Context] I want to run a 15-minute small-group role-play interview activity on [figure/author/thinker in your field]. I want students to experience the figure's perspective without accepting the answers uncritically.
+[Request] Please build a role-play interview tool. Features: (1) the student picks a question or types their own, (2) the tool shows a sample answer in that figure's perspective and voice, and (3) each answer comes with a verification question: "What is the historical basis for this answer?"
+[Format] Usage instructions at the top of the screen, in the language your students use (Korean or English).
+[Example] A suggested-question button: "What was the real reason you made that decision?"
+[Condition] Clearly distinguish the figure's actual documented statements from reconstructed answers, so students never confuse fact with imagination.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Free build: a tool tailored to my course</div>
+                <pre>[Role] You are a developer who builds educational web tools.
+[Context] I have planned a tool for the [activity name] activity in my course [course name]. The users are [audience], and it will be used for [N minutes].
+[Request] Please build this tool. The essential features: (1) [feature 1] (2) [feature 2] (3) [feature 3].
+[Format] Keep the screen clean, the text large, everything in the language your students use (Korean or English), and put usage instructions at the top of the screen.
+[Example] How to describe a feature: "When a student writes a critique, save it in stages — observation → interpretation → evaluation."
+[Condition] Build it so that once it is done, I can say "change this part" and you can revise it immediately. (Write your three planning lines — who / when / what — on paper before you start!)</pre>
+              </div>
+            </div>
+          </div><div class="block">
+            <div class="block-head">
+              <div class="theme">Periods 3–4 · Vibe-Coding Class Tools + Ethics &amp; Personal Protocol</div>
+              <h2>Period 4 · Academic Ethics and Source Attribution + Completing and Sharing Your Own Teaching Protocol</h2>
+            </div>
+            <div class="block-body">
+              <div class="meta-row"><span class="tag accent">Period 4</span><span class="tag">60 min</span><span class="tag">Level Intermediate</span><span class="tag">Priority ★★★</span></div>
+              <div class="goal"><b>Learning goal</b> Set out ethical standards for AI in the humanities, social sciences, and arts, then build and share a personal teaching protocol. (Evaluate · Create)</div>
+              <div class="label">Key content</div>
+              <ul class="topics"><li>The standard for academic authorship: <mark>do not present AI-generated text as your own work, and disclose that you used it</mark></li><li>The principle of attribution: state which tool you used (Claude), for which task (drafting, for example), and to what extent</li><li>Issues specific to the creative and studio disciplines: the boundary between AI-generated images, music, and writing and a student's own creative work — decide where that line falls in your course</li><li>What a teaching protocol is: a one-page document holding your principles for using AI, your plan for applying it in class, and the standards you communicate to students</li><li>The six items in a protocol: purpose of use / main tasks you use it for / your own red lines / what students are permitted to do / your quality-verification routine / your plan for the semester</li><li>📦 Output: a one-page personal AI teaching protocol (shared, with peer feedback)</li></ul>
+              <div class="label">Practice — paste straight into Claude</div>
+              <div class="practice">
+                <div class="practice-head"><span class="n">Practice 1</span>Synthesizing the three-day journey into a protocol</div>
+                <pre>[Role] You are my coach for AI-supported teaching.
+[Context] I want to bring together everything I produced over the three-day training into a single-page document of principles.
+- My course: [course name]
+- Tasks I will mainly use it for: [three of the things I tried across Day 1–3]
+- The red lines I have set: [for example: never enter real exam questions or student information]
+- What students are permitted to do: [for example: brainstorming allowed, ghostwriting the final text prohibited]
+[Request] Please create a one-page "AI Teaching Protocol".
+[Format] The six items (purpose of use / main tasks / red lines / student standards / verification routine / plan for the semester) in a table, fitting on one A4 page.
+[Example] An entry under the semester plan: "First week of September: start the Week 3 discussion questions from an AI draft."
+[Condition] Have the plan begin with "one small thing I can start next Monday".</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 2</span>Academic authorship standards — a draft policy for my course</div>
+                <pre>[Role] You are an advisory committee member well versed in university research ethics and copyright policy.
+[Context] In the humanities, social sciences, and arts, the writing and the creative work are themselves what gets assessed, so authorship standards matter especially in the age of AI. I want to put the standards for my course [course name] into a written document.
+[Request] Please draft a policy titled "AI, Authorship, and Plagiarism".
+[Format] Four sections: (1) definitions distinguishing plagiarism, ghostwriting, and AI-generated work, (2) principles for citation and attribution (including how to disclose AI use), (3) the permitted boundary for AI-generated images and text in creative assignments, and (4) the procedure when the policy is violated.
+[Example] How to phrase the definitions: "Using someone else's writing without permission = plagiarism / having someone else write it for you = ghostwriting / submitting AI-generated writing without review = improper use of AI."
+[Condition] Since students will read this document, use a clear and respectful tone, and keep it within one A4 page.</pre>
+              </div><div class="practice">
+                <div class="practice-head"><span class="n">Practice 3</span>Preparing a summary to share with colleagues</div>
+                <pre>[Role] You are a presentation coach.
+[Context] I have to introduce the teaching protocol I just finished to my fellow professors in two minutes.
+[Request] Please write my speaking notes.
+[Format] In this order: the one biggest way I have changed / two things I will start this semester / one tip I recommend to colleagues.
+[Example] An opening line: "Three days ago I had no idea what to even ask AI to do."
+[Condition] Natural spoken language, short enough to read aloud within two minutes.</pre>
+              </div>
+            </div>
+          </div>
+    <div class="memo">
+      <h3>Notes — what I made today / what I will use in my course</h3>
+      <div class="lines"></div>
+    </div></body></html>

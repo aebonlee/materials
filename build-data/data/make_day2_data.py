@@ -12,6 +12,7 @@ DAY 2 실습 데이터 생성기 (data_day2.zip 대체본)
   parts/parts_issue_gwangju.csv       광주 1,000행
   parts/parts_usage_dealer.csv        딜러 700행 (영문 스키마)
   parts/parts_master.csv              부품 마스터
+  fonts/NanumGothic-Regular.ttf       그래프 한글 폰트 (교재 [2-1] 이 이 경로를 직접 읽는다)
 
 수치는 난수라 교재에 인쇄된 출력과 똑같지 않다. 대신 분석의 결론은 같게 심어 두었다.
   · 리파 R10-5 의 정비시간이 다른 기종보다 유의하게 길다
@@ -20,7 +21,8 @@ DAY 2 실습 데이터 생성기 (data_day2.zip 대체본)
   · 완전 중복 4행, 30분 이내 유사 중복 4쌍
   · 다운타임이 계획가동시간을 넘는 예외 20건
 """
-import os, numpy as np, pandas as pd
+import os, glob, shutil, subprocess, sys, urllib.request
+import numpy as np, pandas as pd
 
 SEED = 20260908
 rng = np.random.default_rng(SEED)
@@ -340,9 +342,33 @@ dl_out.to_csv("parts/parts_usage_dealer.csv", index=False, encoding="utf-8-sig")
 hq_out.to_excel("parts/parts_usage_hq.xlsx", index=False)
 bs_out.to_excel("parts/parts_usage_busan.xlsx", index=False)
 
+# ── 그래프 한글 폰트 ───────────────────────────────────────────
+# 교재 [2-1] 이 fonts/NanumGothic-Regular.ttf 를 직접 읽으므로 그 경로에 둔다.
+os.makedirs("fonts", exist_ok=True)
+FONT_DST = "fonts/NanumGothic-Regular.ttf"
+FONT_URL = ("https://raw.githubusercontent.com/aebonlee/materials/main/"
+            "build-data/data/NanumGothic-Regular.ttf")
+if not os.path.exists(FONT_DST):
+    found = glob.glob("/usr/share/fonts/truetype/nanum/NanumGothic*.ttf")
+    if not found:                                   # 코랩이면 설치해서 쓴다
+        try:
+            subprocess.run("apt-get -qq install -y fonts-nanum", shell=True,
+                           check=False, timeout=180)
+            found = glob.glob("/usr/share/fonts/truetype/nanum/NanumGothic*.ttf")
+        except Exception:
+            found = []
+    try:
+        if found:
+            shutil.copy(found[0], FONT_DST)
+        else:
+            urllib.request.urlretrieve(FONT_URL, FONT_DST)
+    except Exception as e:
+        print("  ! 한글 폰트를 준비하지 못했습니다:", e)
+
 print("실습 데이터를 만들었습니다.")
 print(f"  records/maintenance_2024_2025.csv  {len(df):,}행")
 print(f"  kpi/operation_2024_2025.csv        {len(kpi):,}행")
 print(f"  parts/  본사 {len(hq_out):,} · 부산 {len(bs_out):,} · 광주 {len(gj_out):,} · 딜러 {len(dl_out):,} · 마스터 {len(master)}")
+print(f"  fonts/NanumGothic-Regular.ttf      {'준비됨' if os.path.exists(FONT_DST) else '없음 — 노트북 맨 위 한글 폰트 칸을 실행하세요'}")
 print("\n※ 원본 실습 데이터를 대신해 만든 것이라 교재에 인쇄된 숫자와는 다릅니다.")
 print("   분석의 결론(리파 R10-5 정비시간이 길다, 겨울에 저온성 고장이 몰린다 등)은 같습니다.")

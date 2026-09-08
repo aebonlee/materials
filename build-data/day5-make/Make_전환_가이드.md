@@ -14,7 +14,7 @@ Make 에서는 워크플로를 **시나리오(Scenario)**, 노드를 **모듈(Mo
 |---|---|---|
 | 점검표 제출 폼 (Form 트리거) | **Webhooks → Custom webhook** 또는 **Google Drive → Watch files** | 점검표 사진을 받는다 |
 | 사진 준비 (Code) | 모듈 없이 **매핑으로 처리** | 사진을 API 가 받는 형태로 바꾼다 |
-| Gemini 호출 (HTTP Request) | **HTTP → Make a request** | 사진에서 점검 내용을 뽑는다 |
+| Gemini 호출 (HTTP Request) | **HTTP → Make a request** | 사진에서 점검 내용을 뽑는다 (이번 차수는 **OpenAI**) |
 | 응답 정리 (Code) | **Tools → Set multiple variables** (+ 필요하면 JSON → Parse JSON) | 값 일곱 개로 정리한다 |
 | 시트 적재 (Google Sheets) | **Google Sheets → Add a row** | 모든 건을 시트에 남긴다 |
 | 불량 있음? (IF) | **Router + 경로에 필터(Filter)** | 갈림길을 만든다 |
@@ -42,23 +42,31 @@ Make 는 모듈마다 번호가 붙고, 값을 꺼낼 때 **그 번호로** 가�
 - 교재와 같은 즉시 처리: **Webhooks → Custom webhook**. 주소가 생기면 그 주소로 사진을 보냅니다.
 - 어느 쪽이든 다음 단계에서 **파일 데이터**를 쓸 수 있어야 합니다.
 
-### ② Gemini 호출 — HTTP → Make a request
+### ② AI 호출 — HTTP → Make a request
+
+**이번 차수는 OpenAI 키로 진행합니다**(공통 실습 키). 교재는 Gemini 기준이지만
+**보내는 주소와 본문 모양만 다르고 하는 일은 같습니다** — 사진과 지시를 함께 보내고 JSON을 받습니다.
+
 ```
 Method  : POST
-URL     : https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent
-Headers : 이름 x-goog-api-key   값 (1일차에 받아 둔 키)
+URL     : https://api.openai.com/v1/chat/completions
+Headers : 이름 Authorization   값 Bearer (강사가 나눠 준 키, sk- 로 시작)
 Body type : Raw   ·   Content type : application/json
 ```
+
+> Gemini 키로 하시려면 URL 을
+> `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent` 로,
+> 헤더를 `x-goog-api-key` 로 바꾸고 본문을 교재 형식으로 쓰면 됩니다. **나머지 모듈은 그대로입니다.**
 Request content (사진 데이터와 MIME 타입만 화면에서 끼워 넣으세요):
 ```json
-{"contents":[{"parts":[
-  {"inline_data":{"mime_type":"image/jpeg","data":"(여기에 사진 데이터)"}},
-  {"text":"이 사진은 굴착기 일일점검표입니다. 아래 형식의 JSON 으로만 답하세요.\n{\"장비ID\": \"\", \"점검일자\": \"YYYY-MM-DD\", \"점검자\": \"\",\n \"항목\": {\"<항목명>\": {\"판정\": \"양호|불량\", \"비고\": \"\"}}, \"특이사항\": \"\",\n \"불량항목\": [\"<불량인 항목명, 비고가 있으면 괄호로 함께>\"], \"불량수\": 0}\n항목명은 사진에 적힌 그대로 쓰고, JSON 외의 말은 쓰지 마세요."}
-]}],"generationConfig":{"temperature":0}}
+{"model":"gpt-4o","temperature":0,"messages":[{"role":"user","content":[
+  {"type":"text","text":"이 사진은 굴착기 일일점검표입니다. 아래 형식의 JSON 으로만 답하세요.\n{\"장비ID\": \"\", \"점검일자\": \"YYYY-MM-DD\", \"점검자\": \"\",\n \"항목\": {\"<항목명>\": {\"판정\": \"양호|불량\", \"비고\": \"\"}}, \"특이사항\": \"\",\n \"불량항목\": [\"<불량인 항목명, 비고가 있으면 괄호로 함께>\"], \"불량수\": 0}\n항목명은 사진에 적힌 그대로 쓰고, JSON 외의 말은 쓰지 마세요."},
+  {"type":"image_url","image_url":{"url":"data:(MIME 타입);base64,(여기에 사진 데이터)"}}
+]}]}
 ```
 - **여기가 오늘 가장 잘 막히는 자리입니다.** 사진을 base64 로 넣는 매핑이 비어서 나가면
   응답이 오지 않거나 빈 값이 옵니다. 실행 기록에서 보낸 본문을 열어 `data` 가 비어 있지 않은지 먼저 보세요.
-- 그래도 막히면 **Google Gemini AI → Analyze image** 모듈로 바꿔도 됩니다. 사진을 그대로 받아 주므로
+- 그래도 막히면 **OpenAI → Analyze Image** 모듈로 바꿔도 됩니다(Gemini 키라면 Google Gemini AI → Analyze image). 사진을 그대로 받아 주므로
   base64 를 다룰 일이 없습니다. 다만 「헤더 인증」을 손으로 만들어 보는 경험은 건너뛰게 됩니다.
 
 ### ③ 응답 정리 — Tools → Set multiple variables
@@ -80,7 +88,7 @@ Request content (사진 데이터와 MIME 타입만 화면에서 끼워 넣으�
 ```json 표시가 붙어 오는 경우가 있어 떼어 내고 넣습니다.
 
 ```
-{{trim(replace(replace(3.data.candidates[1].content.parts[1].text; "```json"; ""); "```"; ""))}}
+{{trim(replace(replace(3.data.choices[1].message.content; "```json"; ""); "```"; ""))}}
 ```
 
 Make 는 배열이 **1부터** 셉니다. n8n·파이썬의 `[0]` 이 여기서는 `[1]` 입니다.
@@ -139,7 +147,7 @@ Make 는 배열이 **1부터** 셉니다. n8n·파이썬의 `[0]` 이 여기서�
 
 | 방식 | 어디에 | Make 에서 |
 |---|---|---|
-| 헤더 인증 | Gemini | HTTP 모듈의 Headers 에 `x-goog-api-key` |
+| 헤더 인증 | OpenAI | HTTP 모듈의 Headers 에 `Authorization: Bearer sk-…` |
 | OAuth | Google Sheets | 모듈에서 구글 계정 연결 |
 | OAuth (별개) | Gmail | 모듈에서 구글 계정 연결 — **시트와 연결 종류가 다릅니다** |
 

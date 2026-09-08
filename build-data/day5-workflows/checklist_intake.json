@@ -1,0 +1,234 @@
+{
+  "name": "checklist_intake",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "굴착기 일일점검표 제출",
+        "formDescription": "점검을 마친 점검표를 정면에서 찍어 올려 주세요.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "점검표 사진",
+              "fieldType": "file",
+              "acceptFileTypes": ".jpg,.jpeg,.png",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "점검표 제출 폼",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -140,
+        300
+      ],
+      "id": "점검표 제출 폼",
+      "webhookId": "checklist-intake-form"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 폼으로 올라온 사진을 Gemini 가 받는 형태(base64)로 바꿉니다.\nconst item = $input.first();\nconst key = Object.keys(item.binary || {})[0];\nif (!key) { throw new Error('사진이 없습니다. 폼에서 점검표 사진을 첨부했는지 확인하세요.'); }\nconst bin = item.binary[key];\nconst buf = await this.helpers.getBinaryDataBuffer(0, key);\n// 프롬프트도 여기서 함께 내보냅니다.\n// (HTTP 노드 표현식 안에 중괄호가 든 글을 그대로 적으면 n8n 표현식이 중간에서 끊깁니다)\nconst prompt = [\n  '이 사진은 굴착기 일일점검표입니다. 아래 형식의 JSON 으로만 답하세요.',\n  '{\"장비ID\": \"\", \"점검일자\": \"YYYY-MM-DD\", \"점검자\": \"\",',\n  ' \"항목\": {\"<항목명>\": {\"판정\": \"양호|불량\", \"비고\": \"\"}}, \"특이사항\": \"\"}',\n  '항목명은 사진에 적힌 그대로 쓰고, JSON 외의 말은 쓰지 마세요.'\n].join(String.fromCharCode(10));\nreturn [{ json: { mime: bin.mimeType || 'image/jpeg', data: buf.toString('base64'), prompt } }];"
+      },
+      "name": "사진 준비",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        300
+      ],
+      "id": "사진 준비"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ contents: [{ parts: [{ inline_data: { mime_type: $json.mime, data: $json.data } }, { text: $json.prompt } ] }], generationConfig: { temperature: 0 } }) }}",
+        "options": {}
+      },
+      "name": "Gemini 호출",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        340,
+        300
+      ],
+      "id": "Gemini 호출"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 모델 응답에서 값만 꺼내 시트·알림이 쓸 일곱 항목으로 정리합니다.\nconst raw = $json.candidates[0].content.parts[0].text;      // ① 모델이 쓴 글만 꺼낸다\nconst clean = raw.replace(/```json|```/g, '').trim();        // ② 코드펜스를 걷어낸다\nconst ext = JSON.parse(clean);                               // ③ JSON 으로 바꾼다\nconst bad = Object.entries(ext['항목'] || {})                 // ④ 불량 항목만 고른다\n  .filter(([k, v]) => v['판정'] === '불량')\n  .map(([k, v]) => k + (v['비고'] ? ` (${v['비고']})` : ''));\nreturn [{ json: {                                            // ⑤ 일곱 항목으로 내보낸다\n  제출시각: $now.toFormat('yyyy-MM-dd HH:mm'),\n  장비ID: ext['장비ID'] || '',\n  점검일자: ext['점검일자'] || '',\n  점검자: ext['점검자'] || '',\n  불량수: bad.length,\n  불량항목: bad.join(', '),\n  특이사항: ext['특이사항'] || ''\n} }];"
+      },
+      "name": "응답 정리",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        580,
+        300
+      ],
+      "id": "응답 정리"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "점검표_자동수집"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "수집"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {}
+        },
+        "options": {}
+      },
+      "name": "시트 적재",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        820,
+        300
+      ],
+      "id": "시트 적재"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "bad-gt-0",
+              "leftValue": "={{ $json['불량수'] }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "불량 있음?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1060,
+        300
+      ],
+      "id": "불량 있음?"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "post",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "정비-알림"
+        },
+        "text": "=:rotating_light: 점검표 불량 발견\n장비: {{ $json['장비ID'] }} / 점검일자: {{ $json['점검일자'] }}\n불량 {{ $json['불량수'] }}건 — {{ $json['불량항목'] }}\n점검자: {{ $json['점검자'] }} / 특이사항: {{ $json['특이사항'] }}",
+        "otherOptions": {}
+      },
+      "name": "Slack 알림",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1320,
+        220
+      ],
+      "id": "Slack 알림"
+    }
+  ],
+  "connections": {
+    "점검표 제출 폼": {
+      "main": [
+        [
+          {
+            "node": "사진 준비",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "사진 준비": {
+      "main": [
+        [
+          {
+            "node": "Gemini 호출",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini 호출": {
+      "main": [
+        [
+          {
+            "node": "응답 정리",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "응답 정리": {
+      "main": [
+        [
+          {
+            "node": "시트 적재",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "시트 적재": {
+      "main": [
+        [
+          {
+            "node": "불량 있음?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "불량 있음?": {
+      "main": [
+        [
+          {
+            "node": "Slack 알림",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

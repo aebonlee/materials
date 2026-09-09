@@ -120,7 +120,8 @@ try:
     tts_ok = os.path.exists("audio/call1_engine_start.wav")
 except Exception as e:
     print("  ! 상담 녹음(음성 합성)을 만들지 못했습니다:", type(e).__name__)
-    print("    [3-44] 전사 실습은 스마트폰으로 30초쯤 직접 녹음해 audio/ 에 올려 쓰세요.")
+    print("    괜찮습니다 — [3-44] 칸이 대본(audio/call1_engine_start.txt)을 읽어 다시 만듭니다.")
+    print("    (그것도 안 되면 스마트폰으로 30초쯤 녹음해 audio/ 에 올려 쓰세요.)")
 
 # ══════════════════════════════════════════════════════════════
 # 2) 점검표 사진 5장 + 채점용 정답지

@@ -1,0 +1,49 @@
+{
+  "name": "_setup — 점검표_자동수집 시트 생성",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0],
+      "id": "a1b2c3d4-0001-4a00-9000-000000000001",
+      "name": "수동 실행"
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "점검표_자동수집",
+        "sheetsUi": {
+          "sheetValues": [
+            {
+              "title": "수집"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [220, 0],
+      "id": "a1b2c3d4-0002-4a00-9000-000000000002",
+      "name": "스프레드시트 생성"
+    }
+  ],
+  "connections": {
+    "수동 실행": {
+      "main": [
+        [
+          {
+            "node": "스프레드시트 생성",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

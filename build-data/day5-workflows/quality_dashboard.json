@@ -1,0 +1,233 @@
+{
+ "name": "quality_dashboard — 수집 품질 일일 집계",
+ "settings": {},
+ "nodes": [
+  {
+   "parameters": {
+    "rule": {
+     "interval": [
+      {
+       "triggerAtHour": 8
+      }
+     ]
+    }
+   },
+   "type": "n8n-nodes-base.scheduleTrigger",
+   "typeVersion": 1.2,
+   "position": [
+    -460,
+    0
+   ],
+   "id": "dddddddd-0000-4000-8000-000000000001",
+   "name": "매일 아침 8시"
+  },
+  {
+   "parameters": {
+    "documentId": {
+     "__rl": true,
+     "mode": "list",
+     "value": ""
+    },
+    "sheetName": {
+     "__rl": true,
+     "mode": "list",
+     "value": ""
+    },
+    "options": {}
+   },
+   "type": "n8n-nodes-base.googleSheets",
+   "typeVersion": 4.5,
+   "position": [
+    -240,
+    0
+   ],
+   "id": "dddddddd-0000-4000-8000-000000000002",
+   "name": "수집 시트 읽기"
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// 수집 시트의 모든 행을 읽어 지표를 계산한다.\nconst rows = $input.all().map(i => i.json);\nconst total = rows.length;\n\n// 필수 칸 — 비어 있으면 못 읽은 것\nconst 필수 = ['장비ID', '점검일자', '점검자'];\nlet 필수결측 = 0;\nfor (const r of rows) for (const c of 필수) if (!String(r[c] ?? '').trim()) 필수결측++;\n\n// 전체 칸 — 적을 것이 없어 비는 칸까지 포함\nconst 전체 = ['장비ID', '점검일자', '점검자', '불량항목', '특이사항'];\nlet 전체결측 = 0;\nfor (const r of rows) for (const c of 전체) if (!String(r[c] ?? '').trim()) 전체결측++;\n\nconst 불량건 = rows.filter(r => Number(r['불량수']) > 0).length;\n\n// 최근 7일 제출 건수\nconst 기준 = new Date($now.toISO());\nconst 최근7일 = rows.filter(r => {\n  const t = new Date(String(r['제출시각']).replace(' ', 'T'));\n  return !isNaN(t) && (기준 - t) / 86400000 <= 7;\n}).length;\n\n// 불량이 잦은 장비 상위 3\nconst 장비별 = {};\nfor (const r of rows) if (Number(r['불량수']) > 0) 장비별[r['장비ID']] = (장비별[r['장비ID']] || 0) + 1;\nconst 상위 = Object.entries(장비별).sort((a, b) => b[1] - a[1]).slice(0, 3)\n  .map(([k, v]) => `${k}(${v})`).join(' · ');\n\nreturn [{ json: {\n  집계일자: $now.toFormat('yyyy-MM-dd'),\n  총건수: total,\n  최근7일: 최근7일,\n  필수칸_결측률: Number((필수결측 / (total * 필수.length) * 100).toFixed(1)),\n  전체칸_결측률: Number((전체결측 / (total * 전체.length) * 100).toFixed(1)),\n  불량건수: 불량건,\n  불량비율: Number((불량건 / total * 100).toFixed(1)),\n  불량_상위장비: 상위\n}}];\n"
+   },
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    -20,
+    0
+   ],
+   "id": "dddddddd-0000-4000-8000-000000000003",
+   "name": "지표 집계"
+  },
+  {
+   "parameters": {
+    "operation": "append",
+    "documentId": {
+     "__rl": true,
+     "mode": "list",
+     "value": ""
+    },
+    "sheetName": {
+     "__rl": true,
+     "mode": "list",
+     "value": ""
+    },
+    "columns": {
+     "mappingMode": "autoMapInputData",
+     "value": {},
+     "matchingColumns": [],
+     "schema": []
+    },
+    "options": {}
+   },
+   "type": "n8n-nodes-base.googleSheets",
+   "typeVersion": 4.5,
+   "position": [
+    200,
+    0
+   ],
+   "id": "dddddddd-0000-4000-8000-000000000004",
+   "name": "대시보드 행 추가"
+  },
+  {
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "strict",
+      "version": 2
+     },
+     "conditions": [
+      {
+       "id": "cond-1",
+       "leftValue": "={{ $json.필수칸_결측률 }}",
+       "rightValue": 5,
+       "operator": {
+        "type": "number",
+        "operation": "gt"
+       }
+      },
+      {
+       "id": "cond-2",
+       "leftValue": "={{ $json.불량비율 }}",
+       "rightValue": 60,
+       "operator": {
+        "type": "number",
+        "operation": "gt"
+       }
+      }
+     ],
+     "combinator": "or"
+    },
+    "options": {}
+   },
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2.2,
+   "position": [
+    420,
+    0
+   ],
+   "id": "dddddddd-0000-4000-8000-000000000005",
+   "name": "평소와 다른가?"
+  },
+  {
+   "parameters": {
+    "select": "channel",
+    "channelId": {
+     "__rl": true,
+     "value": "",
+     "mode": "list"
+    },
+    "text": "=📊 수집 품질 일일 집계 ({{ $json.집계일자 }})\n총 {{ $json.총건수 }}건 · 최근 7일 {{ $json.최근7일 }}건\n필수 칸 결측률 {{ $json.필수칸_결측률 }}% · 불량 비율 {{ $json.불량비율 }}%\n불량이 잦은 장비: {{ $json.불량_상위장비 }}",
+    "otherOptions": {}
+   },
+   "type": "n8n-nodes-base.slack",
+   "typeVersion": 2.3,
+   "position": [
+    660,
+    -100
+   ],
+   "id": "dddddddd-0000-4000-8000-000000000006",
+   "name": "요약 알림"
+  },
+  {
+   "parameters": {},
+   "type": "n8n-nodes-base.manualTrigger",
+   "typeVersion": 1,
+   "position": [
+    -460,
+    180
+   ],
+   "id": "dddddddd-0000-4000-8000-000000000007",
+   "name": "수동 실행(테스트)"
+  }
+ ],
+ "connections": {
+  "매일 아침 8시": {
+   "main": [
+    [
+     {
+      "node": "수집 시트 읽기",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "수집 시트 읽기": {
+   "main": [
+    [
+     {
+      "node": "지표 집계",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "지표 집계": {
+   "main": [
+    [
+     {
+      "node": "대시보드 행 추가",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "대시보드 행 추가": {
+   "main": [
+    [
+     {
+      "node": "평소와 다른가?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "평소와 다른가?": {
+   "main": [
+    [
+     {
+      "node": "요약 알림",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    []
+   ]
+  },
+  "수동 실행(테스트)": {
+   "main": [
+    [
+     {
+      "node": "수집 시트 읽기",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ }
+}

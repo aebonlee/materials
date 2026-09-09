@@ -97,166 +97,186 @@ CALL = """상담원: 네, 고객센터입니다. 무엇을 도와드릴까요?
 고객: 없었습니다. 오늘 아침에만 그렇습니다.
 상담원: 배터리 방전으로 보입니다. 단자 상태를 먼저 확인해 주시고, 정비 기사 배정해 드리겠습니다.
 고객: 네, 부탁드립니다."""
-open("audio/call1_engine_start.txt", "w", encoding="utf-8").write(CALL)
+# 교재 원본 상담 녹음이 이미 있으면 손대지 않는다 — 원본 wav 와 대본이 짝을 이루고,
+# 그 대본이 [3-45] CER 계산의 정답지다(2026-09-09 저자에게 원본을 받았다).
+if os.path.exists("audio/call1_engine_start.wav"):
+    print("  · 상담 녹음은 이미 있습니다 — 그대로 씁니다.")
+    tts_ok = True
+else:
+    open("audio/call1_engine_start.txt", "w", encoding="utf-8").write(CALL)
 
-tts_ok = False
-try:
+    tts_ok = False
     try:
-        from gtts import gTTS
-    except ImportError:
-        subprocess.run([sys.executable, "-m", "pip", "-q", "install", "gTTS"], check=True, timeout=300)
-        from gtts import gTTS
-    body = "\n".join(l.split(":", 1)[1].strip() for l in CALL.splitlines())
-    gTTS(text=body, lang="ko").save("audio/_call1.mp3")
-    try:                                             # ① ffmpeg 이 있으면 그걸로
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", "audio/_call1.mp3",
-                        "-ar", str(SR), "-ac", "1", "audio/call1_engine_start.wav"],
-                       check=True, timeout=300)
-    except Exception:                                # ② 없으면 librosa 로 읽어 직접 쓴다
-        import librosa
-        sig, _ = librosa.load("audio/_call1.mp3", sr=SR, mono=True)
-        write_wav("audio/call1_engine_start.wav", sig)
-    os.remove("audio/_call1.mp3")
-    tts_ok = os.path.exists("audio/call1_engine_start.wav")
-except Exception as e:
-    print("  ! 상담 녹음(음성 합성)을 만들지 못했습니다:", type(e).__name__)
-    print("    괜찮습니다 — [3-44] 칸이 대본(audio/call1_engine_start.txt)을 읽어 다시 만듭니다.")
-    print("    (그것도 안 되면 스마트폰으로 30초쯤 녹음해 audio/ 에 올려 쓰세요.)")
+        try:
+            from gtts import gTTS
+        except ImportError:
+            subprocess.run([sys.executable, "-m", "pip", "-q", "install", "gTTS"], check=True, timeout=300)
+            from gtts import gTTS
+        body = "\n".join(l.split(":", 1)[1].strip() for l in CALL.splitlines())
+        gTTS(text=body, lang="ko").save("audio/_call1.mp3")
+        try:                                             # ① ffmpeg 이 있으면 그걸로
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", "audio/_call1.mp3",
+                            "-ar", str(SR), "-ac", "1", "audio/call1_engine_start.wav"],
+                           check=True, timeout=300)
+        except Exception:                                # ② 없으면 librosa 로 읽어 직접 쓴다
+            import librosa
+            sig, _ = librosa.load("audio/_call1.mp3", sr=SR, mono=True)
+            write_wav("audio/call1_engine_start.wav", sig)
+        os.remove("audio/_call1.mp3")
+        tts_ok = os.path.exists("audio/call1_engine_start.wav")
+    except Exception as e:
+        print("  ! 상담 녹음(음성 합성)을 만들지 못했습니다:", type(e).__name__)
+        print("    괜찮습니다 — [3-44] 칸이 대본(audio/call1_engine_start.txt)을 읽어 다시 만듭니다.")
+        print("    (그것도 안 되면 스마트폰으로 30초쯤 녹음해 audio/ 에 올려 쓰세요.)")
 
-# ══════════════════════════════════════════════════════════════
-# 2) 점검표 사진 5장 + 채점용 정답지
-# ══════════════════════════════════════════════════════════════
+# 그림 그리는 도구는 뒤 구간(대체 이미지)에서도 쓰므로 가드 밖에 둔다.
 from PIL import Image, ImageDraw, ImageFont
 
-def font(sz):
-    try:
-        return ImageFont.truetype(FONT, sz)
-    except Exception:
-        return ImageFont.load_default()
+# 교재 원본이 이미 있으면 만들지 않는다 — 원본이 정답지와 짝을 이룬다(2026-09-09).
+if glob.glob("checklists/*.png"):
+    print("  · 점검표 사진은 이미 있습니다 — 그대로 씁니다.")
+else:
+    # ══════════════════════════════════════════════════════════════
+    # 2) 점검표 사진 5장 + 채점용 정답지
+    # ══════════════════════════════════════════════════════════════
 
-ITEMS = ["엔진오일 레벨", "냉각수 레벨", "유압유 누유", "트랙 장력",
-         "그리스 주입", "작업등 점등", "계기판 경고등", "안전벨트"]
-INSPECTORS = ["김 반장", "박 기사", "최 주임", "오 기사", "정 기사"]
-BAD_MEMO = {"엔진오일 레벨": "하한선 근접, 보충 요청", "냉각수 레벨": "소량 부족",
-            "유압유 누유": "붐 실린더 하단 유막", "트랙 장력": "좌측 처짐",
-            "그리스 주입": "미주입 구간 있음", "작업등 점등": "우측 미점등",
-            "계기판 경고등": "배터리 경고등 점등", "안전벨트": "버클 마모"}
+    def font(sz):
+        try:
+            return ImageFont.truetype(FONT, sz)
+        except Exception:
+            return ImageFont.load_default()
 
-def draw_checklist(path, eq, date, who, verdicts, note):
-    W, H = 1000, 1320
-    im = Image.new("RGB", (W, H), (252, 251, 247))
+    ITEMS = ["엔진오일 레벨", "냉각수 레벨", "유압유 누유", "트랙 장력",
+             "그리스 주입", "작업등 점등", "계기판 경고등", "안전벨트"]
+    INSPECTORS = ["김 반장", "박 기사", "최 주임", "오 기사", "정 기사"]
+    BAD_MEMO = {"엔진오일 레벨": "하한선 근접, 보충 요청", "냉각수 레벨": "소량 부족",
+                "유압유 누유": "붐 실린더 하단 유막", "트랙 장력": "좌측 처짐",
+                "그리스 주입": "미주입 구간 있음", "작업등 점등": "우측 미점등",
+                "계기판 경고등": "배터리 경고등 점등", "안전벨트": "버클 마모"}
+
+    def draw_checklist(path, eq, date, who, verdicts, note):
+        W, H = 1000, 1320
+        im = Image.new("RGB", (W, H), (252, 251, 247))
+        d = ImageDraw.Draw(im)
+        d.rectangle([30, 30, W - 30, H - 30], outline=(60, 60, 60), width=3)
+        d.text((W // 2, 80), "굴착기 일일점검표", font=font(46), fill=(20, 20, 20), anchor="mm")
+        y = 140
+        for label, val in (("장비ID", eq), ("점검일자", date), ("점검자", who)):
+            d.text((70, y), f"{label}", font=font(28), fill=(70, 70, 70))
+            d.line([(210, y + 36), (520, y + 36)], fill=(120, 120, 120), width=2)
+            d.text((225, y), val, font=font(30), fill=(15, 15, 15))
+            y += 62
+        y += 20
+        cols = [70, 470, 640, W - 70]
+        d.rectangle([cols[0], y, cols[3], y + 52], fill=(232, 230, 222))
+        for x, t in ((cols[0] + 16, "점검 항목"), (cols[1] + 30, "판정"), (cols[2] + 30, "비고")):
+            d.text((x, y + 12), t, font=font(28), fill=(30, 30, 30))
+        y += 52
+        for it in ITEMS:
+            v = verdicts[it]
+            d.rectangle([cols[0], y, cols[3], y + 64], outline=(150, 150, 150), width=1)
+            d.line([(cols[1], y), (cols[1], y + 64)], fill=(150, 150, 150), width=1)
+            d.line([(cols[2], y), (cols[2], y + 64)], fill=(150, 150, 150), width=1)
+            d.text((cols[0] + 16, y + 16), it, font=font(28), fill=(20, 20, 20))
+            d.text((cols[1] + 46, y + 14), v["판정"], font=font(30),
+                   fill=(20, 20, 20) if v["판정"] == "양호" else (185, 30, 30))
+            if v["비고"]:
+                d.text((cols[2] + 14, y + 20), v["비고"], font=font(22), fill=(70, 70, 70))
+            y += 64
+        y += 26
+        d.text((70, y), "특이사항", font=font(28), fill=(70, 70, 70))
+        d.rectangle([70, y + 42, W - 70, y + 150], outline=(150, 150, 150), width=1)
+        d.text((86, y + 60), note or "없음", font=font(26), fill=(20, 20, 20))
+        d.text((W - 70, H - 60), "DreamIT Biz 실습용 양식", font=font(20), fill=(160, 160, 160), anchor="rs")
+        im.save(path)
+
+    os.makedirs("checklists", exist_ok=True)
+    gt = {"사진": []}
+    for i in range(1, 6):
+        eq = f"EX-{rng.choice([101, 103, 203, 205, 302])}"
+        date = f"2025-11-{rng.integers(3, 26):02d}"
+        who = INSPECTORS[rng.integers(len(INSPECTORS))]
+        bad = list(rng.choice(len(ITEMS), rng.integers(1, 3), replace=False))
+        verdicts = {it: {"판정": "불량" if j in bad else "양호",
+                         "비고": BAD_MEMO[it] if j in bad else ""}
+                    for j, it in enumerate(ITEMS)}
+        note = "정비팀 점검 요청" if bad else "없음"
+        name = f"daily_{i:03d}.png"
+        draw_checklist(f"checklists/{name}", eq, date, who, verdicts, note)
+        gt["사진"].append({"파일": name, "장비ID": eq, "점검일자": date, "점검자": who,
+                           "항목": verdicts, "특이사항": note})
+    json.dump(gt, open("checklists/checklists_ground_truth.json", "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+
+# 교재 원본이 이미 있으면 만들지 않는다 — 원본이 정답지와 짝을 이룬다(2026-09-09).
+if glob.glob("drawings/*.png"):
+    print("  · 도면은 이미 있습니다 — 그대로 씁니다.")
+else:
+    # ══════════════════════════════════════════════════════════════
+    # 3) 도면 1장 (표제란 + BOM)
+    # ══════════════════════════════════════════════════════════════
+    BOM = [("R10-10510", "유압호스(붐 실린더)", "2"), ("R10-10260", "붐 실린더 씰킷", "1"),
+           ("GEN-10030", "리튬 그리스 (400g)", "1"), ("R10-10270", "아이들러", "2"),
+           ("", "고정 브래킷", "4")]                     # 품번 없는 행 — 교재가 짚는 자리
+    os.makedirs("drawings", exist_ok=True)
+    W, H = 1400, 990
+    im = Image.new("RGB", (W, H), "white")
     d = ImageDraw.Draw(im)
-    d.rectangle([30, 30, W - 30, H - 30], outline=(60, 60, 60), width=3)
-    d.text((W // 2, 80), "굴착기 일일점검표", font=font(46), fill=(20, 20, 20), anchor="mm")
-    y = 140
-    for label, val in (("장비ID", eq), ("점검일자", date), ("점검자", who)):
-        d.text((70, y), f"{label}", font=font(28), fill=(70, 70, 70))
-        d.line([(210, y + 36), (520, y + 36)], fill=(120, 120, 120), width=2)
-        d.text((225, y), val, font=font(30), fill=(15, 15, 15))
-        y += 62
-    y += 20
-    cols = [70, 470, 640, W - 70]
-    d.rectangle([cols[0], y, cols[3], y + 52], fill=(232, 230, 222))
-    for x, t in ((cols[0] + 16, "점검 항목"), (cols[1] + 30, "판정"), (cols[2] + 30, "비고")):
-        d.text((x, y + 12), t, font=font(28), fill=(30, 30, 30))
-    y += 52
-    for it in ITEMS:
-        v = verdicts[it]
-        d.rectangle([cols[0], y, cols[3], y + 64], outline=(150, 150, 150), width=1)
-        d.line([(cols[1], y), (cols[1], y + 64)], fill=(150, 150, 150), width=1)
-        d.line([(cols[2], y), (cols[2], y + 64)], fill=(150, 150, 150), width=1)
-        d.text((cols[0] + 16, y + 16), it, font=font(28), fill=(20, 20, 20))
-        d.text((cols[1] + 46, y + 14), v["판정"], font=font(30),
-               fill=(20, 20, 20) if v["판정"] == "양호" else (185, 30, 30))
-        if v["비고"]:
-            d.text((cols[2] + 14, y + 20), v["비고"], font=font(22), fill=(70, 70, 70))
-        y += 64
-    y += 26
-    d.text((70, y), "특이사항", font=font(28), fill=(70, 70, 70))
-    d.rectangle([70, y + 42, W - 70, y + 150], outline=(150, 150, 150), width=1)
-    d.text((86, y + 60), note or "없음", font=font(26), fill=(20, 20, 20))
-    d.text((W - 70, H - 60), "DreamIT Biz 실습용 양식", font=font(20), fill=(160, 160, 160), anchor="rs")
-    im.save(path)
+    d.rectangle([20, 20, W - 20, H - 20], outline=(40, 40, 40), width=3)
+    d.rectangle([60, 70, 700, 560], outline=(90, 90, 90), width=2)
+    d.line([(60, 315), (700, 315)], fill=(190, 190, 190), width=1)
+    d.line([(380, 70), (380, 560)], fill=(190, 190, 190), width=1)
+    d.ellipse([300, 240, 460, 400], outline=(40, 40, 40), width=3)
+    d.rectangle([150, 150, 300, 250], outline=(40, 40, 40), width=3)
+    d.text((80, 90), "BOOM CYLINDER ASSY", font=font(24), fill=(40, 40, 40))
+    tx, ty = 760, 70
+    d.rectangle([tx, ty, W - 60, ty + 44 * (len(BOM) + 1)], outline=(60, 60, 60), width=2)
+    d.text((tx + 14, ty + 10), "품번", font=font(24), fill=(20, 20, 20))
+    d.text((tx + 210, ty + 10), "명칭", font=font(24), fill=(20, 20, 20))
+    d.text((tx + 480, ty + 10), "수량", font=font(24), fill=(20, 20, 20))
+    for k, (pn, nm, q) in enumerate(BOM, start=1):
+        yy = ty + 44 * k
+        d.line([(tx, yy), (W - 60, yy)], fill=(150, 150, 150), width=1)
+        d.text((tx + 14, yy + 10), pn or "—", font=font(22), fill=(20, 20, 20))
+        d.text((tx + 210, yy + 10), nm, font=font(22), fill=(20, 20, 20))
+        d.text((tx + 495, yy + 10), q, font=font(22), fill=(20, 20, 20))
+    bx, by = 760, H - 250
+    d.rectangle([bx, by, W - 60, H - 60], outline=(60, 60, 60), width=2)
+    for k, (label, val) in enumerate([("도면번호", "R-DWG-001"), ("도면명", "붐 실린더 조립도"),
+                                      ("적용기종", "리파 R10-5"), ("일자", "2025-10-14")]):
+        yy = by + 46 * k
+        d.line([(bx, yy), (W - 60, yy)], fill=(150, 150, 150), width=1)
+        d.text((bx + 14, yy + 12), label, font=font(22), fill=(90, 90, 90))
+        d.text((bx + 170, yy + 10), val, font=font(24), fill=(15, 15, 15))
+    im.save("drawings/drawing_R-DWG-001.png")
 
-os.makedirs("checklists", exist_ok=True)
-gt = {"사진": []}
-for i in range(1, 6):
-    eq = f"EX-{rng.choice([101, 103, 203, 205, 302])}"
-    date = f"2025-11-{rng.integers(3, 26):02d}"
-    who = INSPECTORS[rng.integers(len(INSPECTORS))]
-    bad = list(rng.choice(len(ITEMS), rng.integers(1, 3), replace=False))
-    verdicts = {it: {"판정": "불량" if j in bad else "양호",
-                     "비고": BAD_MEMO[it] if j in bad else ""}
-                for j, it in enumerate(ITEMS)}
-    note = "정비팀 점검 요청" if bad else "없음"
-    name = f"daily_{i:03d}.png"
-    draw_checklist(f"checklists/{name}", eq, date, who, verdicts, note)
-    gt["사진"].append({"파일": name, "장비ID": eq, "점검일자": date, "점검자": who,
-                       "항목": verdicts, "특이사항": note})
-json.dump(gt, open("checklists/checklists_ground_truth.json", "w", encoding="utf-8"),
-          ensure_ascii=False, indent=1)
-
-# ══════════════════════════════════════════════════════════════
-# 3) 도면 1장 (표제란 + BOM)
-# ══════════════════════════════════════════════════════════════
-BOM = [("R10-10510", "유압호스(붐 실린더)", "2"), ("R10-10260", "붐 실린더 씰킷", "1"),
-       ("GEN-10030", "리튬 그리스 (400g)", "1"), ("R10-10270", "아이들러", "2"),
-       ("", "고정 브래킷", "4")]                     # 품번 없는 행 — 교재가 짚는 자리
-os.makedirs("drawings", exist_ok=True)
-W, H = 1400, 990
-im = Image.new("RGB", (W, H), "white")
-d = ImageDraw.Draw(im)
-d.rectangle([20, 20, W - 20, H - 20], outline=(40, 40, 40), width=3)
-d.rectangle([60, 70, 700, 560], outline=(90, 90, 90), width=2)
-d.line([(60, 315), (700, 315)], fill=(190, 190, 190), width=1)
-d.line([(380, 70), (380, 560)], fill=(190, 190, 190), width=1)
-d.ellipse([300, 240, 460, 400], outline=(40, 40, 40), width=3)
-d.rectangle([150, 150, 300, 250], outline=(40, 40, 40), width=3)
-d.text((80, 90), "BOOM CYLINDER ASSY", font=font(24), fill=(40, 40, 40))
-tx, ty = 760, 70
-d.rectangle([tx, ty, W - 60, ty + 44 * (len(BOM) + 1)], outline=(60, 60, 60), width=2)
-d.text((tx + 14, ty + 10), "품번", font=font(24), fill=(20, 20, 20))
-d.text((tx + 210, ty + 10), "명칭", font=font(24), fill=(20, 20, 20))
-d.text((tx + 480, ty + 10), "수량", font=font(24), fill=(20, 20, 20))
-for k, (pn, nm, q) in enumerate(BOM, start=1):
-    yy = ty + 44 * k
-    d.line([(tx, yy), (W - 60, yy)], fill=(150, 150, 150), width=1)
-    d.text((tx + 14, yy + 10), pn or "—", font=font(22), fill=(20, 20, 20))
-    d.text((tx + 210, yy + 10), nm, font=font(22), fill=(20, 20, 20))
-    d.text((tx + 495, yy + 10), q, font=font(22), fill=(20, 20, 20))
-bx, by = 760, H - 250
-d.rectangle([bx, by, W - 60, H - 60], outline=(60, 60, 60), width=2)
-for k, (label, val) in enumerate([("도면번호", "R-DWG-001"), ("도면명", "붐 실린더 조립도"),
-                                  ("적용기종", "리파 R10-5"), ("일자", "2025-10-14")]):
-    yy = by + 46 * k
-    d.line([(bx, yy), (W - 60, yy)], fill=(150, 150, 150), width=1)
-    d.text((bx + 14, yy + 12), label, font=font(22), fill=(90, 90, 90))
-    d.text((bx + 170, yy + 10), val, font=font(24), fill=(15, 15, 15))
-im.save("drawings/drawing_R-DWG-001.png")
-
-# ══════════════════════════════════════════════════════════════
-# 4) 부품 마스터 ([3-50] BOM 대조용 — DAY 2 와 같은 표)
-# ══════════════════════════════════════════════════════════════
-import csv
-MASTER = [
-    ("GEN-10010", "엔진오일 15W-40 (20L)", "공통"), ("GEN-10020", "엔진오일 필터", "공통"),
-    ("GEN-10030", "리튬 그리스 (400g)", "공통"),    ("GEN-10040", "연료 필터", "공통"),
-    ("GEN-10050", "에어클리너 엘리먼트", "공통"),   ("GEN-10060", "유압 리턴 필터", "공통"),
-    ("GEN-10070", "냉각수 (4L)", "공통"),           ("GEN-10080", "작업등 LED", "공통"),
-    ("B32-10210", "고무 트랙 (320mm)", "밥캣 E32"), ("B32-10230", "트랙 롤러", "밥캣 E32"),
-    ("B32-10410", "안전벨트", "밥캣 E32"),          ("B32-10510", "유압호스(암 실린더)", "밥캣 E32"),
-    ("C304-10220", "고무 트랙 (300mm)", "캐터필러 304 CR"), ("C304-10240", "아이들러", "캐터필러 304 CR"),
-    ("C304-10410", "안전벨트", "캐터필러 304 CR"),  ("C304-10520", "파일럿 밸브", "캐터필러 304 CR"),
-    ("U27-10230", "트랙 롤러", "구보타 U27-4"),     ("U27-10250", "예열 플러그", "구보타 U27-4"),
-    ("U27-10410", "안전벨트", "구보타 U27-4"),      ("U27-10530", "주행모터 씰킷", "구보타 U27-4"),
-    ("R10-10260", "붐 실린더 씰킷", "리파 R10-5"),  ("R10-10270", "아이들러", "리파 R10-5"),
-    ("R10-10410", "안전벨트", "리파 R10-5"),        ("R10-10510", "유압호스(붐 실린더)", "리파 R10-5"),
-]
-os.makedirs("parts", exist_ok=True)
-with open("parts/parts_master.csv", "w", encoding="utf-8-sig", newline="") as f:
-    w = csv.writer(f); w.writerow(["부품번호", "부품명", "적용기종", "단가(원)"])
-    for pn, nm, m in MASTER:
-        w.writerow([pn, nm, m, int(rng.integers(8, 260)) * 1000])
+# 교재 원본이 이미 있으면 만들지 않는다 — 원본이 정답지와 짝을 이룬다(2026-09-09).
+if os.path.exists("parts/parts_master.csv"):
+    print("  · 부품 마스터는 이미 있습니다 — 그대로 씁니다.")
+else:
+    # ══════════════════════════════════════════════════════════════
+    # 4) 부품 마스터 ([3-50] BOM 대조용 — DAY 2 와 같은 표)
+    # ══════════════════════════════════════════════════════════════
+    import csv
+    MASTER = [
+        ("GEN-10010", "엔진오일 15W-40 (20L)", "공통"), ("GEN-10020", "엔진오일 필터", "공통"),
+        ("GEN-10030", "리튬 그리스 (400g)", "공통"),    ("GEN-10040", "연료 필터", "공통"),
+        ("GEN-10050", "에어클리너 엘리먼트", "공통"),   ("GEN-10060", "유압 리턴 필터", "공통"),
+        ("GEN-10070", "냉각수 (4L)", "공통"),           ("GEN-10080", "작업등 LED", "공통"),
+        ("B32-10210", "고무 트랙 (320mm)", "밥캣 E32"), ("B32-10230", "트랙 롤러", "밥캣 E32"),
+        ("B32-10410", "안전벨트", "밥캣 E32"),          ("B32-10510", "유압호스(암 실린더)", "밥캣 E32"),
+        ("C304-10220", "고무 트랙 (300mm)", "캐터필러 304 CR"), ("C304-10240", "아이들러", "캐터필러 304 CR"),
+        ("C304-10410", "안전벨트", "캐터필러 304 CR"),  ("C304-10520", "파일럿 밸브", "캐터필러 304 CR"),
+        ("U27-10230", "트랙 롤러", "구보타 U27-4"),     ("U27-10250", "예열 플러그", "구보타 U27-4"),
+        ("U27-10410", "안전벨트", "구보타 U27-4"),      ("U27-10530", "주행모터 씰킷", "구보타 U27-4"),
+        ("R10-10260", "붐 실린더 씰킷", "리파 R10-5"),  ("R10-10270", "아이들러", "리파 R10-5"),
+        ("R10-10410", "안전벨트", "리파 R10-5"),        ("R10-10510", "유압호스(붐 실린더)", "리파 R10-5"),
+    ]
+    os.makedirs("parts", exist_ok=True)
+    with open("parts/parts_master.csv", "w", encoding="utf-8-sig", newline="") as f:
+        w = csv.writer(f); w.writerow(["부품번호", "부품명", "적용기종", "단가(원)"])
+        for pn, nm, m in MASTER:
+            w.writerow([pn, nm, m, int(rng.integers(8, 260)) * 1000])
 
 # ══════════════════════════════════════════════════════════════
 # 5) 비전 실습 대비 — 공개 데이터셋을 못 받을 때 쓸 대체 이미지
@@ -287,13 +307,18 @@ for tag, defect in (("def_front", True), ("ok_front", False)):
         casting(defect).save(f"casting_local/{tag}/{'def' if defect else 'ok'}_{i:03d}.jpeg", quality=92)
 
 # ══════════════════════════════════════════════════════════════
-print("실습 데이터를 만들었습니다.")
-print(f"  audio/normal · abnormal            {len(glob.glob('audio/normal/*.wav'))} · {len(glob.glob('audio/abnormal/*.wav'))}개")
-print(f"  audio/call1_engine_start.wav/.txt  {'준비됨' if tts_ok else '전사용 녹음 없음 — 직접 녹음해 올리세요'}")
-print(f"  checklists/daily_001~005.png       5장 + 정답지")
-print(f"  drawings/drawing_R-DWG-001.png     1장")
-print(f"  parts/parts_master.csv             {len(MASTER)}행")
-print(f"  casting_local/                     결함 30 · 정상 30 (공개 데이터셋을 못 받을 때만 씁니다)")
+# 요약은 변수가 아니라 실제 파일을 센다 — 교재 원본이 이미 있어 건너뛴 구간이 있어도 맞아야 한다.
+def _n(pat):
+    return len(glob.glob(pat))
+
+_rows = _n("parts/parts_master.csv") and sum(1 for _ in open("parts/parts_master.csv", encoding="utf-8-sig")) - 1
+print("실습 데이터가 준비됐습니다.")
+print(f"  audio/normal · abnormal            {_n('audio/normal/*.wav')} · {_n('audio/abnormal/*.wav')}개")
+print(f"  audio/call1_engine_start.wav/.txt  {'준비됨' if os.path.exists('audio/call1_engine_start.wav') else '없음 — 직접 녹음해 올리세요'}")
+print(f"  checklists/*.png                   {_n('checklists/*.png')}장 + 정답지 {_n('checklists/*ground_truth*.json')}개")
+print(f"  drawings/*.png                     {_n('drawings/*.png')}장")
+print(f"  parts/parts_master.csv             {_rows}행")
+print(f"  casting_local/                     {_n('casting_local/*/*.jpeg')}장 (공개 데이터셋을 못 받을 때만 씁니다)")
 print(f"  fonts/NanumGothic-Regular.ttf      {'준비됨' if os.path.exists(FONT) else '없음'}")
-print("\n※ 원본 실습 데이터를 대신해 만든 것이라 교재에 인쇄된 숫자·사진과는 다릅니다.")
-print("   실습의 흐름과 결론(이상음은 2~4kHz 가 높다, 추출 결과를 정답지로 채점한다)은 같습니다.")
+print("\n※ 교재 저장소 원본이 있으면 그것을 그대로 두고, 없는 것만 만듭니다.")
+print("   만든 자료는 교재에 인쇄된 숫자·사진과 다르지만 실습의 흐름과 결론은 같습니다.")

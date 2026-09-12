@@ -1,0 +1,37 @@
+{
+  "generatedBy": "scripts/generate-dummy-data.py",
+  "seed": 20260922,
+  "files": {
+    "haleon-판매데이터-더미.xlsx": {
+      "bytes": 16253,
+      "sheets": [
+        "읽어주세요",
+        "월별판매",
+        "목표대비실적"
+      ],
+      "rows": {
+        "월별판매": 240,
+        "목표대비실적": 48
+      },
+      "emptyTargets": 2
+    },
+    "haleon-설문원시데이터-더미.xlsx": {
+      "bytes": 12827,
+      "sheets": [
+        "읽어주세요",
+        "설문응답"
+      ],
+      "rows": {
+        "설문응답": 124
+      },
+      "duplicateEmployees": 6
+    },
+    "haleon-회의메모-더미.docx": {
+      "bytes": 37970
+    },
+    "haleon-보고서샘플-더미.docx": {
+      "bytes": 41070,
+      "tables": 4
+    }
+  }
+}

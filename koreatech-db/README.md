@@ -34,3 +34,9 @@ im[0].save('원본_웹열람본.pdf', save_all=True, append_images=im[1:], resol
 
 1·2장은 미리캔버스, 3~6장은 `dreamit-web/04-templates/deckgen_v1` 생성기로 만든다.
 입력(스펙 JSON·brand.json)은 `koreatech-db` 리포 `decks/bizdata/`, 다시 만드는 법은 그 폴더의 README.
+
+## 경영 실습 DB 따라하기 (2026-09-27 추가)
+
+| 파일 | 용도 |
+|---|---|
+| `다온유통_실습DB_따라하기.pdf` · `.pptx` | `/business` 페이지 「안내 슬라이드」(18장) — Workbench 접속부터 첫 질문·초기화까지. 입력은 koreatech-db 리포 `decks/daon/L00.json` |

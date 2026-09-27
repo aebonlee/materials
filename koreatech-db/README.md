@@ -25,12 +25,12 @@ im[0].save('원본_웹열람본.pdf', save_all=True, append_images=im[1:], resol
 
 만든 뒤 **아무 쪽이나 원본과 눈으로 비교**해 내용이 살아 있는지 확인합니다.
 
-## 3장·4장 (2026-09-27 추가) — deckgen 으로 생성
+## 3~6장 (2026-09-27 추가) — deckgen 으로 생성
 
 | 파일 | 용도 |
 |---|---|
-| `3장_경영_지표_KPI.pdf` · `4장_숫자_읽기의_기본.pdf` | 사이트 재생 + 내려받기 (LibreOffice 로 뽑은 벡터 PDF, 글꼴 내장 — 웹열람본이 따로 필요 없다) |
-| `3장_경영_지표_KPI.pptx` · `4장_숫자_읽기의_기본.pptx` | 편집용 원본 (Pretendard 글꼴 설치 필요) |
+| `3장_경영_지표_KPI.pdf` · `4장_숫자_읽기의_기본.pdf` · `5장_분석의_4단계와_데이터_기반_의사결정.pdf` · `6장_보여주기와_지키기.pdf` | 사이트 재생 + 내려받기 (LibreOffice 로 뽑은 벡터 PDF, 글꼴 내장 — 웹열람본이 따로 필요 없다) |
+| 같은 이름의 `.pptx` 4종 | 편집용 원본 (Pretendard 글꼴 설치 필요) |
 
-1·2장은 미리캔버스, 3·4장부터는 `dreamit-web/04-templates/deckgen_v1` 생성기로 만든다.
+1·2장은 미리캔버스, 3~6장은 `dreamit-web/04-templates/deckgen_v1` 생성기로 만든다.
 입력(스펙 JSON·brand.json)은 `koreatech-db` 리포 `decks/bizdata/`, 다시 만드는 법은 그 폴더의 README.

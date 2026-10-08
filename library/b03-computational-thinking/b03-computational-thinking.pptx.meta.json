@@ -1,0 +1,22 @@
+{
+ "source": "03.컴퓨터사고력.pptx",
+ "title": "컴퓨터사고력으로",
+ "slides": 18,
+ "original_slides": 15,
+ "size_pptx": 167703,
+ "size_pdf": 697809,
+ "images": {
+  "images": 54,
+  "resized": 0,
+  "to_jpeg": 0,
+  "bytes_before": 67109,
+  "bytes_after": 67099,
+  "skipped": 1
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "b03-computational-thinking.pdf"
+}

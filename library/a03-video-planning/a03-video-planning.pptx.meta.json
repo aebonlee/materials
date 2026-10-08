@@ -1,0 +1,22 @@
+{
+ "source": "03_영상제작.pptx",
+ "title": "영상/숏폼 기획하기",
+ "slides": 25,
+ "original_slides": 22,
+ "size_pptx": 1316707,
+ "size_pdf": 2424811,
+ "images": {
+  "images": 26,
+  "resized": 2,
+  "to_jpeg": 16,
+  "bytes_before": 13181614,
+  "bytes_after": 1213324,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "a03-video-planning.pdf"
+}

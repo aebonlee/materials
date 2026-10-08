@@ -1,0 +1,22 @@
+{
+ "source": "04.markdown.pptx",
+ "title": "마크다운",
+ "slides": 22,
+ "original_slides": 19,
+ "size_pptx": 219943,
+ "size_pdf": 1270399,
+ "images": {
+  "images": 81,
+  "resized": 0,
+  "to_jpeg": 0,
+  "bytes_before": 95175,
+  "bytes_after": 93567,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "b04-markdown.pdf"
+}

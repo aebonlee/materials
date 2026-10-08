@@ -1,0 +1,22 @@
+{
+ "source": "07.대학생을_위한_인용_출처관리.pptx",
+ "title": "대학생을 위한 인용·출처관리",
+ "slides": 45,
+ "original_slides": 42,
+ "size_pptx": 463424,
+ "size_pdf": 2052374,
+ "images": {
+  "images": 166,
+  "resized": 0,
+  "to_jpeg": 1,
+  "bytes_before": 518526,
+  "bytes_after": 308092,
+  "skipped": 3
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "b07-citation.pdf"
+}

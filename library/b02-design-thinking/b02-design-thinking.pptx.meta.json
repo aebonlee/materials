@@ -1,0 +1,22 @@
+{
+ "source": "02.디자인씽킹과_생성형_AI.pptx",
+ "title": "디자인씽킹과 생성형 AI",
+ "slides": 19,
+ "original_slides": 16,
+ "size_pptx": 208612,
+ "size_pdf": 1085372,
+ "images": {
+  "images": 80,
+  "resized": 0,
+  "to_jpeg": 0,
+  "bytes_before": 97718,
+  "bytes_after": 97718,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "b02-design-thinking.pdf"
+}

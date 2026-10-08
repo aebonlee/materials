@@ -1,0 +1,22 @@
+{
+ "source": "06.리포트작성볍.pptx",
+ "title": "리포트 작성 방법",
+ "slides": 48,
+ "original_slides": 45,
+ "size_pptx": 515139,
+ "size_pdf": 2145196,
+ "images": {
+  "images": 212,
+  "resized": 0,
+  "to_jpeg": 0,
+  "bytes_before": 263781,
+  "bytes_after": 254508,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "b06-report-writing.pdf"
+}

@@ -1,0 +1,22 @@
+{
+ "source": "05_효과적인_프레젠테이션.pptx",
+ "title": "PRESENTATION SKILL",
+ "slides": 30,
+ "original_slides": 27,
+ "size_pptx": 1014601,
+ "size_pdf": 2405429,
+ "images": {
+  "images": 145,
+  "resized": 3,
+  "to_jpeg": 6,
+  "bytes_before": 6292882,
+  "bytes_after": 916244,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "a05-effective-presentation.pdf"
+}

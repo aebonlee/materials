@@ -1,0 +1,22 @@
+{
+ "source": "05.Notion_마스터클래스.pptx",
+ "title": "노션 마스터 클래스",
+ "slides": 22,
+ "original_slides": 19,
+ "size_pptx": 285397,
+ "size_pdf": 1566746,
+ "images": {
+  "images": 125,
+  "resized": 0,
+  "to_jpeg": 0,
+  "bytes_before": 214289,
+  "bytes_after": 168344,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "b05-notion.pdf"
+}

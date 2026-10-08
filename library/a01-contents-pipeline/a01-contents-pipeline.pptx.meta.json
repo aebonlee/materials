@@ -1,0 +1,22 @@
+{
+ "source": "01_콘텐츠_제작.pptx",
+ "title": "콘텐츠 제작",
+ "slides": 44,
+ "original_slides": 41,
+ "size_pptx": 2471274,
+ "size_pdf": 3823714,
+ "images": {
+  "images": 195,
+  "resized": 3,
+  "to_jpeg": 17,
+  "bytes_before": 24495301,
+  "bytes_after": 2226435,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "a01-contents-pipeline.pdf"
+}

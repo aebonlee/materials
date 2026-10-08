@@ -1,0 +1,22 @@
+{
+ "source": "02_수려한이미지만들기.pptx",
+ "title": "[수려한 이미지 만들기]",
+ "slides": 92,
+ "original_slides": 89,
+ "size_pptx": 14035517,
+ "size_pdf": 18148026,
+ "images": {
+  "images": 169,
+  "resized": 1,
+  "to_jpeg": 87,
+  "bytes_before": 173249706,
+  "bytes_after": 13742940,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "a02-image-generation.pdf"
+}

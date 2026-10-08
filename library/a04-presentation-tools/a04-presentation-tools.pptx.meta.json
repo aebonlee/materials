@@ -1,0 +1,22 @@
+{
+ "source": "04_프레젠테이션제작.pptx",
+ "title": "프레젠테이션 도구",
+ "slides": 25,
+ "original_slides": 22,
+ "size_pptx": 1679299,
+ "size_pdf": 2983471,
+ "images": {
+  "images": 63,
+  "resized": 3,
+  "to_jpeg": 20,
+  "bytes_before": 15167518,
+  "bytes_after": 1567025,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "a04-presentation-tools.pdf"
+}

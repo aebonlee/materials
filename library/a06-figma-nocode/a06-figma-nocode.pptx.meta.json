@@ -1,0 +1,22 @@
+{
+ "source": "06_피그마활용.pptx",
+ "title": "노코드 앱 만들기",
+ "slides": 13,
+ "original_slides": 10,
+ "size_pptx": 679484,
+ "size_pdf": 1164670,
+ "images": {
+  "images": 16,
+  "resized": 1,
+  "to_jpeg": 10,
+  "bytes_before": 4575569,
+  "bytes_after": 684840,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "a06-figma-nocode.pdf"
+}

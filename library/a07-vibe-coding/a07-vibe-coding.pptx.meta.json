@@ -1,0 +1,22 @@
+{
+ "source": "07_바이브코딩.pptx",
+ "title": "클로드코드와 제미나이를",
+ "slides": 127,
+ "original_slides": 124,
+ "size_pptx": 4072515,
+ "size_pdf": 8206338,
+ "images": {
+  "images": 311,
+  "resized": 2,
+  "to_jpeg": 48,
+  "bytes_before": 30815231,
+  "bytes_after": 3559418,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "a07-vibe-coding.pdf"
+}

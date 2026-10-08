@@ -50,7 +50,7 @@
      "pdf": "a01-contents-pipeline/a01-contents-pipeline.pdf",
      "cover": "a01-contents-pipeline/cover.jpg",
      "size_pptx_mb": 2.5,
-     "size_pdf_mb": 3.8
+     "size_pdf_mb": 4.8
     },
     {
      "slug": "a02-image-generation",
@@ -70,7 +70,7 @@
      "pdf": "a02-image-generation/a02-image-generation.pdf",
      "cover": "a02-image-generation/cover.jpg",
      "size_pptx_mb": 14.0,
-     "size_pdf_mb": 18.1
+     "size_pdf_mb": 19.1
     },
     {
      "slug": "a03-video-planning",
@@ -90,7 +90,7 @@
      "pdf": "a03-video-planning/a03-video-planning.pdf",
      "cover": "a03-video-planning/cover.jpg",
      "size_pptx_mb": 1.3,
-     "size_pdf_mb": 2.4
+     "size_pdf_mb": 2.9
     },
     {
      "slug": "a04-presentation-tools",
@@ -110,7 +110,7 @@
      "pdf": "a04-presentation-tools/a04-presentation-tools.pdf",
      "cover": "a04-presentation-tools/cover.jpg",
      "size_pptx_mb": 1.7,
-     "size_pdf_mb": 3.0
+     "size_pdf_mb": 3.6
     },
     {
      "slug": "a05-effective-presentation",
@@ -130,7 +130,7 @@
      "pdf": "a05-effective-presentation/a05-effective-presentation.pdf",
      "cover": "a05-effective-presentation/cover.jpg",
      "size_pptx_mb": 1.0,
-     "size_pdf_mb": 2.4
+     "size_pdf_mb": 3.2
     },
     {
      "slug": "a06-figma-nocode",
@@ -150,7 +150,7 @@
      "pdf": "a06-figma-nocode/a06-figma-nocode.pdf",
      "cover": "a06-figma-nocode/cover.jpg",
      "size_pptx_mb": 0.7,
-     "size_pdf_mb": 1.2
+     "size_pdf_mb": 1.7
     },
     {
      "slug": "a07-vibe-coding",
@@ -170,7 +170,7 @@
      "pdf": "a07-vibe-coding/a07-vibe-coding.pdf",
      "cover": "a07-vibe-coding/cover.jpg",
      "size_pptx_mb": 4.1,
-     "size_pdf_mb": 8.2
+     "size_pdf_mb": 9.3
     }
    ]
   },
@@ -196,7 +196,7 @@
      "pdf": "b01-creativity-ai/b01-creativity-ai.pdf",
      "cover": "b01-creativity-ai/cover.jpg",
      "size_pptx_mb": 1.0,
-     "size_pdf_mb": 2.7
+     "size_pdf_mb": 3.5
     },
     {
      "slug": "b02-design-thinking",
@@ -216,7 +216,7 @@
      "pdf": "b02-design-thinking/b02-design-thinking.pdf",
      "cover": "b02-design-thinking/cover.jpg",
      "size_pptx_mb": 0.2,
-     "size_pdf_mb": 1.1
+     "size_pdf_mb": 2.0
     },
     {
      "slug": "b03-computational-thinking",
@@ -236,7 +236,7 @@
      "pdf": "b03-computational-thinking/b03-computational-thinking.pdf",
      "cover": "b03-computational-thinking/cover.jpg",
      "size_pptx_mb": 0.2,
-     "size_pdf_mb": 0.7
+     "size_pdf_mb": 1.4
     },
     {
      "slug": "b04-markdown",
@@ -256,7 +256,7 @@
      "pdf": "b04-markdown/b04-markdown.pdf",
      "cover": "b04-markdown/cover.jpg",
      "size_pptx_mb": 0.2,
-     "size_pdf_mb": 1.3
+     "size_pdf_mb": 1.8
     },
     {
      "slug": "b05-notion",
@@ -276,7 +276,7 @@
      "pdf": "b05-notion/b05-notion.pdf",
      "cover": "b05-notion/cover.jpg",
      "size_pptx_mb": 0.3,
-     "size_pdf_mb": 1.6
+     "size_pdf_mb": 2.3
     },
     {
      "slug": "b06-report-writing",
@@ -296,7 +296,7 @@
      "pdf": "b06-report-writing/b06-report-writing.pdf",
      "cover": "b06-report-writing/cover.jpg",
      "size_pptx_mb": 0.5,
-     "size_pdf_mb": 2.1
+     "size_pdf_mb": 3.0
     },
     {
      "slug": "b07-citation",
@@ -316,7 +316,7 @@
      "pdf": "b07-citation/b07-citation.pdf",
      "cover": "b07-citation/cover.jpg",
      "size_pptx_mb": 0.5,
-     "size_pdf_mb": 2.1
+     "size_pdf_mb": 3.0
     }
    ]
   }

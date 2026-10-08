@@ -1,16 +1,16 @@
 {
  "source": "04_프레젠테이션제작.pptx",
  "title": "프레젠테이션 도구",
- "slides": 25,
- "original_slides": 22,
- "size_pptx": 1679299,
- "size_pdf": 3625658,
+ "slides": 23,
+ "original_slides": 20,
+ "size_pptx": 1506319,
+ "size_pdf": 3378422,
  "images": {
-  "images": 63,
+  "images": 58,
   "resized": 3,
-  "to_jpeg": 20,
-  "bytes_before": 15167518,
-  "bytes_after": 1567025,
+  "to_jpeg": 19,
+  "bytes_before": 13436419,
+  "bytes_after": 1401162,
   "skipped": 0
  },
  "wrap": {

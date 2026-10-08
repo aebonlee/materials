@@ -12,68 +12,208 @@
    "id": "a",
    "title": "AI 콘텐츠 제작",
    "items": [
-    {"slug": "a01-contents-pipeline", "input": "/Users/aebonlee/Downloads/01_콘텐츠_제작.pptx",
-     "title": "콘텐츠 제작 파이프라인과 저작권·윤리", "subtitle": "기획부터 배포까지, 대학생 크리에이터를 위한 가이드",
-     "tags": ["콘텐츠 기획", "편집·후반작업", "플랫폼 배포", "저작권", "크리에이터 윤리"],
-     "summary": "기획·스토리·제작·편집·배포의 5단계 파이프라인을 따라가며 콘텐츠 한 편이 만들어지는 흐름을 익힙니다. 저작권법 기초와 공정 이용, 라이선스 종류, AI 활용과 허위정보 방지 같은 크리에이터 윤리까지 한 묶음으로 다룹니다."},
-    {"slug": "a02-image-generation", "input": "/Users/aebonlee/Downloads/02_수려한이미지만들기.pptx",
-     "title": "수려한 이미지 만들기 — AI 이미지 생성 마스터", "subtitle": "DALL-E · NanoBanana, 5요소 공식과 13가지 구도",
-     "tags": ["AI 이미지 생성", "프롬프트 5요소", "구도 13가지", "조명·스타일", "수익화"],
-     "summary": "AI 이미지 생성에서 실패를 줄이는 프롬프트 5요소 공식과 13가지 구도를 예시 이미지와 함께 배웁니다. 초보자가 빠지는 다섯 가지 착각부터 조명·스타일 제어, 결과물을 다듬어 활용하는 방법까지 이어집니다."},
-    {"slug": "a03-video-planning", "input": "/Users/aebonlee/Downloads/03_영상제작.pptx",
-     "title": "AI로 영상·숏폼 기획하기", "subtitle": "대본 · 스토리보드 · 자막까지 30분 통합 워크플로우",
-     "tags": ["숏폼 트렌드", "대본 작성", "스토리보드", "AI 자막", "워크플로우"],
-     "summary": "숏폼 트렌드와 알고리즘에 맞는 다섯 가지 전략을 짚고, AI 프롬프트로 대본·스토리보드·자막을 만드는 30분 워크플로우를 따라갑니다. AI 공부법 숏폼 제작 사례와 주간 실천 플랜, 무료 도구 목록이 함께 있습니다."},
-    {"slug": "a04-presentation-tools", "input": "/Users/aebonlee/Downloads/04_프레젠테이션제작.pptx",
-     "title": "프레젠테이션 도구 활용 — 미리캔버스 · 캔바 · 감마", "subtitle": "도구 선택 기준과 템플릿 커스터마이징",
-     "tags": ["미리캔버스", "캔바", "감마", "템플릿", "협업"],
-     "summary": "미리캔버스·캔바·감마 세 도구의 차이와 가격 정책, 협업 기능, 템플릿 품질을 비교해 상황에 맞는 도구를 고르는 기준을 세웁니다. 템플릿을 내 발표에 맞게 바꾸는 실전 가이드와 자주 묻는 질문으로 마무리합니다."},
-    {"slug": "a05-effective-presentation", "input": "/Users/aebonlee/Downloads/05_효과적인_프레젠테이션.pptx",
-     "title": "효과적인 프레젠테이션 스킬", "subtitle": "4P 프로세스 — Planning · Preparation · Practicing · Performing",
-     "tags": ["프레젠테이션", "4P", "청중 분석", "논리 전개", "Q&A 대응"],
-     "summary": "프레젠테이션의 정의와 종류, 목적을 정리한 뒤 계획·준비·연습·실행의 4P 프로세스로 발표를 설계합니다. 청중 분석, 논리 전개, 시각자료 작성, 질의응답 대응 같은 실전 스킬을 단계별로 다룹니다."},
-    {"slug": "a06-figma-nocode", "input": "/Users/aebonlee/Downloads/06_피그마활용.pptx",
-     "title": "피그마로 노코드 앱 만들기", "subtitle": "프로토타입부터 Figma Make AI 생성까지",
-     "tags": ["피그마", "노코드", "Auto Layout", "프로토타입", "Figma Make"],
-     "summary": "코딩 없이 프레임·도형·텍스트로 화면을 그리고 Auto Layout 으로 반응형 UI 를 설계한 뒤 클릭 가능한 프로토타입을 만듭니다. 마지막에는 Figma Make 로 실제 웹앱을 생성해 봅니다. 준비물은 노트북·Chrome·Figma 계정입니다."},
-    {"slug": "a07-vibe-coding", "input": "/Users/aebonlee/Downloads/07_바이브코딩.pptx",
-     "title": "클로드코드와 제미나이를 이용한 바이브코딩 포트폴리오 배포", "subtitle": "환경 설정부터 GitHub Pages 실전 배포까지",
-     "tags": ["바이브코딩", "Claude Code", "Gemini", "GitHub Pages", "포트폴리오"],
-     "summary": "AI 와 대화하며 결과물을 만드는 바이브코딩 방식으로 포트폴리오 웹사이트를 하루에 완성해 배포합니다. VS Code·Git·Node.js 환경 설정, 프롬프트 기법, HTML/CSS 반응형 구조, 기능 구현, GitHub Pages 배포, 성능·SEO 최적화 순서입니다."}
+    {
+     "slug": "a01-contents-pipeline",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/01_콘텐츠_제작.pptx",
+     "title": "콘텐츠 제작 파이프라인과 저작권·윤리",
+     "subtitle": "기획부터 배포까지, 대학생 크리에이터를 위한 가이드",
+     "tags": [
+      "콘텐츠 기획",
+      "편집·후반작업",
+      "플랫폼 배포",
+      "저작권",
+      "크리에이터 윤리"
+     ],
+     "summary": "기획·스토리·제작·편집·배포의 5단계 파이프라인을 따라가며 콘텐츠 한 편이 만들어지는 흐름을 익힙니다. 저작권법 기초와 공정 이용, 라이선스 종류, AI 활용과 허위정보 방지 같은 크리에이터 윤리까지 한 묶음으로 다룹니다."
+    },
+    {
+     "slug": "a02-image-generation",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/02_수려한이미지만들기.pptx",
+     "title": "수려한 이미지 만들기 — AI 이미지 생성 마스터",
+     "subtitle": "DALL-E · NanoBanana, 5요소 공식과 13가지 구도",
+     "tags": [
+      "AI 이미지 생성",
+      "프롬프트 5요소",
+      "구도 13가지",
+      "조명·스타일",
+      "수익화"
+     ],
+     "summary": "AI 이미지 생성에서 실패를 줄이는 프롬프트 5요소 공식과 13가지 구도를 예시 이미지와 함께 배웁니다. 초보자가 빠지는 다섯 가지 착각부터 조명·스타일 제어, 결과물을 다듬어 활용하는 방법까지 이어집니다."
+    },
+    {
+     "slug": "a03-video-planning",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/03_영상제작.pptx",
+     "title": "AI로 영상·숏폼 기획하기",
+     "subtitle": "대본 · 스토리보드 · 자막까지 30분 통합 워크플로우",
+     "tags": [
+      "숏폼 트렌드",
+      "대본 작성",
+      "스토리보드",
+      "AI 자막",
+      "워크플로우"
+     ],
+     "summary": "숏폼 트렌드와 알고리즘에 맞는 다섯 가지 전략을 짚고, AI 프롬프트로 대본·스토리보드·자막을 만드는 30분 워크플로우를 따라갑니다. AI 공부법 숏폼 제작 사례와 주간 실천 플랜, 무료 도구 목록이 함께 있습니다."
+    },
+    {
+     "slug": "a04-presentation-tools",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/04_프레젠테이션제작.pptx",
+     "title": "프레젠테이션 도구 활용 — 미리캔버스 · 캔바 · 감마",
+     "subtitle": "도구 선택 기준과 템플릿 커스터마이징",
+     "tags": [
+      "미리캔버스",
+      "캔바",
+      "감마",
+      "템플릿",
+      "협업"
+     ],
+     "summary": "미리캔버스·캔바·감마 세 도구의 차이와 가격 정책, 협업 기능, 템플릿 품질을 비교해 상황에 맞는 도구를 고르는 기준을 세웁니다. 템플릿을 내 발표에 맞게 바꾸는 실전 가이드와 자주 묻는 질문으로 마무리합니다."
+    },
+    {
+     "slug": "a05-effective-presentation",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/05_효과적인_프레젠테이션.pptx",
+     "title": "효과적인 프레젠테이션 스킬",
+     "subtitle": "4P 프로세스 — Planning · Preparation · Practicing · Performing",
+     "tags": [
+      "프레젠테이션",
+      "4P",
+      "청중 분석",
+      "논리 전개",
+      "Q&A 대응"
+     ],
+     "summary": "프레젠테이션의 정의와 종류, 목적을 정리한 뒤 계획·준비·연습·실행의 4P 프로세스로 발표를 설계합니다. 청중 분석, 논리 전개, 시각자료 작성, 질의응답 대응 같은 실전 스킬을 단계별로 다룹니다."
+    },
+    {
+     "slug": "a06-figma-nocode",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/06_피그마활용.pptx",
+     "title": "피그마로 노코드 앱 만들기",
+     "subtitle": "프로토타입부터 Figma Make AI 생성까지",
+     "tags": [
+      "피그마",
+      "노코드",
+      "Auto Layout",
+      "프로토타입",
+      "Figma Make"
+     ],
+     "summary": "코딩 없이 프레임·도형·텍스트로 화면을 그리고 Auto Layout 으로 반응형 UI 를 설계한 뒤 클릭 가능한 프로토타입을 만듭니다. 마지막에는 Figma Make 로 실제 웹앱을 생성해 봅니다. 준비물은 노트북·Chrome·Figma 계정입니다."
+    },
+    {
+     "slug": "a07-vibe-coding",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/07_바이브코딩.pptx",
+     "title": "클로드코드와 제미나이를 이용한 바이브코딩 포트폴리오 배포",
+     "subtitle": "환경 설정부터 GitHub Pages 실전 배포까지",
+     "tags": [
+      "바이브코딩",
+      "Claude Code",
+      "Gemini",
+      "GitHub Pages",
+      "포트폴리오"
+     ],
+     "summary": "AI 와 대화하며 결과물을 만드는 바이브코딩 방식으로 포트폴리오 웹사이트를 하루에 완성해 배포합니다. VS Code·Git·Node.js 환경 설정, 프롬프트 기법, HTML/CSS 반응형 구조, 기능 구현, GitHub Pages 배포, 성능·SEO 최적화 순서입니다."
+    }
    ]
   },
   {
    "id": "b",
    "title": "대학생 역량 · 학습 도구",
    "items": [
-    {"slug": "b01-creativity-ai", "input": "/Users/aebonlee/Downloads/01.창의력_복합문제해결에서의_AI.pptx",
-     "title": "창의력·복합문제 해결에서의 AI", "subtitle": "역량 진단(AHP)과 NCS, AI 협업으로 의사결정까지",
-     "tags": ["창의력", "복합문제 해결", "NCS", "AHP 역량 진단", "AI 협업"],
-     "summary": "역량과 능력의 구분, NCS 직무능력표준의 구조, AHP 방법론을 쓴 개인 역량 진단을 차례로 다룹니다. AI 를 단순 도구가 아니라 탐색에서 의사결정까지 함께하는 협업 파트너로 쓰는 실습과 액션 플랜으로 마무리합니다."},
-    {"slug": "b02-design-thinking", "input": "/Users/aebonlee/Downloads/02.디자인씽킹과_생성형_AI.pptx",
-     "title": "디자인씽킹과 생성형 AI", "subtitle": "공감 · 정의 · 아이데이션 — 사람 중심 문제해결",
-     "tags": ["디자인씽킹", "공감", "페르소나", "아이데이션", "생성형 AI"],
-     "summary": "디자인씽킹의 뜻과 태도를 익히고 공감·정의·아이데이션 세 단계를 실습합니다. 인터뷰 인사이트와 페르소나, 아이디어 보드를 만들고 생성형 AI 로 결과물을 고도화하는 75~90분 워크숍 구성입니다."},
-    {"slug": "b03-computational-thinking", "input": "/Users/aebonlee/Downloads/03.컴퓨터사고력.pptx",
-     "title": "컴퓨터사고력으로 과제 설계하기", "subtitle": "분해 · 패턴 · 추상화 · 알고리즘",
-     "tags": ["컴퓨팅 사고력", "분해", "패턴 인식", "추상화", "알고리즘"],
-     "summary": "소프트웨어 교육의 본질을 문제 해결 사고력으로 보고, 분해·패턴·추상화·알고리즘 네 요소로 일상의 문제를 다시 정의합니다. 그 절차를 과제 설계와 수행에 적용하는 방법을 정의 모음과 함께 정리했습니다."},
-    {"slug": "b04-markdown", "input": "/Users/aebonlee/Downloads/04.markdown.pptx",
-     "title": "마크다운 실전 마스터 클래스", "subtitle": "기본 문법부터 노션 · GitHub README 까지",
-     "tags": ["마크다운", "README", "노션", "GitHub", "문서 작성"],
-     "summary": "제목·목록·링크·이미지·코드 같은 핵심 문법과 문서 구조화 원리를 미니 실습으로 익힙니다. README 작성, 노션 호환성, 포트폴리오 적용 팁까지 이어지는 실습 중심 구성입니다."},
-    {"slug": "b05-notion", "input": "/Users/aebonlee/Downloads/05.Notion_마스터클래스.pptx",
-     "title": "대학생을 위한 노션 마스터 클래스", "subtitle": "블록 · 페이지 · 데이터베이스로 학습·과제·프로젝트 운영",
-     "tags": ["노션", "데이터베이스", "대시보드", "템플릿", "협업"],
-     "summary": "블록과 페이지, 워크스페이스의 구조를 이해하고 학기 대시보드를 만든 뒤, 데이터베이스 속성·뷰와 템플릿·리마인더로 과제·프로젝트 트래커를 완성합니다. 강의가 끝나면 나만의 노션 시스템으로 학기를 운영할 수 있습니다."},
-    {"slug": "b06-report-writing", "input": "/Users/aebonlee/Downloads/06.리포트작성볍.pptx",
-     "title": "리포트가 낯선 대학생을 위한 리포트 작성 방법", "subtitle": "주제 선정부터 퇴고까지, 90분 9단계",
-     "tags": ["리포트 작성", "학술적 글쓰기", "주제문", "자료조사", "개요"],
-     "summary": "리포트는 주장과 근거로 독자를 설득하는 학술적 글쓰기라는 정의에서 출발해 과제 분석, 핵심 동사, 주제 좁히기, 주제문, 자료조사와 출처, 개요와 문단, 반론, 인용과 AI 활용까지 9단계로 진행합니다. 자료 출처는 DBpia 의 리포트 작성법입니다."},
-    {"slug": "b07-citation", "input": "/Users/aebonlee/Downloads/07.대학생을_위한_인용_출처관리.pptx",
-     "title": "대학생을 위한 인용·출처관리", "subtitle": "표절 예방과 설득력 있는 리포트를 위한 실전 가이드",
-     "tags": ["인용", "출처 표기", "표절 예방", "Zotero", "AI 검증"],
-     "summary": "인용과 출처 표기가 왜 중요한지, 표절과 부정행위의 유형, 간접·직접·재인용 방식과 내주·번호주·각주·참고문헌 체계를 배웁니다. Zotero 서지관리 실습과 생성형 AI 결과물 검증 실습, 퀴즈와 체크리스트로 마무리합니다."}
+    {
+     "slug": "b01-creativity-ai",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/01.창의력_복합문제해결에서의_AI.pptx",
+     "title": "창의력·복합문제 해결에서의 AI",
+     "subtitle": "역량 진단(AHP)과 NCS, AI 협업으로 의사결정까지",
+     "tags": [
+      "창의력",
+      "복합문제 해결",
+      "NCS",
+      "AHP 역량 진단",
+      "AI 협업"
+     ],
+     "summary": "역량과 능력의 구분, NCS 직무능력표준의 구조, AHP 방법론을 쓴 개인 역량 진단을 차례로 다룹니다. AI 를 단순 도구가 아니라 탐색에서 의사결정까지 함께하는 협업 파트너로 쓰는 실습과 액션 플랜으로 마무리합니다."
+    },
+    {
+     "slug": "b02-design-thinking",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/02.디자인씽킹과_생성형_AI.pptx",
+     "title": "디자인씽킹과 생성형 AI",
+     "subtitle": "공감 · 정의 · 아이데이션 — 사람 중심 문제해결",
+     "tags": [
+      "디자인씽킹",
+      "공감",
+      "페르소나",
+      "아이데이션",
+      "생성형 AI"
+     ],
+     "summary": "디자인씽킹의 뜻과 태도를 익히고 공감·정의·아이데이션 세 단계를 실습합니다. 인터뷰 인사이트와 페르소나, 아이디어 보드를 만들고 생성형 AI 로 결과물을 고도화하는 75~90분 워크숍 구성입니다."
+    },
+    {
+     "slug": "b03-computational-thinking",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/03.컴퓨터사고력.pptx",
+     "title": "컴퓨터사고력으로 과제 설계하기",
+     "subtitle": "분해 · 패턴 · 추상화 · 알고리즘",
+     "tags": [
+      "컴퓨팅 사고력",
+      "분해",
+      "패턴 인식",
+      "추상화",
+      "알고리즘"
+     ],
+     "summary": "소프트웨어 교육의 본질을 문제 해결 사고력으로 보고, 분해·패턴·추상화·알고리즘 네 요소로 일상의 문제를 다시 정의합니다. 그 절차를 과제 설계와 수행에 적용하는 방법을 정의 모음과 함께 정리했습니다."
+    },
+    {
+     "slug": "b04-markdown",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/04.markdown.pptx",
+     "title": "마크다운 실전 마스터 클래스",
+     "subtitle": "기본 문법부터 노션 · GitHub README 까지",
+     "tags": [
+      "마크다운",
+      "README",
+      "노션",
+      "GitHub",
+      "문서 작성"
+     ],
+     "summary": "제목·목록·링크·이미지·코드 같은 핵심 문법과 문서 구조화 원리를 미니 실습으로 익힙니다. README 작성, 노션 호환성, 포트폴리오 적용 팁까지 이어지는 실습 중심 구성입니다."
+    },
+    {
+     "slug": "b05-notion",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/05.Notion_마스터클래스.pptx",
+     "title": "대학생을 위한 노션 마스터 클래스",
+     "subtitle": "블록 · 페이지 · 데이터베이스로 학습·과제·프로젝트 운영",
+     "tags": [
+      "노션",
+      "데이터베이스",
+      "대시보드",
+      "템플릿",
+      "협업"
+     ],
+     "summary": "블록과 페이지, 워크스페이스의 구조를 이해하고 학기 대시보드를 만든 뒤, 데이터베이스 속성·뷰와 템플릿·리마인더로 과제·프로젝트 트래커를 완성합니다. 강의가 끝나면 나만의 노션 시스템으로 학기를 운영할 수 있습니다."
+    },
+    {
+     "slug": "b06-report-writing",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/06.리포트작성볍.pptx",
+     "title": "리포트가 낯선 대학생을 위한 리포트 작성 방법",
+     "subtitle": "주제 선정부터 퇴고까지, 90분 9단계",
+     "tags": [
+      "리포트 작성",
+      "학술적 글쓰기",
+      "주제문",
+      "자료조사",
+      "개요"
+     ],
+     "summary": "리포트는 주장과 근거로 독자를 설득하는 학술적 글쓰기라는 정의에서 출발해 과제 분석, 핵심 동사, 주제 좁히기, 주제문, 자료조사와 출처, 개요와 문단, 반론, 인용과 AI 활용까지 9단계로 진행합니다. 자료 출처는 DBpia 의 리포트 작성법입니다."
+    },
+    {
+     "slug": "b07-citation",
+     "input": "/Volumes/aebon - 데이터/04-teaching/useful-ai/src-edited/07.대학생을_위한_인용_출처관리.pptx",
+     "title": "대학생을 위한 인용·출처관리",
+     "subtitle": "표절 예방과 설득력 있는 리포트를 위한 실전 가이드",
+     "tags": [
+      "인용",
+      "출처 표기",
+      "표절 예방",
+      "Zotero",
+      "AI 검증"
+     ],
+     "summary": "인용과 출처 표기가 왜 중요한지, 표절과 부정행위의 유형, 간접·직접·재인용 방식과 내주·번호주·각주·참고문헌 체계를 배웁니다. Zotero 서지관리 실습과 생성형 AI 결과물 검증 실습, 퀴즈와 체크리스트로 마무리합니다."
+    }
    ]
   }
  ]

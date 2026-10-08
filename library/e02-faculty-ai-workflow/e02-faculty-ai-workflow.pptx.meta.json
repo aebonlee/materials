@@ -1,0 +1,22 @@
+{
+ "source": "e02_교수_AI_2시간.pptx",
+ "title": "교수의 일하는 방식을 AI로 혁신하는 2시간",
+ "slides": 49,
+ "original_slides": 46,
+ "size_pptx": 148075,
+ "size_pdf": 1647435,
+ "images": {
+  "images": 1,
+  "resized": 0,
+  "to_jpeg": 0,
+  "bytes_before": 8554,
+  "bytes_after": 5398,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "e02-faculty-ai-workflow.pdf"
+}

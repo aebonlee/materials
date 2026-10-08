@@ -1,0 +1,22 @@
+{
+ "source": "d04_데이터분석_시각화.pptx",
+ "title": "데이터 분석 실습",
+ "slides": 31,
+ "original_slides": 28,
+ "size_pptx": 123629,
+ "size_pdf": 988252,
+ "images": {
+  "images": 9,
+  "resized": 0,
+  "to_jpeg": 0,
+  "bytes_before": 22999,
+  "bytes_after": 20492,
+  "skipped": 8
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "d04-data-viz-excel.pdf"
+}

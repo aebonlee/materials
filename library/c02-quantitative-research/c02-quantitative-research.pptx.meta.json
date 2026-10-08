@@ -1,0 +1,22 @@
+{
+ "source": "c02_양적연구.pptx",
+ "title": "양적 연구 설계 통합",
+ "slides": 153,
+ "original_slides": 150,
+ "size_pptx": 5574793,
+ "size_pdf": 7740942,
+ "images": {
+  "images": 312,
+  "resized": 17,
+  "to_jpeg": 60,
+  "bytes_before": 8932744,
+  "bytes_after": 5067054,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "c02-quantitative-research.pdf"
+}

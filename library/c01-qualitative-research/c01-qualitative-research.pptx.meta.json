@@ -1,0 +1,22 @@
+{
+ "source": "c01_질적연구.pptx",
+ "title": "AI 기반 질적 연구",
+ "slides": 159,
+ "original_slides": 156,
+ "size_pptx": 1032821,
+ "size_pdf": 3172102,
+ "images": {
+  "images": 364,
+  "resized": 1,
+  "to_jpeg": 17,
+  "bytes_before": 476149,
+  "bytes_after": 478730,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "c01-qualitative-research.pdf"
+}

@@ -1,0 +1,22 @@
+{
+ "source": "f03_AI마케팅_강사비서.pptx",
+ "title": "AI 통합 마케팅과",
+ "slides": 48,
+ "original_slides": 45,
+ "size_pptx": 198409,
+ "size_pdf": 3248320,
+ "images": {
+  "images": 8,
+  "resized": 1,
+  "to_jpeg": 8,
+  "bytes_before": 3647,
+  "bytes_after": 5813,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "f03-ai-marketing-assistant.pdf"
+}

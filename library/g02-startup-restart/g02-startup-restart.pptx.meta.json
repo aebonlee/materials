@@ -1,0 +1,22 @@
+{
+ "source": "g02_창업과_재도약.pptx",
+ "title": "창업과",
+ "slides": 55,
+ "original_slides": 52,
+ "size_pptx": 253553,
+ "size_pdf": 2777252,
+ "images": {
+  "images": 85,
+  "resized": 44,
+  "to_jpeg": 78,
+  "bytes_before": 2241388,
+  "bytes_after": 355140,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "g02-startup-restart.pdf"
+}

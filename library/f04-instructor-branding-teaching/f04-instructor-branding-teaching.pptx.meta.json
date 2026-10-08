@@ -1,0 +1,22 @@
+{
+ "source": "f04_강사브랜딩_교수법.pptx",
+ "title": "강사 브랜딩과 교수법",
+ "slides": 53,
+ "original_slides": 50,
+ "size_pptx": 223159,
+ "size_pdf": 3809112,
+ "images": {
+  "images": 7,
+  "resized": 1,
+  "to_jpeg": 7,
+  "bytes_before": 1831,
+  "bytes_after": 4468,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "f04-instructor-branding-teaching.pdf"
+}

@@ -1,0 +1,22 @@
+{
+ "source": "d01_풀스택_바이브코딩_3일.pptx",
+ "title": "Claude Code와 함께하는",
+ "slides": 104,
+ "original_slides": 101,
+ "size_pptx": 587427,
+ "size_pdf": 3582007,
+ "images": {
+  "images": 214,
+  "resized": 7,
+  "to_jpeg": 42,
+  "bytes_before": 196874,
+  "bytes_after": 157264,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "d01-vibe-coding-fullstack.pdf"
+}

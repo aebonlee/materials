@@ -1,0 +1,22 @@
+{
+ "source": "e01_교수설계_AI.pptx",
+ "title": "교수 설계 자동화와",
+ "slides": 163,
+ "original_slides": 160,
+ "size_pptx": 1143580,
+ "size_pdf": 3228365,
+ "images": {
+  "images": 279,
+  "resized": 30,
+  "to_jpeg": 28,
+  "bytes_before": 2447104,
+  "bytes_after": 560262,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "e01-instructional-design-ai.pdf"
+}

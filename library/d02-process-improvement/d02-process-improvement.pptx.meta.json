@@ -1,0 +1,22 @@
+{
+ "source": "d02_업무프로세스개선.pptx",
+ "title": "Ph.D. 이애본 · 드림아이티비즈(DreamIT Biz)",
+ "slides": 56,
+ "original_slides": 53,
+ "size_pptx": 732566,
+ "size_pdf": 3489166,
+ "images": {
+  "images": 343,
+  "resized": 1,
+  "to_jpeg": 3,
+  "bytes_before": 1470672,
+  "bytes_after": 516822,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "d02-process-improvement.pdf"
+}

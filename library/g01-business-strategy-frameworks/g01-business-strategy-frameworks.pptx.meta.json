@@ -1,0 +1,22 @@
+{
+ "source": "g01_비즈니스기획_전략_8프레임워크.pptx",
+ "title": "비즈니스 기획과",
+ "slides": 108,
+ "original_slides": 105,
+ "size_pptx": 512508,
+ "size_pdf": 7548487,
+ "images": {
+  "images": 32,
+  "resized": 15,
+  "to_jpeg": 26,
+  "bytes_before": 26322,
+  "bytes_after": 20988,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "g01-business-strategy-frameworks.pdf"
+}

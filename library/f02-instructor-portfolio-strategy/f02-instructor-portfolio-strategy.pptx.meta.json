@@ -1,0 +1,22 @@
+{
+ "source": "f02_강사_포트폴리오_미래전략.pptx",
+ "title": "강사 포트폴리오 구축과",
+ "slides": 73,
+ "original_slides": 70,
+ "size_pptx": 299587,
+ "size_pdf": 2649197,
+ "images": {
+  "images": 30,
+  "resized": 30,
+  "to_jpeg": 30,
+  "bytes_before": 7388,
+  "bytes_after": 20010,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "f02-instructor-portfolio-strategy.pdf"
+}

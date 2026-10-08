@@ -1,0 +1,22 @@
+{
+ "source": "f01_강사_프로세스_포트폴리오.pptx",
+ "title": "강사 업무 프로세스",
+ "slides": 63,
+ "original_slides": 60,
+ "size_pptx": 334691,
+ "size_pdf": 1912843,
+ "images": {
+  "images": 94,
+  "resized": 12,
+  "to_jpeg": 88,
+  "bytes_before": 109909,
+  "bytes_after": 78628,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "f01-instructor-process-portfolio.pdf"
+}

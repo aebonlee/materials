@@ -537,6 +537,15 @@ def verify():
             },
         },
     }
+    # 클레임 리뷰 실습 파일(2차수 추가, scripts/make-claim-review-files.py 가 만든다)과
+    # 식약처 원본 PDF 는 이 생성기가 만들지 않지만 검사기가 용량·표 수를 대조하므로 같이 등재한다.
+    for f in ('haleon-의약외품-표시광고-가이드라인.pdf', 'haleon-광고가이드라인-발췌.docx', 'haleon-광고문안-샘플.docx'):
+        if not os.path.exists(f):
+            raise SystemExit(f'{f} 없음 — scripts/make-claim-review-files.py 를 먼저 돌릴 것')
+        entry = {'bytes': os.path.getsize(f), 'static': True}
+        if f.endswith('.docx'):
+            entry['tables'] = len(Document(f).tables)
+        manifest['files'][f] = entry
     with open('manifest.json', 'w', encoding='utf-8') as fp:
         json.dump(manifest, fp, ensure_ascii=False, indent=2)
 

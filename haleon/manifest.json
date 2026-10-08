@@ -3,7 +3,7 @@
   "seed": 20260922,
   "files": {
     "haleon-판매데이터-더미.xlsx": {
-      "bytes": 16253,
+      "bytes": 16252,
       "sheets": [
         "읽어주세요",
         "월별판매",
@@ -16,7 +16,7 @@
       "emptyTargets": 2
     },
     "haleon-설문원시데이터-더미.xlsx": {
-      "bytes": 12827,
+      "bytes": 12826,
       "sheets": [
         "읽어주세요",
         "설문응답"
@@ -32,6 +32,20 @@
     "haleon-보고서샘플-더미.docx": {
       "bytes": 41070,
       "tables": 4
+    },
+    "haleon-의약외품-표시광고-가이드라인.pdf": {
+      "bytes": 1508932,
+      "static": true
+    },
+    "haleon-광고가이드라인-발췌.docx": {
+      "bytes": 47900,
+      "static": true,
+      "tables": 0
+    },
+    "haleon-광고문안-샘플.docx": {
+      "bytes": 37455,
+      "static": true,
+      "tables": 0
     }
   }
 }

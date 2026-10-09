@@ -40,3 +40,13 @@ im[0].save('원본_웹열람본.pdf', save_all=True, append_images=im[1:], resol
 | 파일 | 용도 |
 |---|---|
 | `다온유통_실습DB_따라하기.pdf` · `.pptx` | `/business` 페이지 「안내 슬라이드」(18장) — Workbench 접속부터 첫 질문·초기화까지. 입력은 koreatech-db 리포 `decks/daon/L00.json` |
+
+## 주차별 강의 · 이론 편람 슬라이드 (2026-10-09 추가)
+
+| 폴더 | 파일 | 용도 |
+|---|---|---|
+| `weeks/` | `NN주차_<제목>.pdf` · `.pptx` 15종 | 주차 상세 페이지(`/weeks/N`) 재생 + 내려받기 |
+| `theory/` | `이론N장_<제목>.pdf` · `.pptx` 8종 | 이론 편람(`/theory/N`) 재생 + 내려받기 |
+
+입력은 koreatech-db 리포 `decks/weeks/`·`decks/theory/`(스펙 JSON), 생성기는 `dreamit-web/04-templates/deckgen`(정본).
+같은 날 `6장_보여주기와_지키기.*` 를 다시 구웠다(본문 정정 — 품질 6요소 예시를 실습 DB 와 맞춤).

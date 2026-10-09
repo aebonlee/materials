@@ -1,16 +1,17 @@
 {
  "title": "useful-ai 강의안 전집",
  "volume": "1권",
- "subtitle": "대학생을 위한 AI 콘텐츠 제작과 학습 도구",
+ "subtitle": "대학생을 위한 AI 콘텐츠 제작·학습 도구·프로그래밍 입문",
  "series": [
   "a",
-  "b"
+  "b",
+  "h"
  ],
  "file": "useful-ai_강의안_1권.pdf",
  "generated": "2026-10-09",
- "pages": 508,
- "size_mb": 48.9,
- "decks": 14,
- "front_pages": 4,
+ "pages": 619,
+ "size_mb": 49.7,
+ "decks": 15,
+ "front_pages": 5,
  "isbn": "등록 후 기재"
 }

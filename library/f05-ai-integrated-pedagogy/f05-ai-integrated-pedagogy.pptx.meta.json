@@ -1,0 +1,22 @@
+{
+ "source": "f05_AI통합교수법.pptx",
+ "title": "AI 통합교수법",
+ "slides": 65,
+ "original_slides": 62,
+ "size_pptx": 1372426,
+ "size_pdf": 1549499,
+ "images": {
+  "images": 40,
+  "resized": 11,
+  "to_jpeg": 36,
+  "bytes_before": 3897014,
+  "bytes_after": 1150848,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "f05-ai-integrated-pedagogy.pdf"
+}

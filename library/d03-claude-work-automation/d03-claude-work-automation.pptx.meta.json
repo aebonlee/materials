@@ -1,16 +1,16 @@
 {
  "source": "d03_Claude_업무자동화.pptx",
- "title": "Claude와 함께하는 업무자동화 실무",
- "slides": 110,
- "original_slides": 107,
- "size_pptx": 440722,
- "size_pdf": 3096637,
+ "title": "Claude 와 함께하는",
+ "slides": 84,
+ "original_slides": 81,
+ "size_pptx": 225400,
+ "size_pdf": 1027621,
  "images": {
-  "images": 0,
+  "images": 1,
   "resized": 0,
   "to_jpeg": 0,
-  "bytes_before": 0,
-  "bytes_after": 0,
+  "bytes_before": 4067,
+  "bytes_after": 809,
   "skipped": 0
  },
  "wrap": {

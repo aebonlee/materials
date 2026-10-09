@@ -419,22 +419,22 @@
     {
      "slug": "d03-claude-work-automation",
      "title": "Claude와 함께하는 업무자동화 실무",
-     "subtitle": "본인 업무 문서로 만드는 1일 7교시 실전 워크숍",
+     "subtitle": "내 업무 문서로 요약·보고서·메일·템플릿을 만들고 하루 루틴으로 굳히기",
      "original_file": "d03_Claude_업무자동화.pptx",
-     "slides": 107,
+     "slides": 81,
      "tags": [
       "Claude",
       "업무자동화",
       "프롬프트",
-      "문서 요약",
+      "프로젝트",
       "템플릿"
      ],
-     "summary": "Claude로 긴 문서 요약·분석, 보고서·기획안·회의록 작성, 메일·데이터 정리를 직접 해 보며 프롬프트를 다듬는 1일 과정입니다. 반복 업무를 재사용 템플릿과 하루 루틴으로 바꾸고, 7종 산출물을 모아 나만의 업무자동화 키트와 30일 액션플랜을 만듭니다.",
+     "summary": "2026년 10월 Claude 화면을 기준으로 파일 첨부·프로젝트·메모리를 업무에 쓰는 법을 익히고, 긴 문서 요약·보고서와 회의록·메일과 데이터 해석을 복사해 쓰는 프롬프트로 직접 만들어 봅니다. 반복 업무를 [빈칸] 템플릿과 프로젝트 지침, 하루 루틴으로 바꾸고 30일 액션플랜으로 마무리하며, 직무 트랙 4종과 프롬프트 라이브러리 12선을 함께 담았습니다.",
      "pptx": "d03-claude-work-automation/d03-claude-work-automation.pptx",
      "pdf": "d03-claude-work-automation/d03-claude-work-automation.pdf",
      "cover": "d03-claude-work-automation/cover.jpg",
-     "size_pptx_mb": 0.4,
-     "size_pdf_mb": 3.1
+     "size_pptx_mb": 0.2,
+     "size_pdf_mb": 1.0
     },
     {
      "slug": "d04-data-viz-excel",
@@ -591,6 +591,26 @@
      "cover": "f04-instructor-branding-teaching/cover.jpg",
      "size_pptx_mb": 0.2,
      "size_pdf_mb": 3.8
+    },
+    {
+     "slug": "f05-ai-integrated-pedagogy",
+     "title": "AI 통합교수법 설계와 실행",
+     "subtitle": "13개 교수설계 이론을 생성형 AI 강의 설계에 녹여 쓰는 예비 AI 강사 과정",
+     "original_file": "f05_AI통합교수법.pptx",
+     "slides": 62,
+     "tags": [
+      "교수설계",
+      "Bloom 분류학",
+      "백워드 설계",
+      "액티브 러닝",
+      "AI 강사"
+     ],
+     "summary": "Bloom 분류학·구성적 정렬·백워드 설계·커크패트릭 평가에서 ADDIE·Gagné 9가지 교수사건·SAM, 액티브 러닝·PBL·플립러닝, 스캐폴딩·구성주의·TPACK까지 13개 교수설계 이론을 이론마다 요약 카드와 AI 적용 장으로 정리한 강의안입니다. 이론 매트릭스와 7단계 설계 워크플로, 예비 강사가 익혀 둘 현장 노하우 5가지, 강의 한 편을 직접 설계하는 워크북과 17개 점검표로 마무리합니다.",
+     "pptx": "f05-ai-integrated-pedagogy/f05-ai-integrated-pedagogy.pptx",
+     "pdf": "f05-ai-integrated-pedagogy/f05-ai-integrated-pedagogy.pdf",
+     "cover": "f05-ai-integrated-pedagogy/cover.jpg",
+     "size_pptx_mb": 1.4,
+     "size_pdf_mb": 1.5
     }
    ],
    "short": "F 강사",
@@ -643,6 +663,34 @@
    ],
    "short": "G 창업",
    "audience": "예비·초기 창업자"
+  },
+  {
+   "id": "h",
+   "title": "프로그래밍 입문",
+   "items": [
+    {
+     "slug": "h01-python-basics",
+     "title": "파이썬 기초·응용·심화",
+     "subtitle": "설치부터 작은 프로젝트·웹 크롤링까지 — 처음 배우는 사람을 위한 파이썬",
+     "original_file": "h01_파이썬_기초응용심화.pptx",
+     "slides": 107,
+     "tags": [
+      "파이썬",
+      "프로그래밍 입문",
+      "자료구조",
+      "예외 처리",
+      "웹 크롤링"
+     ],
+     "summary": "python.org 설치와 venv·VS Code 로 환경을 갖추고, 변수·조건·반복·자료구조·함수·모듈·파일·예외를 「개념 → 코드 → 실행 결과 → 흔한 오류」 순서로 익힙니다. 계산기·숫자 맞추기·타이머 세 프로젝트를 요구사항부터 완성까지 만들고, robots.txt 와 이용약관을 지키며 연습용 사이트에서 requests·BeautifulSoup 으로 데이터를 모아 CSV 로 저장합니다. 모든 코드는 Python 3.12~3.14 에서 실제로 실행해 확인했습니다.",
+     "pptx": "h01-python-basics/h01-python-basics.pptx",
+     "pdf": "h01-python-basics/h01-python-basics.pdf",
+     "cover": "h01-python-basics/cover.jpg",
+     "size_pptx_mb": 0.3,
+     "size_pdf_mb": 1.3
+    }
+   ],
+   "short": "H 프로그래밍",
+   "audience": "대학생·입문자"
   }
  ]
 }

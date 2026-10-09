@@ -1,0 +1,22 @@
+{
+ "source": "h01_파이썬_기초응용심화.pptx",
+ "title": "파이썬 기초·응용·심화",
+ "slides": 110,
+ "original_slides": 107,
+ "size_pptx": 278940,
+ "size_pdf": 1331564,
+ "images": {
+  "images": 1,
+  "resized": 0,
+  "to_jpeg": 0,
+  "bytes_before": 4067,
+  "bytes_after": 809,
+  "skipped": 0
+ },
+ "wrap": {
+  "front": 2,
+  "back": 1,
+  "footer": true
+ },
+ "pdf": "h01-python-basics.pdf"
+}

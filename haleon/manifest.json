@@ -3,7 +3,7 @@
   "seed": 20260922,
   "files": {
     "haleon-판매데이터-더미.xlsx": {
-      "bytes": 16250,
+      "bytes": 16244,
       "sheets": [
         "읽어주세요",
         "월별판매",
@@ -16,7 +16,7 @@
       "emptyTargets": 2
     },
     "haleon-설문원시데이터-더미.xlsx": {
-      "bytes": 12826,
+      "bytes": 12819,
       "sheets": [
         "읽어주세요",
         "설문응답"

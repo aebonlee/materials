@@ -126,7 +126,7 @@ def build_sales():
         for ch in CHANNELS:
             actual = agg[(month, ch)]
             ws2.append([month, ch, int(actual * random.uniform(0.82, 1.18)), actual])
-    # 목표가 비어 있는 행 2건 — 0 나누기 처리를 사람이 정하게 만드는 장치 (1교시 시연 2)
+    # 목표가 비어 있는 행 2건 — 0 나누기 처리를 사람이 정하게 만드는 장치 (1교시 실습 2)
     # ⚠ ws2.cell(row, column, value=None) 로 쓰면 안 된다.
     #   openpyxl 은 value=None 을 "값 인자를 주지 않았다"로 보고 셀을 건드리지 않는다.
     #   실제로 이걸로 빈칸이 하나도 안 만들어진 채 배포될 뻔했다.
@@ -194,7 +194,7 @@ def build_survey():
         day = random.randint(1, 12)
         hour = random.randint(9, 18)
         minute = random.choice([0, 7, 13, 22, 31, 45, 58])
-        # 응답일시를 텍스트/날짜 두 형식으로 섞는다 (1교시 시연 3 ④)
+        # 응답일시를 텍스트/날짜 두 형식으로 섞는다 (1교시 실습 4)
         when = (f'2026-09-{day:02d} {hour:02d}:{minute:02d}' if i % 3 == 0
                 else datetime(2026, 9, day, hour, minute))
         data.append([f'R{i+1:04d}', emp_numbers[i], random.choice(DEPT_VARIANTS),
@@ -220,7 +220,7 @@ def build_survey():
         '가상의 사내 웰빙 설문을 시스템에서 내려받은 형태 그대로 만든 파일입니다.',
         '실제 응답이 아니며 사번·부서·건의사항 모두 가공한 값입니다.',
         '',
-        '[일부러 심어 둔 지저분함 — 1교시 시연 3에서 정리합니다]',
+        '[일부러 심어 둔 지저분함 — 1교시 실습 4에서 정리합니다]',
         '  · 같은 사번이 두 번 응답한 행이 6건 있습니다',
         '  · 부서명 표기가 제각각입니다 (영업본부 / 영업 본부 / 영업본부_뒤에공백 / 영업)',
         '  · 만족도 열에 빈 값이 섞여 있습니다',
@@ -229,7 +229,7 @@ def build_survey():
         '[중요] 정리 작업은 반드시 사본에서 하세요.',
         '  [파일] → [사본 저장] 으로 원본을 남겨 두고 시작합니다.',
         '',
-        '자세한 절차는 학습사이트 → 교시별 학습자료 → 1교시 Excel → 시연 3 을 보세요.',
+        '자세한 절차는 학습사이트 → 교시별 학습자료 → 1교시 Excel → 실습 4 를 보세요.',
     ], after=-1)
 
     wb.save('haleon-설문원시데이터-더미.xlsx')

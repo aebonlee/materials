@@ -97,3 +97,8 @@ if __name__ == '__main__':
     assert not any('질의응답' in p.text and p.style.name.startswith('Heading') for p in d.paragraphs), 'IV장이 섞여 들어갔다'
     print(f'  {EXCERPT}: PDF {s+1}~{e}쪽, 문단 {n}개')
     print(f'  {SAMPLE}: 문장 {len([l for l in SAMPLE_LINES if l[0]=="본문"])}개')
+
+
+# Word 「호환성 모드」 방지(Copilot 단추가 안 나온다) — 2026-10-13
+import glob as _g, subprocess as _sp, os as _os
+_sp.run(['python3', _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'fix-docx-compat.py'), *_g.glob('*.docx')], check=True)

@@ -564,3 +564,8 @@ if __name__ == '__main__':
     build_report()     # ④ 는 ① 을 읽는다
     verify()
     print('완료')
+
+
+# Word 「호환성 모드」 방지(Copilot 단추가 안 나온다) — 2026-10-13
+import glob as _g, subprocess as _sp, os as _os
+_sp.run(['python3', _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'fix-docx-compat.py'), *_g.glob('*.docx')], check=True)

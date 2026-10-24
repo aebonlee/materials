@@ -1,0 +1,14 @@
+# etc/trino/catalog/iceberg.properties  → SQL에서 "iceberg" 카탈로그
+# 어떤 커넥터를 쓸지
+connector.name=iceberg
+# Iceberg 카탈로그 종류
+iceberg.catalog.type=rest
+# 카탈로그 서비스 주소
+iceberg.rest-catalog.uri=...
+# 파일을 직접 읽을 S3 주소
+s3.endpoint=...
+# (properties 파일은 줄 끝에 # 을 붙이면 그것까지 값으로 읽습니다 — 주석은 늘 따로 한 줄)
+
+# 도해의 (1)과 (2)가 여기 두 줄로 나뉘어 있습니다.
+#   rest-catalog.uri -> "어디 있나"를 묻는 곳
+#   s3.endpoint      -> 파일을 직접 읽는 곳

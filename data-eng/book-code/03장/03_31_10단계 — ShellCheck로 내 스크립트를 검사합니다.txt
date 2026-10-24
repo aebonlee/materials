@@ -1,0 +1,17 @@
+In bad.sh line 3:
+for f in $dir/*.log; do
+         ^--^ SC2231 (info): Quote expansions in this for loop glob to prevent
+              wordsplitting, e.g. "$dir"/*.txt .
+
+In bad.sh line 4:
+  n=`grep -c ERROR $f`
+    ^----------------^ SC2006 (style): Use $(...) notation instead of legacy backticks `...`.
+                   ^-- SC2086 (info): Double quote to prevent globbing and word splitting.
+
+In bad.sh line 5:
+  if [ $n -ge 1 ]; then
+       ^-- SC2086 (info): Double quote to prevent globbing and word splitting.
+
+In bad.sh line 6:
+    echo $f
+         ^-- SC2086 (info): Double quote to prevent globbing and word splitting.

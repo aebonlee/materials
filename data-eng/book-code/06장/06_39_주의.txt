@@ -1,0 +1,16 @@
+[Unit]
+Description=MariaDB (Quadlet)
+
+[Container]
+Image=docker.io/library/mariadb:11
+ContainerName=db
+Network=app.network
+Volume=db-data.volume:/var/lib/mysql
+Environment=MARIADB_ROOT_PASSWORD=rootpass
+Environment=MARIADB_DATABASE=appdb
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,8 @@
+<div class="quote">
+  <span class="text">“The world as we have created it…”</span>
+  <small class="author">Albert Einstein</small>
+  <div class="tags">
+    <a class="tag" href="/tag/change/">change</a>
+    <a class="tag" href="/tag/world/">world</a>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<!-- Mermaid로 그리는 예시 -->
+```mermaid
+flowchart TB
+  subgraph engines[엔진]
+    spark[Spark<br/>적재·변환]
+    trino[Trino<br/>조회 8080]
+  end
+  cat[(REST 카탈로그<br/>8181)]
+  subgraph minio[MinIO 9000]
+    raw[(raw 버킷<br/>원천 CSV)]
+    wh[(warehouse 버킷<br/>Iceberg 데이터·메타데이터)]
+  end
+  spark -->|어디 있나| cat
+  trino -->|어디 있나| cat
+  raw -->|원천 읽기| spark
+  spark -->|적재| wh
+  wh -->|조회| trino
+```

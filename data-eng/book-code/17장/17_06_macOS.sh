@@ -1,0 +1,2 @@
+lsof -nP -iTCP:9000 -sTCP:LISTEN
+lsof -nP -iTCP:9001 -sTCP:LISTEN

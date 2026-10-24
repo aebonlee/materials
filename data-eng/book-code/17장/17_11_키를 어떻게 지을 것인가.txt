@@ -1,0 +1,11 @@
+# 나쁜 예 — 전부 한 접두사 아래
+raw/orders_1.csv
+raw/orders_2.csv
+...
+raw/orders_500000.csv        ← 목록 조회가 느려진다
+
+# 좋은 예 — 날짜로 나눈다
+raw/orders/dt=2026-08-01/part-0.csv
+raw/orders/dt=2026-08-02/part-0.csv
+
+# 8월 1일치만 읽을 때 그 접두사만 훑으면 된다

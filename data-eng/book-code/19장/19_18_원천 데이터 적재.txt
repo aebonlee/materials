@@ -1,0 +1,5 @@
+// spark-shell 프롬프트(scala>)에서
+val raw = spark.read.option("header","true").csv("s3a://raw/orders/")
+raw.show()
+raw.count()
+// 나가기: :quit

@@ -1,0 +1,1 @@
+lsof -nP -iTCP:3306 -sTCP:LISTEN

@@ -1,0 +1,2 @@
+lsof -nP -iTCP:8181 -sTCP:LISTEN
+lsof -nP -iTCP:8888 -sTCP:LISTEN

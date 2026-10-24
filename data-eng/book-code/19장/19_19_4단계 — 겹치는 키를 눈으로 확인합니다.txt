@@ -1,0 +1,5 @@
+// 같은 order_id가 몇 번 나오는지 (scala> 에서)
+raw.groupBy("order_id").count().orderBy("order_id").show()
+
+// order_id 2만 봅니다 — 두 파일의 값이 다릅니다
+raw.filter("order_id = 2").show()

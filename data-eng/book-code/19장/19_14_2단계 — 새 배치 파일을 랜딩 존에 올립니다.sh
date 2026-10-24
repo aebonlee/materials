@@ -1,0 +1,8 @@
+cat > data/orders_2026-08-02.csv <<'EOF'
+order_id,customer,amount,order_date,channel
+2,lee,35000,2026-08-02,web
+3,park,12000,2026-08-02,app
+4,choi,58000,2026-08-02,web
+EOF
+
+docker compose exec mc mc cp /data/orders_2026-08-02.csv local/raw/orders/orders_2026-08-02.csv

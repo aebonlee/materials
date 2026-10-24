@@ -1,0 +1,1 @@
+lsof -nP -iTCP:27017 -sTCP:LISTEN

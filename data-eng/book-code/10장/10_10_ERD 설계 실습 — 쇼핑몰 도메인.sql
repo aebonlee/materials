@@ -1,0 +1,5 @@
+-- ERD 골격 (박스 4개)
+-- customers   : id(PK), name, tel
+-- products    : id(PK), name, category, price, stock ← 7장에서 이미 만든 표
+-- orders      : id(PK), customer_id(FK), ordered_at
+-- order_items : order_id(FK) + product_id(FK) 복합 PK, quantity, unit_price

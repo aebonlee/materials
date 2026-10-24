@@ -1,0 +1,15 @@
+[Unit]
+Description=Nginx web container (Quadlet)
+
+[Container]
+Image=docker.io/library/nginx:latest
+ContainerName=web
+PublishPort=8080:80
+Volume=%h/web/html:/usr/share/nginx/html:Z
+AutoUpdate=registry
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

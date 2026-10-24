@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /search
+Crawl-delay: 1
+
+User-agent: BadBot
+Disallow: /

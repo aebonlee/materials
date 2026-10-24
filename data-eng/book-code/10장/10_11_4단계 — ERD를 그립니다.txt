@@ -1,0 +1,27 @@
+erDiagram
+  customers ||--o{ orders : "places"
+  orders ||--|{ order_items : "contains"
+  products ||--o{ order_items : "appears in"
+  customers {
+    int id PK
+    varchar name
+    varchar tel
+  }
+  orders {
+    int id PK
+    int customer_id FK
+    datetime ordered_at
+  }
+  order_items {
+    int order_id PK, FK
+    int product_id PK, FK
+    int quantity
+    int unit_price
+  }
+  products {
+    int id PK
+    varchar name
+    varchar category
+    int price
+    int stock
+  }

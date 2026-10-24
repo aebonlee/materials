@@ -1,0 +1,4 @@
+DB_ROOT_PASSWORD=rootpass123
+DB_NAME=wordpress
+DB_USER=wpuser
+DB_PASSWORD=wppass123

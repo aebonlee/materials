@@ -1,0 +1,9 @@
+# 나쁜 예 — 3개 층, 게다가 캐시 파일이 아래층에 남습니다
+RUN apt-get update
+RUN apt-get install -y curl
+RUN rm -rf /var/lib/apt/lists/*
+
+# 좋은 예 — 1개 층, 정리까지 같은 층에서 끝냅니다
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends curl \
+ && rm -rf /var/lib/apt/lists/*

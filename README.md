@@ -22,10 +22,15 @@ DreamIT Biz 학습사이트에서 내려받는 **강의자료 정본 보관소**
 | 용도 | 주소 | 왜 |
 |---|---|---|
 | **내려받기** | `https://raw.githubusercontent.com/aebonlee/materials/main/<사이트>/<파일명>` | raw는 `application/octet-stream`이라 클릭하면 저장됩니다 |
-| **사이트 안에서 재생**(PDF) | `https://cdn.jsdelivr.net/gh/aebonlee/materials@main/<사이트>/<파일명>` | jsDelivr는 `application/pdf` + CORS라 인라인 렌더가 됩니다 |
+| **사이트 안에서 재생**(PDF) | raw 주소를 `fetch` → `new Blob([buf], {type:'application/pdf'})` → `blob:` 주소를 iframe 에(또는 pdf.js 로 raw 를 직접 그리기) | raw 는 CORS `*` 라 받아서 감쌀 수 있습니다. 구현 정본 `01-edu-sites/seoultech/src/lib/materialsPdf.ts`(`usePdfBlobUrl` · 새 탭 `openPdfInNewTab`) |
 | **사이트 안에서 재생**(PPTX) | `https://view.officeapps.live.com/op/embed.aspx?src=<raw 주소를 URL 인코딩>` | Office 온라인 뷰어. 원본이 공개 위치여야 합니다 |
 
 한글 파일명은 URL 인코딩이 필요합니다.
+
+> ⚠ **jsDelivr(`cdn.jsdelivr.net/gh/aebonlee/materials…`)는 쓰지 마세요** (2026-10-25).
+> 이 리포가 50MB 를 넘어(780MB) jsDelivr 가 `403 Package size exceeded the configured limit of 50 MB` 를 줍니다.
+> 캐시에 남은 파일만 열려서 「일부 강의안만 안 보인다」로 나타났습니다(hs-web 5덱 · koreatech-db 2덱).
+> 같은 날 hs-web · haleon · koreatech-db · build · build-data · chosun-ai · seoultech 를 raw→Blob 으로 바꿨습니다.
 
 ### raw 주소를 미리보기에 쓰면 안 되는 이유 (실측)
 
